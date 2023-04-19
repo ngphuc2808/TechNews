@@ -1,11 +1,15 @@
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import HeaderTop from '@/src/components/Global/HeaderTop';
+import Head from 'next/head';
 
-const MyDiv = styled.div`
-  ${tw`bg-red-50`}
-`;
 const Home = () => {
-  return <MyDiv>Hello mn</MyDiv>;
+  return (
+    <>
+      <Head>
+        <title>Technology News</title>
+      </Head>
+      <HeaderTop />
+    </>
+  );
 };
 
 export default Home;
