@@ -58,7 +58,7 @@ export const StyledFontAwesomeIconLeft = styled(FontAwesomeIcon)`
 `;
 
 export const StyledFontAwesomeIconRight = styled(FontAwesomeIcon)`
-  ${tw`w-3.5 h-3.5 text-[#cecece] ml-2.5 transition delay-0 ease-linear duration-300 cursor-pointer caret-transparent`}
+  ${tw`w-3.5 h-3.5 text-[#cecece] ml-2.5 transition delay-0 ease-linear duration-300 cursor-pointer`}
   &:hover {
     ${tw`text-[var(--primary)]`}
   }

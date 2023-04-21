@@ -4,6 +4,7 @@ import * as S from './HomePage.module';
 import { Fragment } from 'react';
 import ScrollToTop from '../Global/ScrollToTopButton';
 import ButtonDarkMode from '../Global/ButtonDarkMode';
+import Footer from '../Global/Footer';
 function HomePage() {
   return (
     <Fragment>
@@ -16,6 +17,7 @@ function HomePage() {
         <ScrollToTop />
         <S.Content>ABCX</S.Content>
       </S.Container>
+      <Footer />
     </Fragment>
   );
 }

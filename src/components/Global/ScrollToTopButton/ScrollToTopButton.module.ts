@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Wrapper = styled.div`
-  ${tw`w-[40px] h-[40px] rounded-full fixed right-[28px] top-[93%] z-50 bg-[var(--primary)] animate-bounce`}
+  ${tw`w-[40px] h-[40px] rounded-full fixed right-[28px] top-[94%] z-50 bg-[var(--primary)] animate-bounce`}
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
 `;
 

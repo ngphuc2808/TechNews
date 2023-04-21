@@ -6,7 +6,7 @@ export const Header = styled.header`
 `;
 
 export const Container = styled.div`
-  ${tw`flex justify-center items-center mt-[152px]`}
+  ${tw`h-[2000px] flex justify-center items-center mt-[152px]`}
 `;
 
 export const Content = styled.div`

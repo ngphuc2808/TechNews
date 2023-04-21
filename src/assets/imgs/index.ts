@@ -1,5 +1,5 @@
 const images = {
-  logo: require('./TechNews2.png'),
+  logo: require('./TechNews.png'),
 };
 
 export default images;
