@@ -20,3 +20,14 @@ export const navBarArray = [
     key: 'About',
   },
 ];
+
+export const darkModeArray = [
+  {
+    title: 'LIGHT',
+    key: 'light',
+  },
+  {
+    title: 'DARK',
+    key: 'dark',
+  },
+];

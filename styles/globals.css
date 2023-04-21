@@ -6,15 +6,11 @@
 :root {
   --black: #000000;
   --white: #ffffff;
-  --primary: #ff2c54;
+  --primary: #f0a500;
   --text-color: #cecece;
   --search-dark: #ffffff1f;
+  --navbar-dark: #2b2b2b;
   --font-family: 'Be Vietnam Pro', sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
 }
 
 html,

@@ -3,12 +3,14 @@ import * as S from './Navbar.module';
 import { navBarArray } from '@/src/utils/dataConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
   const [activePage, setActivePage] = useState<string>('Home');
+  const { mode } = useSelector((state: any) => state.darkMode);
 
   return (
-    <S.Wrapper>
+    <S.Wrapper darkMode={mode}>
       <S.Container>
         <S.MenuNav>
           {navBarArray.map((item, index) => (

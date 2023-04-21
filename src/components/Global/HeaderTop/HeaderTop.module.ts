@@ -3,11 +3,11 @@ import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Wrapper = styled.header`
-  ${tw`bg-[#1a1a1a] py-3`}
+  ${tw`flex justify-center items-center bg-[#1a1a1a] py-3`}
 `;
 
 export const Container = styled.div`
-  ${tw`w-[1260px] h-[34px] flex justify-between mx-auto px-[15px] flex items-center`}
+  ${tw`w-[1260px] h-[34px] flex justify-between items-center px-[15px]`}
 `;
 
 export const MenuHeader = styled.ul`
@@ -29,9 +29,9 @@ export const ItemTitle = styled.span`
   }
   &:hover {
     > svg {
-      ${tw`text-[#ff2c54]`}
+      ${tw`text-[var(--primary)]`}
     }
-    ${tw`text-[#ff2c54]`}
+    ${tw`text-[var(--primary)]`}
   }
 `;
 
@@ -49,7 +49,7 @@ export const Separate = styled.div`
 export const ButtonEntry = styled.button`
   ${tw`transition delay-0 ease-linear duration-300 cursor-pointer caret-transparent`}
   &:hover {
-    ${tw`text-[#ff2c54]`}
+    ${tw`text-[var(--primary)]`}
   }
 `;
 
@@ -60,6 +60,6 @@ export const StyledFontAwesomeIconLeft = styled(FontAwesomeIcon)`
 export const StyledFontAwesomeIconRight = styled(FontAwesomeIcon)`
   ${tw`w-3.5 h-3.5 text-[#cecece] ml-2.5 transition delay-0 ease-linear duration-300 cursor-pointer caret-transparent`}
   &:hover {
-    ${tw`text-[#ff2c54]`}
+    ${tw`text-[var(--primary)]`}
   }
 `;

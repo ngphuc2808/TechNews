@@ -3,7 +3,7 @@ import Image from 'next/image';
 import images from '@/src/assets/imgs';
 import { faCircleQuestion, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faSquareInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
-function Header() {
+function HeaderTop() {
   return (
     <S.Wrapper>
       <S.Container>
@@ -36,4 +36,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderTop;
