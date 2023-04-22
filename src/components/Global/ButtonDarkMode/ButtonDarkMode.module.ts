@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   ${tw`fixed right-[-30px] top-1/2 translate-y-[-50%] rotate-90 z-50`}
 `;
 

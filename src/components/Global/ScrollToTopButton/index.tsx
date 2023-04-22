@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as S from './ScrollToTopButton.module';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
-import { useEffect } from 'react';
+
 function ScrollToTop() {
   const [showTopBtn, setShowTopBtn] = useState(false);
   useEffect(() => {

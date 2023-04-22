@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import tw from 'twin.macro';
 
 export const Wrapper = styled.nav<{ darkMode: boolean }>`
@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const MenuNav = styled.ul`
-  ${tw`inline-flex items-center justify-center text-base list-none text-white`}
+  ${tw`inline-flex items-center justify-center text-base list-none`}
   > * {
     &:not(:last-child) {
       ${tw`mr-5`}
@@ -37,9 +37,9 @@ export const MenuNavItem = styled.li<{ active: boolean }>`
 `;
 
 export const SearchArea = styled.div`
-  ${tw`w-[250px] flex items-center justify-center caret-transparent`}
+  ${tw`w-[350px] flex items-center justify-center caret-transparent`}
   > svg {
-    ${tw`w-5 h-5 text-white cursor-pointer ml-2`}
+    ${tw`w-5 h-5 cursor-pointer ml-2`}
     &:hover {
       ${tw`text-[#f0a500]`}
     }
@@ -47,7 +47,7 @@ export const SearchArea = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  ${tw`w-full h-full bg-transparent border-b-[1px] border-solid border-white outline-none caret-white text-white py-1 pl-1 pr-4 transition delay-0 ease-linear duration-300 caret-transparent`}
+  ${tw`w-full h-full bg-transparent border-b-[1px] border-solid border-white outline-none caret-white py-1 pl-1 pr-4 transition delay-0 ease-linear duration-300 caret-transparent`}
   &:focus {
     ${tw`border-[#f0a500]`}
   }

@@ -31,7 +31,7 @@ function Footer() {
         </S.Connect>
       </S.Mid>
       <S.Bottom>
-        <S.Description>Clone by Group 03</S.Description>
+        <S.Description>2023 - Clone by Group 03</S.Description>
       </S.Bottom>
     </S.Wrapper>
   );

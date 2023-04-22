@@ -1,29 +1,33 @@
 import { useState } from 'react';
 import * as S from './ButtonDarkMode.module';
 import { darkModeArray } from '@/src/utils/dataConfig';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDarkMode } from '@/src/features/redux/slices/darkModeSlice';
-
-interface iItem {
-  title: string;
-  key: string;
-}
 
 function ButtonDarkMode() {
   const dispatch = useDispatch();
 
-  const [modeTitle, setModeTitle] = useState<string>('light');
+  const darkMode = useSelector((state: any) => state.darkMode);
 
-  const handleEvent = (index: number, item: iItem) => {
-    setModeTitle(item.key);
-
+  const handleEvent = (index: number) => {
     if (index === 0) {
-      dispatch(setDarkMode(false));
+      dispatch(
+        setDarkMode({
+          mode: false,
+          title: 'light',
+        }),
+      );
       return;
     }
 
     if (index === 1) {
-      dispatch(setDarkMode(true));
+      dispatch(
+        setDarkMode({
+          mode: true,
+          title: 'dark',
+        }),
+      );
+      return;
     }
   };
 
@@ -31,7 +35,7 @@ function ButtonDarkMode() {
     <S.Wrapper>
       <S.ListMode>
         {darkModeArray.map((item, index) => (
-          <S.ItemMode key={index} active={item.key === modeTitle} onClick={() => handleEvent(index, item)}>
+          <S.ItemMode key={index} active={item.key === darkMode.title} onClick={() => handleEvent(index)}>
             {item.title}
           </S.ItemMode>
         ))}

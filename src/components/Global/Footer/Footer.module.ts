@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   ${tw`relative bottom-0 w-full bg-black flex items-center justify-center flex-col py-[55px]`}
 `;
 
@@ -43,9 +43,9 @@ export const Title = styled.h3`
 `;
 
 export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  ${tw`w-5 h-5 text-[#cecece] ml-3 transition delay-0 ease-linear duration-300 cursor-pointer`}
+  ${tw`w-6 h-6 text-[#cecece] ml-3 transition delay-0 ease-linear duration-200 cursor-pointer`}
   &:hover {
-    ${tw`text-[var(--primary)]`}
+    ${tw`text-[var(--primary)] rotate-[35deg]`}
   }
 `;
 
@@ -54,5 +54,5 @@ export const Bottom = styled.div`
 `;
 
 export const Description = styled.span`
-  ${tw`block pt-[30px] text-white text-sm select-none`}
+  ${tw`block pt-[30px] text-sm select-none`}
 `;

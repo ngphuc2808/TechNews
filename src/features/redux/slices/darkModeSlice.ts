@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface iDarkModeState {
   mode: boolean;
+  title: string;
 }
 
 const initialState: iDarkModeState = {
   mode: false,
+  title: 'light',
 };
 
 export const darkModeSlice = createSlice({
@@ -13,7 +15,8 @@ export const darkModeSlice = createSlice({
   initialState,
   reducers: {
     setDarkMode: (state, action) => {
-      state.mode = action.payload;
+      state.mode = action.payload.mode;
+      state.title = action.payload.title;
     },
   },
 });
