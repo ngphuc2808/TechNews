@@ -16,7 +16,7 @@ function Navbar() {
           {navBarArray.map((item, index) => (
             <S.MenuNavItem key={index} active={item.key === activePage} submenu={item.submenu === true} onClick={() => setActivePage(item.key)}>
               {item.title}
-              {item.submenu && <S.SubMenu>
+              {item.submenu && <S.SubMenu darkMode={mode}>
                   <S.SubItem>
                     Sản Phẩm A
                   </S.SubItem>
