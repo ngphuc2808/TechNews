@@ -1,4 +1,10 @@
-export const navBarArray = [
+interface iNavBar {
+  title: string;
+  key: string;
+  submenu?: boolean;
+}
+
+export const navBarArray: iNavBar[] = [
   {
     title: 'Trang chủ',
     key: 'Home',
@@ -6,6 +12,7 @@ export const navBarArray = [
   {
     title: 'Danh mục',
     key: 'Category',
+    submenu: true,
   },
   {
     title: 'Cộng đồng',
@@ -18,6 +25,21 @@ export const navBarArray = [
   {
     title: 'Về chúng tôi',
     key: 'About',
+  },
+];
+
+export const widgetArray = [
+  {
+    title: 'Gần đây',
+    key: 'Recent',
+  },
+  {
+    title: 'Phổ biến',
+    key: 'Popular',
+  },
+  {
+    title: 'Xem nhiều',
+    key: 'Trendy',
   },
 ];
 

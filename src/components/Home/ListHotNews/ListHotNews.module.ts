@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 export const Wrapper = styled.section`
-  ${tw`py-[15px] text-[var(--text-color-black)]`}
+  ${tw`text-[var(--text-color-black)]`}
 `;
 
 export const Top = styled.div<{ darkMode: boolean }>`
@@ -29,15 +29,15 @@ export const ViewAll = styled.p`
 `;
 
 export const ListCard = styled.div`
-  ${tw`mb-[30px] h-[450px] flex items-center justify-between`}
+  ${tw`h-[450px] flex items-center justify-between`}
 `;
 
 export const Card = styled.div`
-  ${tw`relative h-full w-[23%] relative cursor-pointer overflow-hidden`}
-  > span {
+  ${tw`relative h-full w-[23%] cursor-pointer overflow-hidden`}
+  > img {
     ${tw`transition delay-0 ease-linear duration-200`}
   }
-  &:hover > span {
+  &:hover > img {
     ${tw`scale-110`}
   }
   &:hover > :last-child > :first-child {

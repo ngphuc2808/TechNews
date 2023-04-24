@@ -14,8 +14,19 @@ function Navbar() {
       <S.Container>
         <S.MenuNav>
           {navBarArray.map((item, index) => (
-            <S.MenuNavItem key={index} active={item.key === activePage} onClick={() => setActivePage(item.key)}>
+            <S.MenuNavItem key={index} active={item.key === activePage} submenu={item.submenu === true} onClick={() => setActivePage(item.key)}>
               {item.title}
+              {item.submenu && <S.SubMenu>
+                  <S.SubItem>
+                    Sản Phẩm A
+                  </S.SubItem>
+                  <S.SubItem>
+                    Sản Phẩm B
+                  </S.SubItem>
+                  <S.SubItem>
+                    Sản Phẩm C
+                  </S.SubItem>
+                </S.SubMenu>}
             </S.MenuNavItem>
           ))}
         </S.MenuNav>

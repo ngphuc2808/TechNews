@@ -21,7 +21,7 @@ function Footer() {
       </S.Content>
       <S.Mid>
         <S.Logo>
-          <Image src={images.logo} alt="logo" priority />
+          <Image quality={100} src={images.logo} sizes="" alt="logo" priority />
         </S.Logo>
         <S.Connect>
           <S.Title>Kêt nối với chúng tôi</S.Title>

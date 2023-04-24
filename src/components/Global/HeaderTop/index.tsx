@@ -23,7 +23,7 @@ function HeaderTop() {
           </S.MenuHeaderItem>
         </S.MenuHeader>
         <S.Logo>
-          <Image src={images.logo} alt="logo" priority />
+          <Image quality={100} src={images.logo} sizes="" alt="logo" priority />
         </S.Logo>
         <S.Entry>
           <S.StyledFontAwesomeIconLeft icon={faUser} />

@@ -7,23 +7,32 @@ export const Header = styled.header`
 `;
 
 export const Container = styled.div`
-  ${tw`flex justify-center items-center mt-[152px] mb-[45px]`}
+  ${tw`flex flex-col justify-center items-center mt-[107px]`}
+  > * {
+    &:last-child {
+      ${tw`mb-[45px]`}
+    }
+  }
 `;
 
 export const Content = styled.div`
-  ${tw`w-[1260px] px-[15px]`}
+  ${tw`w-[1260px] px-[15px] mt-[45px]`}
+`;
+
+export const ContentBlack = styled.div`
+  ${tw`w-full mt-[45px] bg-black flex justify-center items-center`}
 `;
 
 export const LatestNews = styled.div`
-  ${tw`w-full min-h-[670px] py-[15px] flex `}
+  ${tw`w-full min-h-[670px] flex `}
 `;
 
 export const LatestNewsLeft = styled.div`
   ${tw`relative w-2/3 mr-[15px] cursor-pointer overflow-hidden`}
-  > span {
+  > img {
     ${tw`transition delay-0 ease-linear duration-200`}
   }
-  &:hover > span {
+  &:hover > img {
     ${tw`scale-110`}
   }
   &:hover > :last-child > h3 > a {
@@ -38,10 +47,10 @@ export const LatestNewsRight = styled.div`
 
 export const Topic = styled.div`
   ${tw`relative w-full h-[47%] cursor-pointer overflow-hidden`}
-  > span {
+  > img {
     ${tw`transition delay-0 ease-linear duration-200`}
   }
-  &:hover > span {
+  &:hover > img {
     ${tw`scale-110`}
   }
   &:hover > :last-child > h3 > a {

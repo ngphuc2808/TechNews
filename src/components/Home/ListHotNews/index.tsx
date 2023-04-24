@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
-import * as S from './ListView.module';
+import * as S from './ListHotNews.module';
 import Link from 'next/link';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 interface iTitle {
   title: string;
 }
-function ListView({ title }: iTitle) {
+function ListHotNews({ title }: iTitle) {
   const { mode } = useSelector((state: any) => state.darkMode);
 
   return (
@@ -18,10 +18,11 @@ function ListView({ title }: iTitle) {
       <S.ListCard>
         <S.Card>
           <Image
+            quality={100}
             src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
             alt="image"
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes=""
             priority
           />
           <S.Overlay>
@@ -40,10 +41,11 @@ function ListView({ title }: iTitle) {
         </S.Card>
         <S.Card>
           <Image
+            quality={100}
             src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
             alt="image"
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes=""
             priority
           />
           <S.Overlay>
@@ -62,10 +64,11 @@ function ListView({ title }: iTitle) {
         </S.Card>
         <S.Card>
           <Image
+            quality={100}
             src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
             alt="image"
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes=""
             priority
           />
           <S.Overlay>
@@ -84,10 +87,11 @@ function ListView({ title }: iTitle) {
         </S.Card>
         <S.Card>
           <Image
+            quality={100}
             src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
             alt="image"
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes=""
             priority
           />
           <S.Overlay>
@@ -96,7 +100,7 @@ function ListView({ title }: iTitle) {
                 <S.CategoryName>Smart Watch</S.CategoryName>
               </S.CategoryTag>
               <S.NewsTitle>
-                <Link href="/home">These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales</Link>
+                <Link href="#">These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales</Link>
               </S.NewsTitle>
               <S.AuthorTag>
                 By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
@@ -109,4 +113,4 @@ function ListView({ title }: iTitle) {
   );
 }
 
-export default ListView;
+export default ListHotNews;

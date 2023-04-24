@@ -1,14 +1,15 @@
 import { Fragment, useEffect } from 'react';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import * as S from './HomePage.module';
 import Navbar from './Navbar';
 import HeaderTop from '../Global/HeaderTop';
 import ScrollToTop from '../Global/ScrollToTopButton';
 import ButtonDarkMode from '../Global/ButtonDarkMode';
 import Footer from '../Global/Footer';
-import ListView from './ListView';
+import ListHotNews from './ListHotNews';
+import ListPost from './ListPost';
 
 function HomePage() {
   const { mode } = useSelector((state: any) => state.darkMode);
@@ -36,10 +37,11 @@ function HomePage() {
           <S.LatestNews>
             <S.LatestNewsLeft>
               <Image
+                quality={100}
                 src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
                 alt="image"
-                layout="fill"
-                objectFit="cover"
+                fill
+                sizes=""
                 priority
               />
               <S.Overlay />
@@ -58,10 +60,11 @@ function HomePage() {
             <S.LatestNewsRight>
               <S.Topic>
                 <Image
+                  quality={100}
                   src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
                   alt="image"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  sizes=""
                   priority
                 />
                 <S.Overlay />
@@ -79,10 +82,11 @@ function HomePage() {
               </S.Topic>
               <S.Topic>
                 <Image
+                  quality={100}
                   src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
                   alt="image"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  sizes=""
                   priority
                 />
                 <S.Overlay />
@@ -100,7 +104,12 @@ function HomePage() {
               </S.Topic>
             </S.LatestNewsRight>
           </S.LatestNews>
-          <ListView title="Top News" />
+        </S.Content>
+        <S.ContentBlack>
+          <ListPost />
+        </S.ContentBlack>
+        <S.Content>
+          <ListHotNews title="Nổi Bật" />
         </S.Content>
       </S.Container>
       <Footer />
