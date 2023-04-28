@@ -3,7 +3,6 @@ interface iNavBar {
   key: string;
   submenu?: boolean;
 }
-
 export const navBarArray: iNavBar[] = [
   {
     title: 'Trang chủ',
@@ -28,7 +27,11 @@ export const navBarArray: iNavBar[] = [
   },
 ];
 
-export const widgetArray = [
+interface iWidget {
+  title: string;
+  key: string;
+}
+export const widgetArray: iWidget[] = [
   {
     title: 'Gần đây',
     key: 'Recent',
@@ -43,7 +46,11 @@ export const widgetArray = [
   },
 ];
 
-export const darkModeArray = [
+interface iDarkMode {
+  title: string;
+  key: string;
+}
+export const darkModeArray: iDarkMode[] = [
   {
     title: 'LIGHT',
     key: 'light',
@@ -54,7 +61,14 @@ export const darkModeArray = [
   },
 ];
 
-export const listMemberGroup = [
+interface iListMemberGroup {
+  name: string,
+  id: number,
+  phone: string,
+  mail: string,
+  role: string,
+}
+export const listMemberGroup: iListMemberGroup[] = [
   {
     name: 'Mr. Hoàng Phúc',
     id: 19110268,
@@ -91,3 +105,61 @@ export const listMemberGroup = [
     role: 'Backend Developer',
   },
 ];
+
+interface iPost {
+  id: number,
+  category: string
+  title: string,
+  author: string,
+  date: string,
+  like: number,
+  dislike: number,
+  is_liked?: number,
+  content: string,
+}
+export const post: iPost[] = [
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content: 'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is'
+  },
+  {
+    id: 1,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 2,
+    content: 'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is'
+  },
+  {
+    id: 2,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 0,
+    content: 'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is'
+  },
+  {
+    id: 3,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 0,
+    content: 'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is'
+  },
+]

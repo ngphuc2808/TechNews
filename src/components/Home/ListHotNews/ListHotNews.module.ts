@@ -15,7 +15,7 @@ export const Title = styled.h2`
 `;
 
 export const ViewAll = styled.p`
-  ${tw`text-sm font-semibold uppercase relative cursor-pointer`}
+  ${tw`text-sm font-semibold uppercase relative cursor-pointer uppercase`}
   &:before {
     ${tw`content-[''] absolute bottom-0 left-0 w-full h-0.5 scale-x-0 origin-bottom-left bg-current transition delay-0 ease-out duration-200`}
   }
@@ -33,7 +33,7 @@ export const ListCard = styled.div`
 `;
 
 export const Card = styled.div`
-  ${tw`relative h-full w-[23%] cursor-pointer overflow-hidden`}
+  ${tw`relative h-full w-[23%] overflow-hidden`}
   > img {
     ${tw`transition delay-0 ease-linear duration-200`}
   }

@@ -1,26 +1,6 @@
 import styled from 'styled-components';
 import tw from 'twin.macro';
-
-export const Wrapper = styled.section`
-  ${tw`w-[1260px] px-[15px] py-[45px] text-white bg-black flex items-start justify-center`}
-`;
-
-export const LeftInfo = styled.div`
-  ${tw`w-2/3 pr-[15px] overflow-auto`}
-  &:hov
-`;
-
-export const RightInfo = styled.div`
-  ${tw`w-1/3 pl-[45px]`}
-`;
-
-export const Title = styled.h3`
-  ${tw`text-2xl font-semibold mb-5`}
-`;
-
-export const ListCard = styled.div`
-  ${tw`max-h-[1500px] overflow-auto`}
-`;
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const BlockContent = styled.div`
   ${tw`flex h-[285px] mb-[30px]`}
@@ -96,32 +76,23 @@ export const DesContent = styled.p`
   ${tw`mt-[10px] text-base text-[var(--text-color)] `}
 `;
 
-export const ListWidget = styled.ul`
-  ${tw`text-[14px] text-[var(--text-color)] flex list-none mb-5`}
-`;
 
-export const ItemWidget = styled.li<{ active: boolean }>`
-  ${tw`w-[calc(100%/3)] flex items-center justify-center py-[13px] px-[10px] border-[1px] border-solid border-[var(--primary)] cursor-pointer text-[var(--primary)] text-sm font-semibold caret-transparent transition delay-0 ease-linear duration-200`}
-  ${({ active }) => active && tw`bg-[--primary] text-white`}
+export const CustomIconLike = styled(FontAwesomeIcon)<{check: number}>`
+  ${tw`text-lg cursor-pointer mr-1`}
+  ${({check}) => check===1 && tw`text-[#63e6be]`}
   &:hover {
-    ${tw`bg-[--primary] text-white`}
+    ${tw`text-[#63e6be]`}
   }
-`;
+`
 
-export const TabContent = styled.div`
-  ${tw`mb-5 w-full min-h-[130px] flex`}
-  > :first-child > img {
-    ${tw`transition delay-0 ease-linear duration-200`}
-  }
-  &:hover > :first-child > img {
-    ${tw`scale-110`}
-  }
-  &:hover > :last-child > :first-child > a {
-    background-size: 100% 2px;
-    color: inherit;
-  }
-`;
+export const CustomIconDislike = styled(FontAwesomeIcon)<{check: number}>`
+  ${tw`text-lg cursor-pointer mr-1`}
+  ${({check}) => check===0 && tw`text-[#c8210e]`}
 
-export const ImageCard = styled.div`
-  ${tw`w-[100px] h-[100px] relative mr-5 shrink-0`}
-`;
+  &:hover {
+    ${tw`text-[#c8210e]`}
+  }
+`
+export const Number = styled.p`
+  ${tw`text-sm`}
+`
