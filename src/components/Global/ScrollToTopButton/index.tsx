@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import * as S from './ScrollToTopButton.module';
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,15 +20,15 @@ function ScrollToTop() {
     });
   };
   return (
-    <>
+    <Fragment>
       {showTopBtn && (
         <S.Wrapper>
-          <S.Button>
-            <S.StyledFontAwesomeIcon icon={faAngleUp} onClick={goToTop} />
+          <S.Button onClick={goToTop}>
+            <S.StyledFontAwesomeIcon icon={faAngleUp} />
           </S.Button>
         </S.Wrapper>
       )}
-    </>
+    </Fragment>
   );
 }
 

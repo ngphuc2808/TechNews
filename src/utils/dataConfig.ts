@@ -62,11 +62,11 @@ export const darkModeArray: iDarkMode[] = [
 ];
 
 interface iListMemberGroup {
-  name: string,
-  id: number,
-  phone: string,
-  mail: string,
-  role: string,
+  name: string;
+  id: number;
+  phone: string;
+  mail: string;
+  role: string;
 }
 export const listMemberGroup: iListMemberGroup[] = [
   {
@@ -107,15 +107,15 @@ export const listMemberGroup: iListMemberGroup[] = [
 ];
 
 interface iPost {
-  id: number,
-  category: string
-  title: string,
-  author: string,
-  date: string,
-  like: number,
-  dislike: number,
-  is_liked?: number,
-  content: string,
+  id: number;
+  category: string;
+  title: string;
+  author: string;
+  date: string;
+  like: number;
+  dislike: number;
+  is_liked?: number;
+  content: string;
 }
 export const post: iPost[] = [
   {
@@ -127,7 +127,8 @@ export const post: iPost[] = [
     like: 111,
     dislike: 110,
     is_liked: 1,
-    content: 'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is'
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
   },
   {
     id: 1,
@@ -138,7 +139,8 @@ export const post: iPost[] = [
     like: 111,
     dislike: 110,
     is_liked: 2,
-    content: 'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is'
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
   },
   {
     id: 2,
@@ -149,7 +151,8 @@ export const post: iPost[] = [
     like: 111,
     dislike: 110,
     is_liked: 0,
-    content: 'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is'
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
   },
   {
     id: 3,
@@ -160,6 +163,129 @@ export const post: iPost[] = [
     like: 111,
     dislike: 110,
     is_liked: 0,
-    content: 'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is'
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
   },
-]
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
+  },
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
+  },
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
+  },
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
+  },
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
+  },
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
+  },
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
+  },
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content:
+      'For those of us who want to say thank you to our moms, it’s not always easy to put those big feelings in words. Which is',
+  },
+  {
+    id: 0,
+    category: 'Smart Watch',
+    title: 'These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales',
+    author: 'Phucnh',
+    date: 'November 6, 2019',
+    like: 111,
+    dislike: 110,
+    is_liked: 1,
+    content: 'Hihi',
+  },
+];
+
+interface iCategory {
+  name: string;
+  key: string;
+}
+export const category: iCategory[] = [
+  {
+    name: 'Công nghệ',
+    key: 'technology',
+  },
+  {
+    name: 'Lập trình',
+    key: 'program',
+  },
+];

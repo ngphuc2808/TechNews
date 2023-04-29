@@ -3,10 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { iDataPosts } from '@/src/utils/interface';
 
 function BlockContent({ data }: iDataPosts) {
   const [like, setLike] = useState<number>();
+
+  const { mode } = useSelector((state: any) => state.darkMode);
+
   return (
     <S.BlockContent>
       <S.PictureContent>
@@ -23,7 +27,7 @@ function BlockContent({ data }: iDataPosts) {
         <S.CategoryTag>
           <S.CategoryName>{data.category}</S.CategoryName>
         </S.CategoryTag>
-        <S.NewsTitle>
+        <S.NewsTitle darkMode={mode}>
           <Link href="/home">{data.title}</Link>
         </S.NewsTitle>
         <S.TagList>
@@ -40,7 +44,7 @@ function BlockContent({ data }: iDataPosts) {
             <S.Number>{data.dislike}</S.Number>
           </S.TagItem>
         </S.TagList>
-        <S.DesContent>{data.content}</S.DesContent>
+        <S.DesContent darkMode={mode}>{data.content}</S.DesContent>
       </S.DescriptionNews>
     </S.BlockContent>
   );

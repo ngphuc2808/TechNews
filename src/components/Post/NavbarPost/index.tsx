@@ -1,14 +1,14 @@
-import { useCallback, useState } from 'react';
-import * as S from './Navbar.module';
+import { useState, useCallback } from 'react';
+import * as S from './NavbarPost.module';
+import Link from 'next/link';
 import { category, navBarArray } from '@/src/utils/dataConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import Link from 'next/link';
-import { iCategory } from '@/src/utils/interface';
+import { useSelector, useDispatch } from 'react-redux';
 import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
+import { iCategory } from '@/src/utils/interface';
 
-function Navbar() {
+function NavbarPost() {
   const dispatch = useDispatch();
 
   const [activePage, setActivePage] = useState<string>('Home');
@@ -43,7 +43,7 @@ function Navbar() {
           ))}
         </S.MenuNav>
         <S.SearchArea>
-          <S.SearchInput placeholder="Tìm kiếm..." />
+          <S.SearchInput darkMode={mode} placeholder="Tìm kiếm..." />
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </S.SearchArea>
       </S.Container>
@@ -51,4 +51,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarPost;

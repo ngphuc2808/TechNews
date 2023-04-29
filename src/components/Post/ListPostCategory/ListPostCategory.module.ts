@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 export const Wrapper = styled.section`
-  ${tw`w-[1260px] px-[15px] py-[45px] text-white bg-black flex items-start justify-center`}
+  ${tw`w-[1260px] px-[15px] text-white flex items-start justify-center`}
 `;
 
 export const LeftInfo = styled.div`
@@ -14,12 +14,8 @@ export const RightInfo = styled.div`
   ${tw`w-1/3 pl-[45px]`}
 `;
 
-export const Title = styled.h3`
-  ${tw`text-2xl font-semibold mb-5`}
-`;
-
 export const ListCard = styled.div`
-  ${tw`max-h-[1500px] overflow-auto`}
+  ${tw``}
 `;
 
 export const BlockContent = styled.div`
@@ -62,27 +58,31 @@ export const CategoryName = styled.p`
   ${tw`py-1.5 px-[11px] text-[11px] font-semibold uppercase mr-2.5 mb-2.5`}
 `;
 
-export const NewsTitle = styled.h3`
-  ${tw`w-full font-semibold mb-2.5 relative text-white`}
+export const NewsTitle = styled.h3<{ darkMode: boolean }>`
+  ${tw`w-full font-semibold mb-2.5 relative text-[var(--text-color-black)]`}
+  ${({ darkMode }) => darkMode && tw`text-white`}
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   > a {
     transition: background-size 200ms ease-in-out;
-    background-image: linear-gradient(white, white);
     background-repeat: no-repeat;
     background-position: bottom left;
     background-size: 0% 2px;
+    ${({ darkMode }) =>
+      darkMode
+        ? 'background-image: linear-gradient(var(--white), var(--white));'
+        : 'background-image: linear-gradient(var(--text-color-black), var(--text-color-black));'};
   }
 `;
 
 export const TagList = styled.ul`
-  ${tw`text-[14px] text-[var(--text-color)] flex items-center list-none`}
+  ${tw`text-[14px] text-[var(--text-color-black-two)] flex items-center list-none`}
 `;
 
 export const TagItem = styled.li`
-  ${tw`text-[14px] text-[var(--text-color)] flex items-center mr-4 mb-[10px]`}
+  ${tw`text-[14px] text-[var(--text-color-black-three)] flex items-center mr-4 mb-[10px]`}
 `;
 
 export const AuthorName = styled.p`
@@ -93,11 +93,11 @@ export const AuthorName = styled.p`
 `;
 
 export const DesContent = styled.p`
-  ${tw`mt-[10px] text-base text-[var(--text-color)] `}
+  ${tw`mt-[10px] text-base text-[var(--text-color-black-two)] `}
 `;
 
 export const ListWidget = styled.ul`
-  ${tw`text-[14px] text-[var(--text-color)] flex list-none mb-5`}
+  ${tw`text-[14px] text-[var(--text-color-black-two)] flex list-none mb-5`}
 `;
 
 export const ItemWidget = styled.li<{ active: boolean }>`

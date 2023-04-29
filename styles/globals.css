@@ -9,9 +9,15 @@
   --primary: #ff8f3c;
   --text-color: #cecece;
   --text-color-black: #121213;
+  --text-color-black-two: #494e51;
+  --text-color-black-three: #6b7074;
+  --text-color-black-four: #7b7b7b;
+  --text-color-black-five: #1a1a1a;
+  --text-color-grey: #c1c6c9;
   --text-color-dark: #7b7b7b;
   --search-dark: #ffffff1f;
   --body-dark: #121213;
+  --body-light: #f9f9f9;
   --navbar-dark: #2b2b2b;
   --font-family: 'Be Vietnam Pro', sans-serif;
 }

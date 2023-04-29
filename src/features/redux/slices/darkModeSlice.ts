@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface iDarkModeState {
+interface iDarkModeState {
   mode: boolean;
   title: string;
 }

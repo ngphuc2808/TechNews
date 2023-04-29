@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 export const Wrapper = styled.nav<{ darkMode: boolean }>`
-  ${tw`flex justify-center items-center bg-[var(--text-color-black)] h-[49px]`}
-  ${({ darkMode }) => darkMode && tw`bg-[var(--navbar-dark)]`}
+  ${tw`flex justify-center items-center bg-white h-[86px] text-[var(--text-color-black)]`}
+  ${({ darkMode }) => darkMode && tw`bg-[var(--navbar-dark)] text-white`}
 `;
 
 export const Container = styled.div`
@@ -47,7 +47,7 @@ export const MenuNavItem = styled.li<{ active: boolean; submenu: boolean }>`
 `;
 
 export const SubMenu = styled.ul<{ darkMode: boolean }>`
-  ${tw`w-[200px] bg-[var(--text-color-black)] hidden absolute top-[38px] left-0`}
+  ${tw`w-[200px] bg-white hidden absolute top-[38px] left-0`}
   ${({ darkMode }) => darkMode && tw`bg-[var(--navbar-dark)]`}
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   > :last-child {
@@ -56,7 +56,7 @@ export const SubMenu = styled.ul<{ darkMode: boolean }>`
 `;
 
 export const SubItem = styled.li`
-  ${tw`text-sm text-white transition delay-0 ease-linear duration-300`}
+  ${tw`text-sm text-[var(--text-color-black)] transition delay-0 ease-linear duration-300`}
   &:hover {
     ${tw`text-[var(--primary)]`}
   }
@@ -75,8 +75,9 @@ export const SearchArea = styled.div`
   }
 `;
 
-export const SearchInput = styled.input`
-  ${tw`w-full h-full bg-transparent border-b-[1px] border-solid border-white outline-none py-1 pl-1 pr-4 transition delay-0 ease-linear duration-300 caret-transparent`}
+export const SearchInput = styled.input<{ darkMode: boolean }>`
+  ${tw`w-full h-full bg-transparent border-b-[1px] border-solid border-[var(--text-color-black)] outline-none caret-[var(--text-color-black)] py-1 pl-1 pr-4 transition delay-0 ease-linear duration-300`}
+  ${({ darkMode }) => darkMode && tw`caret-white border-white`}
   &:focus {
     ${tw`border-[#f0a500]`}
   }

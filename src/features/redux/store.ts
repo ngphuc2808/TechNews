@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 
 import darkModeReducer from './slices/darkModeSlice';
+import categoryReducer from './slices/cateogrySlice';
 
 interface iPersistConfig {
   key: string;
@@ -16,11 +17,13 @@ const persistConfig: iPersistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, darkModeReducer);
+const persistedDarkMode = persistReducer(persistConfig, darkModeReducer);
+const persistedCategory = persistReducer(persistConfig, categoryReducer);
 
 export const store = configureStore({
   reducer: {
-    darkMode: persistedReducer,
+    darkMode: persistedDarkMode,
+    category: persistedCategory,
   },
   middleware: [thunk],
 });

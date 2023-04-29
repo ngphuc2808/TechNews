@@ -2,10 +2,8 @@ import { useSelector } from 'react-redux';
 import * as S from './ListHotNews.module';
 import Link from 'next/link';
 import Image from 'next/image';
+import { iTitle } from '@/src/utils/interface';
 
-interface iTitle {
-  title: string;
-}
 function ListHotNews({ title }: iTitle) {
   const { mode } = useSelector((state: any) => state.darkMode);
 
