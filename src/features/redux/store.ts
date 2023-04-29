@@ -18,12 +18,11 @@ const persistConfig: iPersistConfig = {
 };
 
 const persistedDarkMode = persistReducer(persistConfig, darkModeReducer);
-const persistedCategory = persistReducer(persistConfig, categoryReducer);
 
 export const store = configureStore({
   reducer: {
     darkMode: persistedDarkMode,
-    category: persistedCategory,
+    category: categoryReducer,
   },
   middleware: [thunk],
 });
