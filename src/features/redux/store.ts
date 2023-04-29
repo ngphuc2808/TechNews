@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 
 import darkModeReducer from './slices/darkModeSlice';
 import categoryReducer from './slices/cateogrySlice';
+import authReducer from './slices/authSlice';
 
 interface iPersistConfig {
   key: string;
@@ -23,6 +24,7 @@ export const store = configureStore({
   reducer: {
     darkMode: persistedDarkMode,
     category: categoryReducer,
+    auth: authReducer,
   },
   middleware: [thunk],
 });

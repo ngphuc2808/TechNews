@@ -7,10 +7,17 @@ import ScrollToTop from '../Global/ScrollToTopButton';
 import Footer from '../Global/Footer';
 import ContentCategory from './ContentCategory';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { iTitle } from '@/src/utils/interface';
+import { category } from '@/src/utils/dataConfig';
+import { useRouter } from 'next/router';
+import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
+
 function Post({ title }: iTitle) {
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const { mode } = useSelector((state: any) => state.darkMode);
 
   useEffect(() => {
@@ -22,6 +29,15 @@ function Post({ title }: iTitle) {
       window.document.querySelector('body')?.classList.remove('dark-mode');
     }
   }, [mode]);
+
+  const categoryPath = useSelector((state: any) => state.category);
+
+  useEffect(() => {
+    if (!categoryPath.path.name) {
+      const newArr = category.find((value) => value.key === router.query.category);
+      dispatch(setNameCategory(newArr));
+    }
+  }, []);
 
   return (
     <Fragment>

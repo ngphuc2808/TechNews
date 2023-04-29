@@ -53,6 +53,9 @@ export const SubMenu = styled.ul<{ darkMode: boolean }>`
   > :last-child {
     ${tw`pb-4`}
   }
+  > li {
+    ${({ darkMode }) => darkMode && tw`text-white`}
+  }
 `;
 
 export const SubItem = styled.li`

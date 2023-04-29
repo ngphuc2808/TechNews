@@ -3,7 +3,21 @@ import Image from 'next/image';
 import images from '@/src/assets/imgs';
 import { faCircleQuestion, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faSquareInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { useDispatch } from 'react-redux';
+import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 function HeaderTop() {
+  const dispatch = useDispatch();
+
+  const handleOpenRegister = () => {
+    dispatch(setLogin(false));
+    dispatch(setRegister(true));
+  };
+
+  const handleOpenLogin = () => {
+    dispatch(setRegister(false));
+    dispatch(setLogin(true));
+  };
+
   return (
     <S.Wrapper>
       <S.Container>
@@ -27,9 +41,9 @@ function HeaderTop() {
         </S.Logo>
         <S.Entry>
           <S.StyledFontAwesomeIconLeft icon={faUser} />
-          <S.ButtonEntry>Đăng ký</S.ButtonEntry>
+          <S.ButtonEntry onClick={handleOpenRegister}>Đăng ký</S.ButtonEntry>
           <S.Separate />
-          <S.ButtonEntry>Đăng nhập</S.ButtonEntry>
+          <S.ButtonEntry onClick={handleOpenLogin}>Đăng nhập</S.ButtonEntry>
         </S.Entry>
       </S.Container>
     </S.Wrapper>

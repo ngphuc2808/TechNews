@@ -8,8 +8,12 @@ import ButtonDarkMode from '../Global/ButtonDarkMode';
 import Footer from '../Global/Footer';
 import Content from './Content';
 
+import Register from '../Register';
+import Login from '../Login';
 function HomePage() {
   const { mode } = useSelector((state: any) => state.darkMode);
+
+  const auth = useSelector((state: any) => state.auth);
 
   useEffect(() => {
     if (mode) {
@@ -23,6 +27,8 @@ function HomePage() {
 
   return (
     <Fragment>
+      {auth.register && <Register />}
+      {auth.login && <Login />}
       <S.Header>
         <HeaderTop />
         <Navbar />

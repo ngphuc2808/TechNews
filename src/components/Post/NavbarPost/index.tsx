@@ -7,23 +7,12 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
 import { iCategory } from '@/src/utils/interface';
-import { useRouter } from 'next/router';
 
 function NavbarPost() {
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const [activePage, setActivePage] = useState<string>('Home');
   const { mode } = useSelector((state: any) => state.darkMode);
-
-  const categoryPath = useSelector((state: any) => state.category);
-
-  useEffect(() => {
-    if (!categoryPath.path.name) {
-      const newArr = category.find((value) => value.key === router.query.category);
-      dispatch(setNameCategory(newArr));
-    }
-  }, []);
 
   const handleSetPath = useCallback((item: iCategory) => {
     dispatch(setNameCategory(item));

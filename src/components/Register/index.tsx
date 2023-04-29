@@ -1,0 +1,31 @@
+import { Formik, ErrorMessage } from 'formik';
+import FormTemplate from '../Global/FormTemplate';
+import * as S from './Register.module';
+function Register() {
+  const initialValues = {
+    name: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+  };
+  const handleSubmit = () => {
+    console.log('Register!');
+  };
+  return (
+    <FormTemplate title="Đăng ký">
+      <Formik initialValues={initialValues} onSubmit={handleSubmit} enableReinitialize>
+        {({ errors, touched }) => (
+          <S.FormRegister>
+            <S.Input placeholder="Họ tên..." name="name" />
+            <S.Input placeholder="Tài khoản..." name="username" />
+            <S.Input placeholder="Mật khẩu..." type="password" name="password" />
+            <S.Input placeholder="Xác nhận mật khẩu..." type="password" name="confirmPassword" />
+            <S.Button type="submit">Đăng ký</S.Button>
+          </S.FormRegister>
+        )}
+      </Formik>
+    </FormTemplate>
+  );
+}
+
+export default Register;
