@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import * as S from './Navbar.module';
 import { category, navBarArray } from '@/src/utils/dataConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,16 +7,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { iCategory } from '@/src/utils/interface';
 import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
+import { setNavItem } from '@/src/features/redux/slices/navItemSlice';
 
 function Navbar() {
   const dispatch = useDispatch();
 
-  const [activePage, setActivePage] = useState<string>('Home');
+  const { key } = useSelector((state: any) => state.navItem);
+
   const { mode } = useSelector((state: any) => state.darkMode);
 
-  const handleSetPath = useCallback((item: iCategory) => {
+  const handleSetPath = (item: iCategory) => {
     dispatch(setNameCategory(item));
-  }, []);
+  };
+
+  const handleSetNavItem = useCallback((item: any) => dispatch(setNavItem(item.key)), []);
 
   return (
     <S.Wrapper darkMode={mode}>
@@ -25,9 +29,9 @@ function Navbar() {
           {navBarArray.map((item, index) => (
             <S.MenuNavItem
               key={index}
-              active={item.key === activePage}
+              active={item.key === key}
               submenu={item.submenu === true}
-              onClick={() => setActivePage(item.key)}
+              onClick={item.key !== 'Category' ? () => handleSetNavItem(item) : undefined}
             >
               <Link href={`/`}>{item.title}</Link>
               {item.submenu && (
@@ -51,4 +55,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default memo(Navbar);

@@ -3,13 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { iDataPosts } from '@/src/utils/interface';
 
-function BlockContent({ data }: iDataPosts) {
+function BlockContent({ data, mode }: iDataPosts) {
   const [like, setLike] = useState<number>();
-
-  const { mode } = useSelector((state: any) => state.darkMode);
 
   return (
     <S.BlockContent>

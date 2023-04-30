@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import * as S from './Post.module';
 import HeaderTop from '../Global/HeaderTop';
 import NavbarPost from './NavbarPost';
@@ -7,18 +7,30 @@ import ScrollToTop from '../Global/ScrollToTopButton';
 import Footer from '../Global/Footer';
 import ContentCategory from './ContentCategory';
 import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { iTitle } from '@/src/utils/interface';
 import { category } from '@/src/utils/dataConfig';
 import { useRouter } from 'next/router';
-import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
+import Register from '../Register';
+import Login from '../Login';
+import { iCategory } from '@/src/utils/interface';
 
-function Post({ title }: iTitle) {
+function Post() {
   const router = useRouter();
-  const dispatch = useDispatch();
+
+  const categoryPathDefault = { name: '', key: '' };
+
+  const [categoryPath, setCategoryPath] = useState<iCategory>(categoryPathDefault);
 
   const { mode } = useSelector((state: any) => state.darkMode);
+  const auth = useSelector((state: any) => state.auth);
+
+  useEffect(() => {
+    if (router.query.category) {
+      const newArr = category.find((value) => value.key === router.query.category);
+      setCategoryPath(newArr || categoryPathDefault);
+    }
+  }, [router.query.category]);
 
   useEffect(() => {
     if (mode) {
@@ -30,20 +42,13 @@ function Post({ title }: iTitle) {
     }
   }, [mode]);
 
-  const categoryPath = useSelector((state: any) => state.category);
-
-  useEffect(() => {
-    if (!categoryPath.path.name) {
-      const newArr = category.find((value) => value.key === router.query.category);
-      dispatch(setNameCategory(newArr));
-    }
-  }, []);
-
   return (
     <Fragment>
+      {auth.register && <Register />}
+      {auth.login && <Login />}
       <S.Header>
         <HeaderTop />
-        <NavbarPost />
+        <NavbarPost mode={mode} />
       </S.Header>
       <S.Container>
         <ButtonDarkMode />
@@ -54,17 +59,15 @@ function Post({ title }: iTitle) {
               <Link href="/">Trang chủ</Link>
             </S.Item>
             <S.Slash>/</S.Slash>
-            <S.Item>
-              <Link href={`/category/${title}`}>{title}</Link>
-            </S.Item>
+            <S.Item>{categoryPath.name}</S.Item>
           </S.ListLink>
         </S.BreadCrumb>
         <S.Title darkMode={mode}>
           <S.TitleContent>
-            <S.Name>{title}</S.Name>
+            <S.Name>{categoryPath.name}</S.Name>
           </S.TitleContent>
         </S.Title>
-        <ContentCategory />
+        <ContentCategory mode={mode} />
       </S.Container>
       <Footer />
     </Fragment>
