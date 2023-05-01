@@ -17,6 +17,7 @@ function NavbarPost({ mode }: iMode) {
     if (router.query.category) {
       dispatch(setNavItem('Category'));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { key } = useSelector((state: any) => state.navItem);

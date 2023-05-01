@@ -30,6 +30,7 @@ function Post() {
       const newArr = category.find((value) => value.key === router.query.category);
       setCategoryPath(newArr || categoryPathDefault);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.category]);
 
   useEffect(() => {

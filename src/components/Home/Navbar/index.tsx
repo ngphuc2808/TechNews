@@ -20,7 +20,11 @@ function Navbar() {
     dispatch(setNameCategory(item));
   };
 
-  const handleSetNavItem = useCallback((item: any) => dispatch(setNavItem(item.key)), []);
+  const handleSetNavItem = useCallback(
+    (item: any) => dispatch(setNavItem(item.key)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   return (
     <S.Wrapper darkMode={mode}>

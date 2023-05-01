@@ -5,7 +5,8 @@ import { widgetArray } from '@/src/utils/dataConfig';
 import { useState } from 'react';
 import { post } from '@/src/utils/dataConfig';
 import BlockContent from './BlockContent';
-function ListPost() {
+import { iMode } from '@/src/utils/interface';
+function ListPost({ mode }: iMode) {
   const [activeWidget, setActiveWidget] = useState<string>('Recent');
 
   return (
@@ -14,7 +15,7 @@ function ListPost() {
         <S.Title>Tin Mới</S.Title>
         <S.ListCard>
           {post.map((item, index) => (
-            <BlockContent key={index} data={item}/>
+            <BlockContent key={index} data={item} mode={mode} />
           ))}
         </S.ListCard>
       </S.LeftInfo>
