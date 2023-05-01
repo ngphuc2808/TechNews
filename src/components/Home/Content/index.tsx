@@ -4,8 +4,9 @@ import * as S from './Content.module';
 import { Fragment } from 'react';
 import ListHotNews from '../ListHotNews';
 import ListPost from '../ListPost';
+import { iMode } from '@/src/utils/interface';
 
-function Content() {
+function Content({ mode }: iMode) {
   return (
     <Fragment>
       <S.Content>
@@ -81,7 +82,7 @@ function Content() {
         </S.LatestNews>
       </S.Content>
       <S.ContentBlack>
-        <ListPost />
+        <ListPost mode={mode} />
       </S.ContentBlack>
       <S.Content>
         <ListHotNews title="Nổi Bật" />

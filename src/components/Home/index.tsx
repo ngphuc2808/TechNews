@@ -36,7 +36,7 @@ function HomePage() {
       <S.Container>
         <ButtonDarkMode />
         <ScrollToTop />
-        <Content />
+        <Content mode={mode} />
       </S.Container>
       <Footer />
     </Fragment>
