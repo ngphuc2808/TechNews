@@ -1,16 +1,36 @@
 import { Formik, ErrorMessage } from 'formik';
 import FormTemplate from '../Global/FormTemplate';
 import * as S from './Register.module';
+import { signup } from '../../../pages/api/utils/auth';
+import { useState } from 'react';
+
 function Register() {
+  // const [formData, setFormData] = useState({
+  //   name: 'Dante',
+  //   email: '',
+  //   phone: '',
+  //   username: 'thanhnha1',
+  //   password: '1234567',
+  //   retypePassword: '1234567',
+  // });
+
+  // const handleSubmit = async () => {
+  //   const axiosRes = await signup({
+  //     ...formData,
+  //     name: formData.username,
+  //     roles: ['USER'],
+  //   });
+  // };
+
   const initialValues = {
     name: '',
     username: '',
     password: '',
     confirmPassword: '',
   };
-  const handleSubmit = () => {
-    console.log('Register!');
-  };
+  // const handleSubmit = () => {
+  //   console.log('Register!');
+  // };
   return (
     <FormTemplate title="Đăng ký">
       <Formik initialValues={initialValues} onSubmit={handleSubmit} enableReinitialize>
