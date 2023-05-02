@@ -25,26 +25,26 @@ function Register() {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .required('This field is required.')
+      .required('Vui lòng nhập thông tin!')
       .matches(
         /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/,
-        'Please enter the correct name format!',
+        'Vui lòng nhập đúng định dạng tên!',
       ),
 
     username: Yup.string()
-      .required('This field is required.')
-      .matches(/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*.{4,}$/, 'Please enter the correct username format!'),
+      .required('Vui lòng nhập thông tin!')
+      .matches(/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*.{4,}$/, 'Vui lòng nhập đúng định dạng tài khoản!'),
 
     password: Yup.string()
-      .required('This field is required.')
+      .required('Vui lòng nhập thông tin!')
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{8,}$/,
-        'Password minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number.',
+        'Mật khẩu phải đủ 8 ký tự, 1 chữ in hoa, 1 chữ thường và 1 con số !',
       ),
 
     confirmPassword: Yup.string()
-      .required('This field is required.')
-      .oneOf([Yup.ref('password')], 'Passwords must match.'),
+      .required('Vui lòng nhập thông tin!')
+      .oneOf([Yup.ref('password')], 'Mật khẩu không trùng khớp!'),
   });
 
   const handleSubmit = (values: iUserRegister) => {

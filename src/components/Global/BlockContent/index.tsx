@@ -4,9 +4,12 @@ import Link from 'next/link';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { iDataPosts } from '@/src/utils/interface';
+import { useRouter } from 'next/router';
 
 function BlockContent({ data, mode }: iDataPosts) {
   const [like, setLike] = useState<number>();
+
+  const router = useRouter();
 
   return (
     <S.BlockContent>
@@ -24,7 +27,7 @@ function BlockContent({ data, mode }: iDataPosts) {
         <S.CategoryTag>
           <S.CategoryName>{data.category}</S.CategoryName>
         </S.CategoryTag>
-        <S.NewsTitle darkMode={mode}>
+        <S.NewsTitle darkMode={mode} homePage={router.pathname === '/'}>
           <Link href="/home">{data.title}</Link>
         </S.NewsTitle>
         <S.TagList>
@@ -41,7 +44,9 @@ function BlockContent({ data, mode }: iDataPosts) {
             <S.Number>{data.dislike}</S.Number>
           </S.TagItem>
         </S.TagList>
-        <S.DesContent darkMode={mode}>{data.content}</S.DesContent>
+        <S.DesContent darkMode={mode} homePage={router.pathname === '/'}>
+          {data.content}
+        </S.DesContent>
       </S.DescriptionNews>
     </S.BlockContent>
   );

@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import * as S from './Post.module';
+import * as S from './Category.module';
 import HeaderTop from '../Global/HeaderTop';
 import NavbarPost from './NavbarPost';
 import ButtonDarkMode from '../Global/ButtonDarkMode';
@@ -15,7 +15,7 @@ import Register from '../Register';
 import Login from '../Login';
 import { iCategory } from '@/src/utils/interface';
 
-function Post() {
+function Category() {
   const router = useRouter();
 
   const categoryPathDefault = { name: '', key: '' };
@@ -23,6 +23,7 @@ function Post() {
   const [categoryPath, setCategoryPath] = useState<iCategory>(categoryPathDefault);
 
   const { mode } = useSelector((state: any) => state.darkMode);
+
   const auth = useSelector((state: any) => state.auth);
 
   useEffect(() => {
@@ -75,4 +76,4 @@ function Post() {
   );
 }
 
-export default Post;
+export default Category;

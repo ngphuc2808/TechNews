@@ -8,7 +8,7 @@ export interface iDataPosts {
     date: string;
     like: number;
     dislike: number;
-    is_liked?: number;
+    is_liked: number;
     content: string;
   };
   mode: boolean;
@@ -22,7 +22,7 @@ export interface iPost {
   date: string;
   like: number;
   dislike: number;
-  is_liked?: number;
+  is_liked: number;
   content: string;
 }
 
@@ -56,4 +56,13 @@ export interface iUser {
 export interface iUserLogin {
   username: string;
   password: string;
+}
+
+export interface iUserProfile {
+  avatar: string;
+  name: string;
+  dob: Date;
+  gender: string;
+  address: string;
+  email: string;
 }

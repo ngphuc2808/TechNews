@@ -3,8 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { widgetArray } from '@/src/utils/dataConfig';
 import { useState } from 'react';
-import Pagination from './Pagination';
 import { iMode } from '@/src/utils/interface';
+import { post } from '@/src/utils/dataConfig';
+import Pagination from '../../Global/Pagination';
 
 function ListPostCategory({ mode }: iMode) {
   const [activeWidget, setActiveWidget] = useState<string>('Recent');
@@ -13,7 +14,7 @@ function ListPostCategory({ mode }: iMode) {
     <S.Wrapper>
       <S.LeftInfo>
         <S.ListCard>
-          <Pagination mode={mode} />
+          <Pagination data={post} mode={mode} profilePage={false} />
         </S.ListCard>
       </S.LeftInfo>
       <S.RightInfo>

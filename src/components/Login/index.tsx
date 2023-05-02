@@ -21,10 +21,10 @@ function Login() {
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
-      .required('This field is required.')
-      .matches(/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*.{6,}$/, 'Please enter the correct username format!'),
+      .required('Vui lòng nhập thông tin!')
+      .matches(/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*.{6,}$/, 'Vui lòng nhập đúng định dạng tài khoản!'),
 
-    password: Yup.string().required('This field is required.'),
+    password: Yup.string().required('Vui lòng nhập thông tin!'),
   });
 
   const handleSubmit = (values: iUserLogin) => {

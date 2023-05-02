@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['new.axilthemes.com', 'localhost', 'res.cloudinary.com'],
+    domains: ['new.axilthemes.com', 'i.pinimg.com', 'localhost', 'res.cloudinary.com'],
   },
 };
 

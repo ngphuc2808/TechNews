@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { MouseEvent, memo, useCallback, useEffect } from 'react';
 import * as S from './NavbarPost.module';
 import Link from 'next/link';
 import { category, navBarArray } from '@/src/utils/dataConfig';
@@ -23,7 +23,7 @@ function NavbarPost({ mode }: iMode) {
   const { key } = useSelector((state: any) => state.navItem);
 
   const handleSetPath = useCallback(
-    (e: any, item: iCategory) => {
+    (e: MouseEvent, item: iCategory) => {
       if (router.query.category === item.key) {
         e.preventDefault();
       }

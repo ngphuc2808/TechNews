@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import * as S from './HomePage.module';
-import Navbar from './Navbar';
+import Navbar from '../Global/Navbar';
 import HeaderTop from '../Global/HeaderTop';
 import ScrollToTop from '../Global/ScrollToTopButton';
 import ButtonDarkMode from '../Global/ButtonDarkMode';

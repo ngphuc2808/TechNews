@@ -1,12 +1,17 @@
 import { Fragment, useState } from 'react';
 import BlockContent from '../BlockContent';
-import { post } from '@/src/utils/dataConfig';
 import * as S from './Pagination.module';
-import { iMode, iPost } from '@/src/utils/interface';
+import { iPost } from '@/src/utils/interface';
 
 interface iItem {
   currentItems: iPost[];
   mode: boolean;
+}
+
+interface iData {
+  data: iPost[];
+  mode: boolean;
+  profilePage: boolean;
 }
 
 function Items({ currentItems, mode }: iItem) {
@@ -17,17 +22,17 @@ function Items({ currentItems, mode }: iItem) {
   );
 }
 
-function Pagination({ mode }: iMode) {
+function Pagination({ data, mode, profilePage }: iData) {
   const [itemOffset, setItemOffset] = useState(0);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = profilePage ? 2 : 6;
 
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems: iPost[] = post.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(post.length / itemsPerPage);
+  const currentItems: iPost[] = data.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(data.length / itemsPerPage);
 
   const handlePageClick = (e: any) => {
-    const newOffset = (e.selected * itemsPerPage) % post.length;
+    const newOffset = (e.selected * itemsPerPage) % data.length;
     setItemOffset(newOffset);
   };
 

@@ -21,7 +21,7 @@ function Navbar() {
   };
 
   const handleSetNavItem = useCallback(
-    (item: any) => dispatch(setNavItem(item.key)),
+    (item: string) => dispatch(setNavItem(item)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
@@ -35,7 +35,7 @@ function Navbar() {
               key={index}
               active={item.key === key}
               submenu={item.submenu === true}
-              onClick={item.key !== 'Category' ? () => handleSetNavItem(item) : undefined}
+              onClick={item.key !== 'Category' ? () => handleSetNavItem(item.key) : undefined}
             >
               <Link href={`/`}>{item.title}</Link>
               {item.submenu && (
