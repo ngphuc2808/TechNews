@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Cropper from 'react-easy-crop';
 import { BiCrop } from 'react-icons/bi';
 import { MdCancelPresentation } from 'react-icons/md';
-import getCroppedImg from '../../Global/ProcessFuntions';
+import getCroppedImg from '../../Global/ProcessFuntions/cropImage';
 
 interface ICrop {
   image: string | ArrayBuffer | null;

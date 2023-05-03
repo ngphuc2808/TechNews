@@ -37,6 +37,9 @@ export const ItemTitle = styled.span`
 
 export const Logo = styled.div`
   ${tw`w-[86px] h-full cursor-pointer `}
+  > img {
+    ${tw`w-full h-full cursor-pointer `}
+  }
 `;
 
 export const Separate = styled.div`

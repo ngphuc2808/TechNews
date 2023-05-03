@@ -26,6 +26,8 @@ function Profile() {
     'https://i.pinimg.com/236x/73/e7/e7/73e7e7763e2b425e9a8481806f5e81b4.jpg',
   );
 
+  const [avatar, setAvatar] = useState<string>('');
+
   const handleCrop = (e: FormEvent<HTMLInputElement>) => {
     let input = e.currentTarget;
     if (input.files?.length) {
@@ -53,7 +55,7 @@ function Profile() {
   const [editName, setEditName] = useState<boolean>(false);
 
   const initialValues = {
-    avatar: previewAvt,
+    avatar: '',
     name: '',
     dob: new Date(),
     gender: 'male',
@@ -75,10 +77,7 @@ function Profile() {
       email: values.email,
     };
 
-    if (!values.name) {
-      console.log('Dont submit');
-    }
-    console.log(newVal);
+    console.log(values.avatar);
   };
 
   return (
@@ -103,13 +102,8 @@ function Profile() {
                   </S.CameraZone>
                 )}
               </S.Avatar>
-              <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={handleSubmit}
-                enableReinitialize
-              >
-                {({ values, errors, touched, setFieldValue }) => (
+              <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+                {({ setFieldValue, values, errors, touched }) => (
                   <Fragment>
                     <>
                       {modalCrop && (

@@ -66,3 +66,8 @@ export interface iUserProfile {
   address: string;
   email: string;
 }
+
+export interface iContent {
+  title: string;
+  body: string;
+}
