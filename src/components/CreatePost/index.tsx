@@ -25,7 +25,6 @@ const ReactQuill = dynamic(
   },
 );
 
-/* eslint-disable react/display-name */
 function CreatePost() {
   // Handler DarkMode
   const { mode } = useSelector((state: any) => state.darkMode);
