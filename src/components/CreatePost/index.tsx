@@ -188,4 +188,6 @@ function CreatePost() {
   );
 }
 
+CreatePost.displayName = 'CreatePost';
+
 export default CreatePost;
