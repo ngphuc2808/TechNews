@@ -25,6 +25,7 @@ const ReactQuill = dynamic(
   },
 );
 
+/* eslint-disable react/display-name */
 function CreatePost() {
   // Handler DarkMode
   const { mode } = useSelector((state: any) => state.darkMode);
@@ -182,12 +183,9 @@ function CreatePost() {
           </S.DivButton>
         </S.Content>
       </S.Container>
-      {/* {body ? <div dangerouslySetInnerHTML={{ __html: body }}></div> : undefined} */}
       <Footer />
     </Fragment>
   );
 }
-
-CreatePost.displayName = 'CreatePost';
 
 export default CreatePost;
