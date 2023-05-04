@@ -3,21 +3,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { widgetArray } from '@/src/utils/dataConfig';
 import { useState } from 'react';
+import { iMode } from '@/src/utils/interface';
 import { post } from '@/src/utils/dataConfig';
-import { useSelector } from 'react-redux';
-import BlockContent from './BlockContent';
-import Pagination from './Pagination';
+import Pagination from '../../Global/Pagination';
 
-function ListPostCategory() {
+function ListPostCategory({ mode }: iMode) {
   const [activeWidget, setActiveWidget] = useState<string>('Recent');
-
-  const { mode } = useSelector((state: any) => state.darkMode);
 
   return (
     <S.Wrapper>
       <S.LeftInfo>
         <S.ListCard>
-          <Pagination />
+          <Pagination data={post} mode={mode} profilePage={false} />
         </S.ListCard>
       </S.LeftInfo>
       <S.RightInfo>

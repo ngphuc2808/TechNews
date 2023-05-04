@@ -1,36 +1,44 @@
 import { Fragment, useState } from 'react';
 import BlockContent from '../BlockContent';
-import { post } from '@/src/utils/dataConfig';
 import * as S from './Pagination.module';
-import { useSelector } from 'react-redux';
+import { iPost } from '@/src/utils/interface';
 
-function Items({ currentItems }: any) {
+interface iItem {
+  currentItems: iPost[];
+  mode: boolean;
+}
+
+interface iData {
+  data: iPost[];
+  mode: boolean;
+  profilePage: boolean;
+}
+
+function Items({ currentItems, mode }: iItem) {
   return (
     <Fragment>
-      {currentItems && currentItems.map((item: any, index: number) => <BlockContent key={index} data={item} />)}
+      {currentItems && currentItems.map((item, index) => <BlockContent key={index} data={item} mode={mode} />)}
     </Fragment>
   );
 }
 
-function Pagination() {
-  const { mode } = useSelector((state: any) => state.darkMode);
-
+function Pagination({ data, mode, profilePage }: iData) {
   const [itemOffset, setItemOffset] = useState(0);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = profilePage ? 2 : 6;
 
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = post.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(post.length / itemsPerPage);
+  const currentItems: iPost[] = data.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(data.length / itemsPerPage);
 
   const handlePageClick = (e: any) => {
-    const newOffset = (e.selected * itemsPerPage) % post.length;
+    const newOffset = (e.selected * itemsPerPage) % data.length;
     setItemOffset(newOffset);
   };
 
   return (
     <Fragment>
-      <Items currentItems={currentItems} />
+      <Items currentItems={currentItems} mode={mode} />
       <S.StyledReactPaginate
         darkMode={mode}
         breakLabel="..."

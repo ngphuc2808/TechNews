@@ -3,20 +3,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { widgetArray } from '@/src/utils/dataConfig';
 import { useState } from 'react';
-import { post } from '@/src/utils/dataConfig';
-import BlockContent from './BlockContent';
-function ListPost() {
+import { iMode } from '@/src/utils/interface';
+import GroupBlockContent from './GroupBlockContent';
+function ListPost({ mode }: iMode) {
   const [activeWidget, setActiveWidget] = useState<string>('Recent');
 
   return (
     <S.Wrapper>
       <S.LeftInfo>
         <S.Title>Tin Mới</S.Title>
-        <S.ListCard>
-          {post.map((item, index) => (
-            <BlockContent key={index} data={item}/>
-          ))}
-        </S.ListCard>
+        <GroupBlockContent mode={mode} />
       </S.LeftInfo>
       <S.RightInfo>
         <S.ListWidget>

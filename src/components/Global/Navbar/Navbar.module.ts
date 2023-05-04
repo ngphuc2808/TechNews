@@ -31,10 +31,6 @@ export const MenuNavItem = styled.li<{ active: boolean; submenu: boolean }>`
     ${({ active }) => active && tw`scale-x-100`}
   }
 
-  &:after {
-    ${tw`content-[''] absolute w-full h-[20px] bottom-[-17px] bg-transparent`}
-  }
-
   &:hover {
     > ul {
       ${({ submenu }) => submenu && tw`block`}
@@ -52,6 +48,9 @@ export const SubMenu = styled.ul<{ darkMode: boolean }>`
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   > :last-child {
     ${tw`pb-4`}
+  }
+  &:after {
+    ${tw`content-[''] absolute bg-black w-full h-[20px] top-[-20px] bg-transparent`}
   }
 `;
 

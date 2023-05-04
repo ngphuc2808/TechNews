@@ -1,11 +1,10 @@
-import Post from '@/src/components/Post';
+import CategoryPost from '@/src/components/Category';
 import { useSelector } from 'react-redux';
-import { memo } from 'react';
+import ErrorPage from '@/src/components/Global/ErrorPage';
 
 const Category = () => {
-  const categoryPath = useSelector((state: any) => state.category);
-
-  return <Post title={categoryPath.path.name} />;
+  const { error } = useSelector((state: any) => state.error);
+  return <>{!error ? <CategoryPost /> : <ErrorPage />}</>;
 };
 
-export default memo(Category);
+export default Category;

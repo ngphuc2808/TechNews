@@ -18,24 +18,6 @@ export const Title = styled.h3`
   ${tw`text-2xl font-semibold mb-5`}
 `;
 
-export const ListCard = styled.div`
-  ${tw`max-h-[1500px] overflow-auto`}
-`;
-
-export const BlockContent = styled.div`
-  ${tw`flex h-[285px] mb-[30px]`}
-  > :first-child > img {
-    ${tw`transition delay-0 ease-linear duration-200`}
-  }
-  &:hover > :first-child > img {
-    ${tw`scale-110`}
-  }
-  &:hover > :last-child > :nth-child(2) > a {
-    background-size: 100% 2px;
-    color: inherit;
-  }
-`;
-
 export const PictureContent = styled.div`
   ${tw`relative h-full w-[285px] mr-[30px] cursor-pointer overflow-hidden shrink-0`}
 `;

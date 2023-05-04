@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import tw from 'twin.macro';
 
 export const Wrapper = styled.div`
@@ -10,9 +10,20 @@ export const Modal = styled.div`
   ${tw`fixed inset-0 bg-[var(--modal)] z-[100] cursor-pointer`}
 `;
 
+const fadeIn = keyframes`
+  0% {
+    transform:scale(0);
+  }
+  100% {
+    transform:scale(1);
+  }
+`;
+
 export const Content = styled.div`
   ${tw`w-[800px] bg-white flex z-[101]`}
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transform: scale(1);
+  animation: ${fadeIn} 0.5s forwards;
 `;
 
 export const Banner = styled.div`

@@ -114,7 +114,7 @@ interface iPost {
   date: string;
   like: number;
   dislike: number;
-  is_liked?: number;
+  is_liked: number;
   content: string;
 }
 export const post: iPost[] = [

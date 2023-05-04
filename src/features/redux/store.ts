@@ -7,6 +7,9 @@ import thunk from 'redux-thunk';
 import darkModeReducer from './slices/darkModeSlice';
 import categoryReducer from './slices/cateogrySlice';
 import authReducer from './slices/authSlice';
+import errorPageReducer from './slices/errorPageSlice';
+import userReducer from './slices/userSlice';
+import navItemReducer from './slices/navItemSlice';
 
 interface iPersistConfig {
   key: string;
@@ -25,6 +28,9 @@ export const store = configureStore({
     darkMode: persistedDarkMode,
     category: categoryReducer,
     auth: authReducer,
+    error: errorPageReducer,
+    user: userReducer,
+    navItem: navItemReducer,
   },
   middleware: [thunk],
 });

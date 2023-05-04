@@ -32,6 +32,9 @@ export const Mid = styled.div`
 
 export const Logo = styled.div`
   ${tw`w-[86px] h-full cursor-pointer `}
+  > img {
+    ${tw`w-full h-full cursor-pointer `}
+  }
 `;
 
 export const Connect = styled.div`

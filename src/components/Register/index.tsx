@@ -1,10 +1,24 @@
 import { Formik, ErrorMessage } from 'formik';
 import FormTemplate from '../Global/FormTemplate';
+import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
+import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 import * as S from './Register.module';
 import { signup } from '../../../pages/api/utils/auth';
 import { useState } from 'react';
 
+import { iUserRegister } from '@/src/utils/interface';
+import { setUserInfo } from '@/src/features/redux/slices/userSlice';
 function Register() {
+  const dispatch = useDispatch();
+
+  const handleOpenLogin = () => {
+    dispatch(setRegister(false));
+    dispatch(setLogin(true));
+  };
+
+  const { info } = useSelector((state: any) => state.user);
+
   // const [formData, setFormData] = useState({
   //   name: 'Dante',
   //   email: '',
@@ -23,27 +37,73 @@ function Register() {
   // };
 
   const initialValues = {
-    name: '',
-    username: '',
+    name: info.name || '',
+    username: info.username || '',
     password: '',
     confirmPassword: '',
   };
-  // const handleSubmit = () => {
-  //   console.log('Register!');
-  // };
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required('Vui lòng nhập thông tin!')
+      .matches(
+        /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/,
+        'Vui lòng nhập đúng định dạng tên!',
+      ),
+
+    username: Yup.string()
+      .required('Vui lòng nhập thông tin!')
+      .matches(/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*.{4,}$/, 'Vui lòng nhập đúng định dạng tài khoản!'),
+
+    password: Yup.string()
+      .required('Vui lòng nhập thông tin!')
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{8,}$/,
+        'Mật khẩu phải đủ 8 ký tự, 1 chữ in hoa, 1 chữ thường và 1 con số !',
+      ),
+
+    confirmPassword: Yup.string()
+      .required('Vui lòng nhập thông tin!')
+      .oneOf([Yup.ref('password')], 'Mật khẩu không trùng khớp!'),
+  });
+
+  const handleSubmit = (values: iUserRegister) => {
+    dispatch(setUserInfo(values));
+  };
+
   return (
     <FormTemplate title="Đăng ký">
-      <Formik initialValues={initialValues} onSubmit={handleSubmit} enableReinitialize>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+        enableReinitialize
+      >
         {({ errors, touched }) => (
           <S.FormRegister>
-            <S.Input placeholder="Họ tên..." name="name" />
-            <S.Input placeholder="Tài khoản..." name="username" />
-            <S.Input placeholder="Mật khẩu..." type="password" name="password" />
-            <S.Input placeholder="Xác nhận mật khẩu..." type="password" name="confirmPassword" />
+            <S.Input placeholder="Họ tên..." name="name" error={errors.name && touched.name ? 1 : 0} />
+            <ErrorMessage name="name" component={S.ErrorMsg} />
+            <S.Input placeholder="Tài khoản..." name="username" error={errors.username && touched.username ? 1 : 0} />
+            <ErrorMessage name="username" component={S.ErrorMsg} />
+            <S.Input
+              placeholder="Mật khẩu..."
+              type="password"
+              name="password"
+              error={errors.password && touched.password ? 1 : 0}
+            />
+            <ErrorMessage name="password" component={S.ErrorMsg} />
+            <S.Input
+              placeholder="Xác nhận mật khẩu..."
+              type="password"
+              name="confirmPassword"
+              error={errors.confirmPassword && touched.confirmPassword ? 1 : 0}
+            />
+            <ErrorMessage name="confirmPassword" component={S.ErrorMsg} />
             <S.Button type="submit">Đăng ký</S.Button>
           </S.FormRegister>
         )}
       </Formik>
+      <S.LoginButton onClick={handleOpenLogin}>Đăng nhập ở đây!</S.LoginButton>
     </FormTemplate>
   );
 }
