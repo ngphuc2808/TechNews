@@ -67,8 +67,21 @@ function Register() {
       .oneOf([Yup.ref('password')], 'Mật khẩu không trùng khớp!'),
   });
 
-  const handleSubmit = (values: iUserRegister) => {
+  const handleSubmit = async (values: iUserRegister) => {
     dispatch(setUserInfo(values));
+    console.log(values);
+    const axiosRes = await signup({
+      username: values?.username,
+      name: values?.name,
+      password: values?.password,
+      roles: ['USER'],
+    });
+
+    if (axiosRes.status === 200) {
+      alert('Đăng ký thành công');
+    } else {
+      alert('Đăng ký thất bại');
+    }
   };
 
   return (
