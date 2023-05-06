@@ -75,10 +75,12 @@ function Register() {
       name: values?.name,
       password: values?.password,
       roles: ['USER'],
+      email: 'phianh@gmail.com',
     });
 
     if (axiosRes.status === 200) {
       alert('Đăng ký thành công');
+      window.location.href = 'http://localhost:3000';
     } else {
       alert('Đăng ký thất bại');
     }

@@ -5,10 +5,19 @@ import { faCircleQuestion, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faSquareInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
+import { logout } from '@/pages/api/features/auth';
 // import { useGetProfileQuery } from '@/pages/api/services/userApis';
 
 function HeaderTop() {
   const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    // setAnchorElAuth(null);
+
+    window.location.href = 'http://localhost:3000';
+
+    dispatch(logout());
+  };
 
   // const { data: user } = useGetProfileQuery({
   //   skip: !localStorage.getItem('user'),
@@ -56,7 +65,11 @@ function HeaderTop() {
               <S.ButtonEntry onClick={handleOpenLogin}>Đăng nhập</S.ButtonEntry>
             </>
           ) : (
-            <S.ButtonEntry>Logged in</S.ButtonEntry>
+            <>
+              <S.ButtonEntry>Logged in</S.ButtonEntry>
+              <S.Separate />
+              <S.ButtonEntry onClick={handleLogout}>Đăng xuất</S.ButtonEntry>
+            </>
           )}
         </S.Entry>
       </S.Container>
