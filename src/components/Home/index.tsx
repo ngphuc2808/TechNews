@@ -10,6 +10,7 @@ import Content from './Content';
 
 import Register from '../Register';
 import Login from '../Login';
+
 function HomePage() {
   const { mode } = useSelector((state: any) => state.darkMode);
 

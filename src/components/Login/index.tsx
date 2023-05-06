@@ -5,9 +5,13 @@ import * as S from './Login.module';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 import { iUserLogin } from '@/src/utils/interface';
+import { getUserLogin } from '@/pages/api/utils/auth';
+import { setUser } from '@/pages/api/features/auth';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   const handleOpenRegister = () => {
     dispatch(setLogin(false));
@@ -27,8 +31,17 @@ function Login() {
     password: Yup.string().required('Vui lòng nhập thông tin!'),
   });
 
-  const handleSubmit = (values: iUserLogin) => {
-    console.log(values);
+  const handleSubmit = async (values: iUserLogin) => {
+    // console.log(values);
+    const { data, status } = await getUserLogin(values);
+
+    if (status == 200) {
+      dispatch(setUser(data));
+      alert('Dang nhap thanh cong');
+      window.location.href = 'http://localhost:3000';
+    } else {
+      alert('Sai thong tin dang nhap');
+    }
   };
 
   return (

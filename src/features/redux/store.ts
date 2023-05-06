@@ -11,6 +11,8 @@ import errorPageReducer from './slices/errorPageSlice';
 import userReducer from './slices/userSlice';
 import navItemReducer from './slices/navItemSlice';
 
+import auth from '@/pages/api/features/auth';
+
 interface iPersistConfig {
   key: string;
   storage: WebStorage;
@@ -31,6 +33,7 @@ export const store = configureStore({
     error: errorPageReducer,
     user: userReducer,
     navItem: navItemReducer,
+    authentication: auth,
   },
   middleware: [thunk],
 });

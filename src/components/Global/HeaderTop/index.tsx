@@ -3,10 +3,18 @@ import Image from 'next/image';
 import images from '@/src/assets/imgs';
 import { faCircleQuestion, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faSquareInstagram, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
+// import { useGetProfileQuery } from '@/pages/api/services/userApis';
+
 function HeaderTop() {
   const dispatch = useDispatch();
+
+  // const { data: user } = useGetProfileQuery({
+  //   skip: !localStorage.getItem('user'),
+  // });
+
+  const { isAuthenticated } = useSelector((state) => state.authentication);
 
   const handleOpenRegister = () => {
     dispatch(setLogin(false));
@@ -41,9 +49,15 @@ function HeaderTop() {
         </S.Logo>
         <S.Entry>
           <S.StyledFontAwesomeIconLeft icon={faUser} />
-          <S.ButtonEntry onClick={handleOpenRegister}>Đăng ký</S.ButtonEntry>
-          <S.Separate />
-          <S.ButtonEntry onClick={handleOpenLogin}>Đăng nhập</S.ButtonEntry>
+          {!isAuthenticated ? (
+            <>
+              <S.ButtonEntry onClick={handleOpenRegister}>Đăng ký</S.ButtonEntry>
+              <S.Separate />
+              <S.ButtonEntry onClick={handleOpenLogin}>Đăng nhập</S.ButtonEntry>
+            </>
+          ) : (
+            <S.ButtonEntry>Logged in</S.ButtonEntry>
+          )}
         </S.Entry>
       </S.Container>
     </S.Wrapper>
