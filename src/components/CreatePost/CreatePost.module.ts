@@ -10,8 +10,19 @@ export const Container = styled.div`
   ${tw`flex flex-col justify-center items-center mt-[107px]`}
 `;
 
+export const DivTop = styled.div`
+  ${tw`flex items-center justify-between`}
+`;
+
 export const DivTitle = styled.div`
-  ${tw``}
+  ${tw`w-[48%] mb-[25px]`}
+  > :last-child > :last-child {
+    ${tw`h-[397px] max-h-[397px] overflow-auto`}
+  }
+`;
+
+export const HeaderTitle = styled.div`
+  ${tw`flex items-center justify-between mb-3`}
 `;
 
 export const DivContent = styled.div`
@@ -20,19 +31,22 @@ export const DivContent = styled.div`
 
 export const Content = styled.div<{ darkMode: boolean }>`
   ${tw`w-[1260px] px-[15px] mt-[45px] text-black`}
-  > ${DivTitle} > :last-child > :last-child {
-    ${tw`max-h-[100px] overflow-auto mb-[20px]`}
-  }
   > ${DivContent} > :last-child > :last-child {
     ${tw`h-[600px] overflow-auto mb-[20px]`}
   }
-  > ${DivContent}, > ${DivTitle} {
+  > ${DivContent}, ${DivTitle} > :last-child {
     ${({ darkMode }) => darkMode && tw`text-white`}
   }
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h1<{ darkMode: boolean }>`
   ${tw`text-2xl mb-3 font-semibold`}
+  ${({ darkMode }) => darkMode && tw`text-white`}
+`;
+
+export const TitlePost = styled.h1<{ darkMode: boolean }>`
+  ${tw`text-2xl font-semibold`}
+  ${({ darkMode }) => darkMode && tw`text-white`}
 `;
 
 export const DivButton = styled.div`

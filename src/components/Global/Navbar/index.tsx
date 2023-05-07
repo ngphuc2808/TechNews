@@ -42,7 +42,7 @@ function Navbar() {
                 <S.SubMenu darkMode={mode}>
                   {category.map((item, index) => (
                     <S.SubItem key={index} onClick={() => handleSetPath(item)}>
-                      <Link href={`/category/${item.key}`}>{item.name}</Link>
+                      <Link href={`/category/${item.value}`}>{item.label}</Link>
                     </S.SubItem>
                   ))}
                 </S.SubMenu>

@@ -11,7 +11,7 @@ const initialState: iAuth = {
 };
 
 export const authSlice = createSlice({
-  name: 'category',
+  name: 'auth',
   initialState,
   reducers: {
     setRegister: (state, action) => {

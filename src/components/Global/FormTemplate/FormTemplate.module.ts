@@ -27,7 +27,7 @@ export const Content = styled.div`
 `;
 
 export const Banner = styled.div`
-  ${tw`w-[50%] bg-[var(--navbar-dark)]`}
+  ${tw`w-[50%] bg-[var(--navbar-dark)] flex justify-center items-center`}
 `;
 
 export const Detail = styled.div`

@@ -10,7 +10,7 @@ const initialState: iNavItem = {
 };
 
 export const navItemSlice = createSlice({
-  name: 'category',
+  name: 'navbar-item',
   initialState,
   reducers: {
     setNavItem: (state, action) => {

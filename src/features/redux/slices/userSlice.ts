@@ -8,8 +8,8 @@ interface UserState {
 const userInfoInitialState = {
   name: '',
   username: '',
-  password: '',
-  confirmPassword: '',
+  email: '',
+  phone: '',
 };
 
 const initialState: UserState = {
@@ -17,7 +17,7 @@ const initialState: UserState = {
 };
 
 export const userSlice = createSlice({
-  name: 'category',
+  name: 'user-register',
   initialState,
   reducers: {
     setUserInfo: (state, action) => {

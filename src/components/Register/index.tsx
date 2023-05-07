@@ -6,6 +6,7 @@ import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 import * as S from './Register.module';
 import { iUserRegister } from '@/src/utils/interface';
 import { setUserInfo } from '@/src/features/redux/slices/userSlice';
+import { useEffect } from 'react';
 function Register() {
   const dispatch = useDispatch();
 
@@ -19,6 +20,8 @@ function Register() {
   const initialValues = {
     name: info.name || '',
     username: info.username || '',
+    phone: '',
+    email: '',
     password: '',
     confirmPassword: '',
   };
@@ -30,10 +33,17 @@ function Register() {
         /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/,
         'Vui lòng nhập đúng định dạng tên!',
       ),
-
     username: Yup.string()
       .required('Vui lòng nhập thông tin!')
       .matches(/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*.{4,}$/, 'Vui lòng nhập đúng định dạng tài khoản!'),
+
+    email: Yup.string()
+      .required('Vui lòng nhập thông tin!')
+      .matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Vui lòng nhập đúng định dạng email!'),
+
+    phone: Yup.string()
+      .required('Vui lòng nhập thông tin!')
+      .matches(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/, 'Vui lòng nhập đúng định dạng số điện thoại!'),
 
     password: Yup.string()
       .required('Vui lòng nhập thông tin!')
@@ -48,8 +58,12 @@ function Register() {
   });
 
   const handleSubmit = (values: iUserRegister) => {
-    dispatch(setUserInfo(values));
+    dispatch(setUserInfo({ name: values.name, username: values.username, email: values.email, phone: values.phone }));
   };
+
+  useEffect(() => {
+    console.log(info);
+  }, [info]);
 
   return (
     <FormTemplate title="Đăng ký">
@@ -65,6 +79,10 @@ function Register() {
             <ErrorMessage name="name" component={S.ErrorMsg} />
             <S.Input placeholder="Tài khoản..." name="username" error={errors.username && touched.username ? 1 : 0} />
             <ErrorMessage name="username" component={S.ErrorMsg} />
+            <S.Input placeholder="Email..." name="email" error={errors.email && touched.email ? 1 : 0} />
+            <ErrorMessage name="email" component={S.ErrorMsg} />
+            <S.Input placeholder="Số điện thoại..." name="phone" error={errors.phone && touched.phone ? 1 : 0} />
+            <ErrorMessage name="phone" component={S.ErrorMsg} />
             <S.Input
               placeholder="Mật khẩu..."
               type="password"

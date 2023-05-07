@@ -9,7 +9,7 @@ const initialState: iError = {
 };
 
 export const errorPageSlice = createSlice({
-  name: 'category',
+  name: 'error-page',
   initialState,
   reducers: {
     setError: (state, action) => {
