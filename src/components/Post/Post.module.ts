@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Textarea } from '@nextui-org/react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -74,16 +75,18 @@ export const Overlay = styled.div`
   background: linear-gradient(180deg, rgba(18, 18, 19, 0) 0%, #121213 100%);
 `;
 
-export const Content = styled.div`
-  ${tw`w-[1260px] px-[15px] mt-[60px] mb-[30px] text-black`}
+export const Content = styled.div<{ darkMode: boolean }>`
+  ${tw`w-[1260px] px-[15px] mt-[60px] mb-[30px] text-[var(--text-color-black)]`}
+  ${({ darkMode }) => darkMode && tw`text-white`}
 `;
 
 export const PostShares = styled.div`
   ${tw`w-full mt-[60px] flex items-center`}
 `;
 
-export const TitleShare = styled.h3`
+export const TitleShare = styled.h3<{ darkMode: boolean }>`
   ${tw`text-[var(--text-color-black)] text-xl font-semibold mr-8`}
+  ${({ darkMode }) => darkMode && tw`text-white`}
 `;
 
 export const IconShare = styled.button`
@@ -98,8 +101,9 @@ export const CustomIconTwitter = styled(FontAwesomeIcon)`
   ${tw`py-[10px] px-[35px] text-xl text-white bg-[#00B6F1]`}
 `;
 
-export const Line = styled.hr`
+export const Line = styled.hr<{ darkMode: boolean }>`
   ${tw`my-[60px] w-full border-t-[1px] border-solid border-[var(--text-color-black)] opacity-20`}
+  ${({ darkMode }) => darkMode && tw`border-white`}
 `;
 
 export const AuthorInfo = styled.div`
@@ -145,6 +149,9 @@ export const CommentArea = styled.div`
     &:last-child > * {
       ${tw`mb-6`}
     }
+    &:last-child > :first-child {
+      ${tw`mt-6`}
+    }
   }
 `;
 
@@ -156,6 +163,11 @@ export const CommentScroll = styled.div`
   ${tw`overflow-auto max-h-[420px]`}
 `;
 
+export const LineComment = styled.hr<{ darkMode: boolean }>`
+  ${tw`w-full border-t-[1px] border-solid border-[var(--text-color-black)] opacity-20`}
+  ${({ darkMode }) => darkMode && tw`border-white`}
+`;
+
 export const UserAvatar = styled.h2`
   ${tw`relative w-[75px] h-[75px] rounded-full overflow-hidden mr-5`}
 `;
@@ -164,22 +176,35 @@ export const NameOfUser = styled.h2`
   ${tw`font-semibold text-base`}
 `;
 
-export const TimeCmt = styled.h3`
+export const TimeCmt = styled.h3<{ darkMode: boolean }>`
   ${tw`mt-2 text-sm`}
+  ${({ darkMode }) => darkMode && tw`text-[var(--text-color)]`}
 `;
 
-export const CommentContent = styled.p`
+export const CommentContent = styled.p<{ darkMode: boolean }>`
   ${tw`mt-1 text-[var(--text-color-black)]`}
+  ${({ darkMode }) => darkMode && tw`text-[var(--text-color)]`}
 `;
 
 export const DesComment = styled.div`
   ${tw``}
 `;
 
-export const HandleComment = styled.div`
-  ${tw``}
+export const TextAreaComment = styled(Textarea)``;
+
+export const HandleComment = styled.div<{ darkMode: boolean }>`
+  ${tw`flex flex-col justify-end items-end mb-5`}
+
+  ${TextAreaComment} {
+    > :first-child {
+      ${({ darkMode }) => darkMode && tw`bg-[#1a1a1a]`}
+    }
+    > :first-child > :last-child {
+      ${({ darkMode }) => darkMode && tw`text-[var(--text-color)]`}
+    }
+  }
 `;
 
 export const ButtonComment = styled.button`
-  ${tw`float-right px-3 py-2 bg-[var(--navbar-dark)] text-[var(--primary)] rounded-[6px] hover:opacity-90`}
+  ${tw`w-[10%] px-3 py-2 bg-[var(--navbar-dark)] text-[var(--primary)] rounded-[6px] hover:opacity-90`}
 `;

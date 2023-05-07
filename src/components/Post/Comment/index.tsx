@@ -5,8 +5,9 @@ import { iComment } from '@/src/utils/interface';
 
 interface iData {
   data: iComment;
+  darkMode: boolean;
 }
-function Comment({ data }: iData) {
+function Comment({ data, darkMode }: iData) {
   return (
     <S.Comment>
       <S.UserAvatar>
@@ -21,8 +22,8 @@ function Comment({ data }: iData) {
       </S.UserAvatar>
       <S.DesComment>
         <S.NameOfUser>{data.name}</S.NameOfUser>
-        <S.CommentContent>{data.comment}</S.CommentContent>
-        <S.TimeCmt>{data.time}</S.TimeCmt>
+        <S.CommentContent darkMode={darkMode}>{data.comment}</S.CommentContent>
+        <S.TimeCmt darkMode={darkMode}>{data.time}</S.TimeCmt>
       </S.DesComment>
     </S.Comment>
   );

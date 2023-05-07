@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import * as S from './Post.module';
 import HeaderTop from '../Global/HeaderTop';
@@ -11,11 +11,12 @@ import Image from 'next/image';
 import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { comments } from '@/src/utils/dataConfig';
 import Comment from './Comment';
-import { Textarea, Spacer, Grid } from '@nextui-org/react';
+import { Textarea, Spacer } from '@nextui-org/react';
 
 function Post() {
   const { mode } = useSelector((state: any) => state.darkMode);
   const [comment, setComment] = useState<string>('');
+  const textRef = useRef();
 
   useEffect(() => {
     if (mode) {
@@ -42,7 +43,7 @@ function Post() {
             <S.CategoryTag>
               <S.CategoryName>Watch</S.CategoryName>
             </S.CategoryTag>
-            {/* <S.Title dangerouslySetInnerHTML={{ __html: content.title }} /> */}
+            <S.Title>Tiêu đề</S.Title>
             <S.TagList>
               <S.TagItem>
                 By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
@@ -54,10 +55,10 @@ function Post() {
             </S.TagList>
           </S.Description>
         </S.Banner>
-        <S.Content>
+        <S.Content darkMode={mode}>
           {/* <div dangerouslySetInnerHTML={{ __html: content.body }}></div> */}
           <S.PostShares>
-            <S.TitleShare>Share:</S.TitleShare>
+            <S.TitleShare darkMode={mode}>Share:</S.TitleShare>
             <S.IconShare>
               <S.CustomIconFacebook icon={faFacebookF} />
             </S.IconShare>
@@ -65,7 +66,7 @@ function Post() {
               <S.CustomIconTwitter icon={faTwitter} />
             </S.IconShare>
           </S.PostShares>
-          <S.Line />
+          <S.Line darkMode={mode} />
           <S.AuthorInfo>
             <S.AuthorAvatar>
               <Image
@@ -91,24 +92,23 @@ function Post() {
               </S.TagList>
             </S.AuthorNameAndTotalLike>
           </S.AuthorInfo>
-          <S.Line />
+          <S.Line darkMode={mode} />
           <S.CommentArea>
             <S.TitleComment>Bình luận</S.TitleComment>
-            <S.HandleComment>
-              <Grid>
-                <Textarea
-                  width="100%"
-                  labelPlaceholder="Nhập bình luận của bạn ở đây."
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-                <Spacer y={1} />
-                <S.ButtonComment>Bình luận</S.ButtonComment>
-              </Grid>
+            <S.HandleComment darkMode={mode}>
+              <S.TextAreaComment
+                width="100%"
+                placeholder="Nhập bình luận của bạn ở đây."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <Spacer y={1} />
+              <S.ButtonComment>Bình luận</S.ButtonComment>
             </S.HandleComment>
+            <S.LineComment darkMode={mode} />
             <S.CommentScroll>
               {comments.map((data, index) => (
-                <Comment key={index} data={data} />
+                <Comment key={index} data={data} darkMode={mode} />
               ))}
             </S.CommentScroll>
           </S.CommentArea>
