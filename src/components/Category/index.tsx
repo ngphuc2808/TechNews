@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react';
 import * as S from './Category.module';
 import HeaderTop from '../Global/HeaderTop';
-import NavbarPost from './NavbarPost';
+import NavbarPost from '../Global/NavbarPost';
 import ButtonDarkMode from '../Global/ButtonDarkMode';
 import ScrollToTop from '../Global/ScrollToTopButton';
 import Footer from '../Global/Footer';
@@ -18,21 +18,13 @@ import { iCategory } from '@/src/utils/interface';
 function Category() {
   const router = useRouter();
 
-  const categoryPathDefault = { name: '', key: '' };
+  const categoryPathDefault = { value: '', label: '' };
 
   const [categoryPath, setCategoryPath] = useState<iCategory>(categoryPathDefault);
 
-  const { mode } = useSelector((state: any) => state.darkMode);
-
   const auth = useSelector((state: any) => state.auth);
 
-  useEffect(() => {
-    if (router.query.category) {
-      const newArr = category.find((value) => value.key === router.query.category);
-      setCategoryPath(newArr || categoryPathDefault);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.category]);
+  const { mode } = useSelector((state: any) => state.darkMode);
 
   useEffect(() => {
     if (mode) {
@@ -43,6 +35,14 @@ function Category() {
       window.document.querySelector('body')?.classList.remove('dark-mode');
     }
   }, [mode]);
+
+  useEffect(() => {
+    if (router.query.category) {
+      const newArr = category.find((value) => value.value === router.query.category);
+      setCategoryPath(newArr || categoryPathDefault);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.category]);
 
   return (
     <Fragment>
@@ -61,12 +61,12 @@ function Category() {
               <Link href="/">Trang chủ</Link>
             </S.Item>
             <S.Slash>/</S.Slash>
-            <S.Item>{categoryPath.name}</S.Item>
+            <S.Item>{categoryPath.label}</S.Item>
           </S.ListLink>
         </S.BreadCrumb>
         <S.Title darkMode={mode}>
           <S.TitleContent>
-            <S.Name>{categoryPath.name}</S.Name>
+            <S.Name>{categoryPath.label}</S.Name>
           </S.TitleContent>
         </S.Title>
         <ContentCategory mode={mode} />

@@ -7,7 +7,7 @@ export const Header = styled.header`
 `;
 
 export const Container = styled.div`
-  ${tw`flex flex-col justify-center items-center mt-[107px]`}
+  ${tw`flex flex-col justify-center items-center mt-[145px]`}
   > * {
     &:last-child {
       ${tw`mb-[45px]`}
@@ -16,7 +16,7 @@ export const Container = styled.div`
 `;
 
 export const BreadCrumb = styled.div`
-  ${tw`w-full mt-[45px] py-5 flex items-center justify-center`}
+  ${tw`w-full py-5 flex items-center justify-center`}
 `;
 
 export const ListLink = styled.div`

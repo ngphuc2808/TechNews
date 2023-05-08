@@ -35,13 +35,15 @@ export interface iMode {
 }
 
 export interface iCategory {
-  name: string;
-  key: string;
+  value: string;
+  label: string;
 }
 
 export interface iUserRegister {
   name: string;
   username: string;
+  email: string;
+  phone: string;
   password: string;
   confirmPassword: string;
 }
@@ -49,8 +51,8 @@ export interface iUserRegister {
 export interface iUser {
   name: string;
   username: string;
-  password: string;
-  confirmPassword: string;
+  email: string;
+  phone: string;
 }
 
 export interface iUserLogin {
@@ -68,6 +70,14 @@ export interface iUserProfile {
 }
 
 export interface iContent {
+  category: string;
   title: string;
+  banner: string;
   body: string;
+}
+
+export interface iComment {
+  name: string;
+  comment: string;
+  time: string;
 }

@@ -276,16 +276,64 @@ export const post: iPost[] = [
 ];
 
 interface iCategory {
-  name: string;
-  key: string;
+  value: string;
+  label: string;
 }
 export const category: iCategory[] = [
   {
-    name: 'Công nghệ',
-    key: 'technology',
+    value: 'technology',
+    label: 'Công nghệ',
   },
   {
-    name: 'Lập trình',
-    key: 'program',
+    value: 'program',
+    label: 'Lập trình',
+  },
+];
+
+interface iComment {
+  name: string;
+  comment: string;
+  time: string;
+}
+export const comments: iComment[] = [
+  {
+    name: 'Hoang Phuc',
+    comment: 'Lập trình SPKT',
+    time: '02/02/2023',
+  },
+  {
+    name: 'Thanh Nha',
+    comment: 'Lập trình SPKT 2',
+    time: '02/02/2023',
+  },
+  {
+    name: 'Hoang Phuc',
+    comment: 'Lập trình SPKT',
+    time: '02/02/2023',
+  },
+  {
+    name: 'Thanh Nha',
+    comment: 'Lập trình SPKT 2',
+    time: '02/02/2023',
+  },
+  {
+    name: 'Hoang Phuc',
+    comment: 'Lập trình SPKT',
+    time: '02/02/2023',
+  },
+  {
+    name: 'Thanh Nha',
+    comment: 'Lập trình SPKT 2',
+    time: '02/02/2023',
+  },
+  {
+    name: 'Hoang Phuc',
+    comment: 'Lập trình SPKT',
+    time: '02/02/2023',
+  },
+  {
+    name: 'Thanh Nha',
+    comment: 'Lập trình SPKT 2',
+    time: '02/02/2023',
   },
 ];

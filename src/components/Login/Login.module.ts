@@ -11,7 +11,7 @@ export const FormLogin = styled(Form)`
 
 export const Input = styled(Field)<{ error: number }>`
   ${tw`w-[70%] h-12 mt-[15px] py-2 px-4 outline-none bg-[#ecebeb] caret-black text-[var(--text-color-black)]`}
-  ${({ error }) => (error === 1 ? tw`border border-red-500` : tw`border-b border-solid border-[#0154b1]`)};
+  ${({ error }) => (error === 1 ? tw`border border-red-500` : tw`border-b border-solid border-[var(--navbar-dark)]`)};
 `;
 
 export const Button = styled.button`

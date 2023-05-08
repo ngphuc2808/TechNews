@@ -107,6 +107,7 @@ export const CustomIconDislike = styled(FontAwesomeIcon)<{ check: number }>`
     ${tw`text-[#c8210e]`}
   }
 `;
+
 export const Number = styled.p`
   ${tw`text-sm`}
 `;

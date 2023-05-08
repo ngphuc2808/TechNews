@@ -24,7 +24,7 @@ function NavbarPost({ mode }: iMode) {
 
   const handleSetPath = useCallback(
     (e: MouseEvent, item: iCategory) => {
-      if (router.query.category === item.key) {
+      if (router.query.category === item.value) {
         e.preventDefault();
       }
     },
@@ -47,8 +47,8 @@ function NavbarPost({ mode }: iMode) {
                 <S.SubMenu darkMode={mode}>
                   {category.map((item, index) => (
                     <S.SubItem key={index}>
-                      <Link href={`/category/${item.key}`} onClick={(e) => handleSetPath(e, item)}>
-                        {item.name}
+                      <Link href={`/category/${item.value}`} onClick={(e) => handleSetPath(e, item)}>
+                        {item.label}
                       </Link>
                     </S.SubItem>
                   ))}
