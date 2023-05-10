@@ -10,6 +10,8 @@ import authReducer from './slices/authSlice';
 import errorPageReducer from './slices/errorPageSlice';
 import userReducer from './slices/userSlice';
 import navItemReducer from './slices/navItemSlice';
+import { clothing } from '@/pages/api/services/clothingBaseApis';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
 import auth from '@/pages/api/features/auth';
 
@@ -27,6 +29,7 @@ const persistedDarkMode = persistReducer(persistConfig, darkModeReducer);
 
 export const store = configureStore({
   reducer: {
+    [clothing.reducerPath]: clothing.reducer,
     darkMode: persistedDarkMode,
     category: categoryReducer,
     auth: authReducer,
@@ -35,9 +38,15 @@ export const store = configureStore({
     navItem: navItemReducer,
     authentication: auth,
   },
-  middleware: [thunk],
+  // middleware: [thunk],
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(clothing.middleware),
 });
 
 export const persistStor = persistStore(store);
+
+setupListeners(store.dispatch);
 
 export default store;

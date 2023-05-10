@@ -1,12 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import * as S from './Content.module';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import ListHotNews from '../ListHotNews';
 import ListPost from '../ListPost';
 import { iMode } from '@/src/utils/interface';
+import { useGetAllPostsQuery } from '@/pages/api/services/productApis';
 
 function Content({ mode }: iMode) {
+  const { data: postData, isFetching: isFetchingPostData } = useGetAllPostsQuery();
+
+  useEffect(() => {
+    console.log(postData);
+  }, [isFetchingPostData]);
+
   return (
     <Fragment>
       <S.Content>
@@ -26,7 +33,7 @@ function Content({ mode }: iMode) {
                 <S.CategoryName>Smart Watch</S.CategoryName>
               </S.CategoryTag>
               <S.NewsTitle>
-                <Link href="/home">These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales</Link>
+                <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[0]?.title}</Link>
               </S.NewsTitle>
               <S.AuthorTag>
                 By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
@@ -49,7 +56,7 @@ function Content({ mode }: iMode) {
                   <S.CategoryName>Smart Watch</S.CategoryName>
                 </S.CategoryTag>
                 <S.NewsTitle>
-                  <Link href="/home">These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales</Link>
+                  <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[1]?.title}</Link>
                 </S.NewsTitle>
                 <S.AuthorTag>
                   By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
@@ -71,7 +78,7 @@ function Content({ mode }: iMode) {
                   <S.CategoryName>Smart Watch</S.CategoryName>
                 </S.CategoryTag>
                 <S.NewsTitle>
-                  <Link href="/home">These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales</Link>
+                  <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[2]?.title}</Link>
                 </S.NewsTitle>
                 <S.AuthorTag>
                   By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
