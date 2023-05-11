@@ -21,7 +21,7 @@ function Content({ mode }: iMode) {
           <S.LatestNewsLeft>
             <Image
               quality={100}
-              src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+              src={isFetchingPostData ? '' : postData[0]?.thumbnail}
               alt="image"
               fill
               sizes=""
@@ -36,7 +36,7 @@ function Content({ mode }: iMode) {
                 <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[0]?.title}</Link>
               </S.NewsTitle>
               <S.AuthorTag>
-                By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
+                By&nbsp;<S.AuthorName>{isFetchingPostData ? 'Loading..' : postData[0]?.userName}</S.AuthorName>
               </S.AuthorTag>
             </S.DescriptionNews>
           </S.LatestNewsLeft>
@@ -44,7 +44,7 @@ function Content({ mode }: iMode) {
             <S.Topic>
               <Image
                 quality={100}
-                src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                src={isFetchingPostData ? '' : postData[1]?.thumbnail}
                 alt="image"
                 fill
                 sizes=""
@@ -59,14 +59,14 @@ function Content({ mode }: iMode) {
                   <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[1]?.title}</Link>
                 </S.NewsTitle>
                 <S.AuthorTag>
-                  By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
+                  By&nbsp;<S.AuthorName>{isFetchingPostData ? 'Loading..' : postData[1]?.userName}</S.AuthorName>
                 </S.AuthorTag>
               </S.DescriptionNews>
             </S.Topic>
             <S.Topic>
               <Image
                 quality={100}
-                src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                src={isFetchingPostData ? '' : postData[2]?.thumbnail}
                 alt="image"
                 fill
                 sizes=""
@@ -81,7 +81,7 @@ function Content({ mode }: iMode) {
                   <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[2]?.title}</Link>
                 </S.NewsTitle>
                 <S.AuthorTag>
-                  By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
+                  By&nbsp;<S.AuthorName>{isFetchingPostData ? 'Loading..' : postData[2]?.userName}</S.AuthorName>
                 </S.AuthorTag>
               </S.DescriptionNews>
             </S.Topic>

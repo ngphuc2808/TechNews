@@ -8,9 +8,14 @@ import Link from 'next/link';
 import { iCategory } from '@/src/utils/interface';
 import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
 import { setNavItem } from '@/src/features/redux/slices/navItemSlice';
+import { useGetCategoriesQuery } from '@/pages/api/services/catApis';
 
 function Navbar() {
   const dispatch = useDispatch();
+
+  const { data: catData, isFetching: isFetchingCat } = useGetCategoriesQuery();
+
+  console.log(catData);
 
   const { key } = useSelector((state: any) => state.navItem);
 
@@ -40,11 +45,17 @@ function Navbar() {
               <Link href={`/`}>{item.title}</Link>
               {item.submenu && (
                 <S.SubMenu darkMode={mode}>
-                  {category.map((item, index) => (
-                    <S.SubItem key={index} onClick={() => handleSetPath(item)}>
-                      <Link href={`/category/${item.value}`}>{item.label}</Link>
-                    </S.SubItem>
-                  ))}
+                  {isFetchingCat
+                    ? category.map((item, index) => (
+                        <S.SubItem key={index} onClick={() => handleSetPath(item)}>
+                          <Link href={`/category/${item.value}`}>{item.label}</Link>
+                        </S.SubItem>
+                      ))
+                    : catData?.map((item, index) => (
+                        <S.SubItem key={index} onClick={() => handleSetPath(item)}>
+                          <Link href={`/category/${item.slug}`}>{item.title}</Link>
+                        </S.SubItem>
+                      ))}
                 </S.SubMenu>
               )}
             </S.MenuNavItem>

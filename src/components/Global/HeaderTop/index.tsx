@@ -6,10 +6,16 @@ import { faFacebook, faSquareInstagram, faGithub } from '@fortawesome/free-brand
 import { useSelector, useDispatch } from 'react-redux';
 import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 import { logout } from '@/pages/api/features/auth';
-// import { useGetProfileQuery } from '@/pages/api/services/userApis';
+import { useGetProfileQuery } from '@/pages/api/services/userApis';
 
 function HeaderTop() {
   const dispatch = useDispatch();
+
+  const { isAuthenticated } = useSelector((state) => state.authentication);
+
+  const { data: user } = useGetProfileQuery({
+    skip: !isAuthenticated,
+  });
 
   const handleLogout = () => {
     // setAnchorElAuth(null);
@@ -22,8 +28,6 @@ function HeaderTop() {
   // const { data: user } = useGetProfileQuery({
   //   skip: !localStorage.getItem('user'),
   // });
-
-  const { isAuthenticated } = useSelector((state) => state.authentication);
 
   const handleOpenRegister = () => {
     dispatch(setLogin(false));
@@ -39,13 +43,13 @@ function HeaderTop() {
     <S.Wrapper>
       <S.Container>
         <S.MenuHeader>
-          <S.MenuHeaderItem>
+          {/* <S.MenuHeaderItem>
             <S.ItemTitle>
               <S.StyledFontAwesomeIconLeft icon={faCircleQuestion} />
               Hỗ trợ
             </S.ItemTitle>
           </S.MenuHeaderItem>
-          <S.Separate />
+          <S.Separate /> */}
           <S.MenuHeaderItem>
             Kết nối
             <S.StyledFontAwesomeIconRight icon={faFacebook} />
@@ -66,7 +70,7 @@ function HeaderTop() {
             </>
           ) : (
             <>
-              <S.ButtonEntry>Logged in</S.ButtonEntry>
+              <b>Hi, {user?.fullname}</b>
               <S.Separate />
               <S.ButtonEntry onClick={handleLogout}>Đăng xuất</S.ButtonEntry>
             </>
