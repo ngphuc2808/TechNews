@@ -30,7 +30,7 @@ function Content({ mode }: iMode) {
             <S.Overlay />
             <S.DescriptionNews number={0}>
               <S.CategoryTag>
-                <S.CategoryName>Smart Watch</S.CategoryName>
+                <S.CategoryName>{isFetchingPostData ? 'Loading..' : postData[0]?.categoryName}</S.CategoryName>
               </S.CategoryTag>
               <S.NewsTitle>
                 <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[0]?.title}</Link>
@@ -53,7 +53,7 @@ function Content({ mode }: iMode) {
               <S.Overlay />
               <S.DescriptionNews number={1}>
                 <S.CategoryTag>
-                  <S.CategoryName>Smart Watch</S.CategoryName>
+                  <S.CategoryName>{isFetchingPostData ? 'Loading..' : postData[1]?.categoryName}</S.CategoryName>
                 </S.CategoryTag>
                 <S.NewsTitle>
                   <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[1]?.title}</Link>
@@ -75,7 +75,7 @@ function Content({ mode }: iMode) {
               <S.Overlay />
               <S.DescriptionNews number={2}>
                 <S.CategoryTag>
-                  <S.CategoryName>Smart Watch</S.CategoryName>
+                  <S.CategoryName>{isFetchingPostData ? 'Loading..' : postData[2]?.categoryName}</S.CategoryName>
                 </S.CategoryTag>
                 <S.NewsTitle>
                   <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[2]?.title}</Link>

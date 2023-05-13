@@ -18,7 +18,7 @@ function BlockContent({ data, mode }: iDataPosts) {
       </S.PictureContent>
       <S.DescriptionNews number={1}>
         <S.CategoryTag>
-          <S.CategoryName>{data?.category}</S.CategoryName>
+          <S.CategoryName>{data?.categoryName}</S.CategoryName>
         </S.CategoryTag>
         <S.NewsTitle darkMode={mode} homePage={router.pathname === '/'}>
           <Link href="/home">{data?.title}</Link>

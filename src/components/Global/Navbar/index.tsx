@@ -53,7 +53,7 @@ function Navbar() {
                       ))
                     : catData?.map((item, index) => (
                         <S.SubItem key={index} onClick={() => handleSetPath(item)}>
-                          <Link href={`/category/${item.slug}`}>{item.title}</Link>
+                          <Link href={`/category/${item?.id}`}>{item?.title}</Link>
                         </S.SubItem>
                       ))}
                 </S.SubMenu>

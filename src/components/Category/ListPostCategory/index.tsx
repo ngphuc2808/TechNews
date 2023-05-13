@@ -6,15 +6,40 @@ import { useState } from 'react';
 import { iMode } from '@/src/utils/interface';
 import { post } from '@/src/utils/dataConfig';
 import Pagination from '../../Global/Pagination';
+import { Fragment, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { category } from '@/src/utils/dataConfig';
+import { useGetAllPostsByCatQuery } from '@/pages/api/services/productApis';
+import { iCategory } from '@/src/utils/interface';
 
 function ListPostCategory({ mode }: iMode) {
   const [activeWidget, setActiveWidget] = useState<string>('Recent');
+  const router = useRouter();
+  const categoryPathDefault = { value: '', label: '' };
+
+  const [categoryPath, setCategoryPath] = useState<iCategory>(categoryPathDefault);
+  useEffect(() => {
+    if (router.query.category) {
+      const newArr = category.find((value) => value.value === router.query.category);
+      setCategoryPath(newArr || categoryPathDefault);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.category]);
+  console.log(router);
+
+  const { data: postsData, isFetching: isFetchingPostsData } = useGetAllPostsByCatQuery({
+    catId: router.query?.category,
+    pageNo: 1,
+    pageSize: 5,
+  });
+
+  console.log(postsData);
 
   return (
     <S.Wrapper>
       <S.LeftInfo>
         <S.ListCard>
-          <Pagination data={post} mode={mode} profilePage={false} />
+          <Pagination data={isFetchingPostsData ? post : postsData?.postDTOList} mode={mode} profilePage={false} />
         </S.ListCard>
       </S.LeftInfo>
       <S.RightInfo>

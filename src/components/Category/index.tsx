@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 import Register from '../Register';
 import Login from '../Login';
 import { iCategory } from '@/src/utils/interface';
+// import { useGetAllPostsByCatQuery } from '@/pages/api/services/productApis';
 
 function Category() {
   const router = useRouter();
@@ -43,6 +44,13 @@ function Category() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.category]);
+
+  // const { data: postsData, isFetching: isFetchingPostsData } = useGetAllPostsByCatQuery({
+  //   catId: router.query?.category,
+  //   pageNo: 1,
+  //   pageSize: 5,
+  // });
+  // console.log(postsData);
 
   return (
     <Fragment>
