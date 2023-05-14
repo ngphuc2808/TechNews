@@ -21,9 +21,9 @@ function Comment({ data, darkMode }: iData) {
         />
       </S.UserAvatar>
       <S.DesComment>
-        <S.NameOfUser>{data.name}</S.NameOfUser>
-        <S.CommentContent darkMode={darkMode}>{data.comment}</S.CommentContent>
-        <S.TimeCmt darkMode={darkMode}>{data.time}</S.TimeCmt>
+        <S.NameOfUser>{data?.username}</S.NameOfUser>
+        <S.CommentContent darkMode={darkMode}>{data?.content}</S.CommentContent>
+        <S.TimeCmt darkMode={darkMode}>{data?.time}</S.TimeCmt>
       </S.DesComment>
     </S.Comment>
   );

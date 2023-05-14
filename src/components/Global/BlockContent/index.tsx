@@ -21,7 +21,7 @@ function BlockContent({ data, mode }: iDataPosts) {
           <S.CategoryName>{data?.categoryName}</S.CategoryName>
         </S.CategoryTag>
         <S.NewsTitle darkMode={mode} homePage={router.pathname === '/'}>
-          <Link href="/home">{data?.title}</Link>
+          <Link href={`/post?id=${data?.id}`}>{data?.title}</Link>
         </S.NewsTitle>
         <S.TagList>
           <S.TagItem>

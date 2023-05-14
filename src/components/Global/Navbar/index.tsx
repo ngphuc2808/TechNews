@@ -42,7 +42,7 @@ function Navbar() {
               submenu={item.submenu === true}
               onClick={item.key !== 'Category' ? () => handleSetNavItem(item.key) : undefined}
             >
-              <Link href={`/`}>{item.title}</Link>
+              <Link href={item?.href}>{item.title}</Link>
               {item.submenu && (
                 <S.SubMenu darkMode={mode}>
                   {isFetchingCat

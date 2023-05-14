@@ -5,8 +5,11 @@ const cat = clothing.injectEndpoints({
     getCategories: builder.query({
       query: () => 'category/get-all',
     }),
+    getCategoryById: builder.query({
+      query: (catId) => `/category/${catId}`,
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetCategoriesQuery } = cat;
+export const { useGetCategoriesQuery, useGetCategoryByIdQuery } = cat;

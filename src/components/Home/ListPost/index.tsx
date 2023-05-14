@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { iMode } from '@/src/utils/interface';
 import GroupBlockContent from './GroupBlockContent';
 function ListPost({ mode }: iMode) {
-  const [activeWidget, setActiveWidget] = useState<string>('Recent');
+  const [activeWidget, setActiveWidget] = useState<string>('Popular');
 
   return (
     <S.Wrapper>

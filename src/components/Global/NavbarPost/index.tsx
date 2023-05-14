@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNavItem } from '@/src/features/redux/slices/navItemSlice';
 import { useGetCategoriesQuery } from '@/pages/api/services/catApis';
+import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
 
 function NavbarPost({ mode }: iMode) {
   const router = useRouter();
@@ -25,14 +26,18 @@ function NavbarPost({ mode }: iMode) {
 
   const { key } = useSelector((state: any) => state.navItem);
 
-  const handleSetPath = useCallback(
-    (e: MouseEvent, item: iCategory) => {
-      if (router.query.category === item?.value) {
-        e.preventDefault();
-      }
-    },
-    [router.query.category],
-  );
+  // const handleSetPath = useCallback(
+  //   (e: MouseEvent, item: iCategory) => {
+  //     if (router.query.category === item?.value) {
+  //       e.preventDefault();
+  //     }
+  //   },
+  //   [router.query.category],
+  // );
+
+  const handleSetPath = (item: iCategory) => {
+    dispatch(setNameCategory(item));
+  };
 
   return (
     <S.Wrapper darkMode={mode}>
@@ -45,7 +50,9 @@ function NavbarPost({ mode }: iMode) {
               submenu={item.submenu === true}
               onClick={item.key !== 'Category' ? () => dispatch(setNavItem(item.key)) : undefined}
             >
-              {item.key !== 'Category' ? <Link href={`/`}>{item.title}</Link> : <>{item.title}</>}
+              {/* {item.key !== 'Category' ? <Link href={`/`}>{item.title}</Link> : <>{item.title}</>} */}
+              <Link href={item?.href}>{item.title}</Link>
+
               {item.submenu && (
                 <S.SubMenu darkMode={mode}>
                   {isFetchingCat

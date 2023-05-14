@@ -33,7 +33,9 @@ function Content({ mode }: iMode) {
                 <S.CategoryName>{isFetchingPostData ? 'Loading..' : postData[0]?.categoryName}</S.CategoryName>
               </S.CategoryTag>
               <S.NewsTitle>
-                <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[0]?.title}</Link>
+                <Link href={isFetchingPostData ? '/post' : `/post?id=${postData[0]?.id}`}>
+                  {isFetchingPostData ? 'Loading..' : postData[0]?.title}
+                </Link>
               </S.NewsTitle>
               <S.AuthorTag>
                 By&nbsp;<S.AuthorName>{isFetchingPostData ? 'Loading..' : postData[0]?.userName}</S.AuthorName>
@@ -56,7 +58,9 @@ function Content({ mode }: iMode) {
                   <S.CategoryName>{isFetchingPostData ? 'Loading..' : postData[1]?.categoryName}</S.CategoryName>
                 </S.CategoryTag>
                 <S.NewsTitle>
-                  <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[1]?.title}</Link>
+                  <Link href={isFetchingPostData ? '/post' : `/post?id=${postData[1]?.id}`}>
+                    {isFetchingPostData ? 'Loading..' : postData[1]?.title}
+                  </Link>{' '}
                 </S.NewsTitle>
                 <S.AuthorTag>
                   By&nbsp;<S.AuthorName>{isFetchingPostData ? 'Loading..' : postData[1]?.userName}</S.AuthorName>
@@ -78,7 +82,9 @@ function Content({ mode }: iMode) {
                   <S.CategoryName>{isFetchingPostData ? 'Loading..' : postData[2]?.categoryName}</S.CategoryName>
                 </S.CategoryTag>
                 <S.NewsTitle>
-                  <Link href="/home">{isFetchingPostData ? 'Loading..' : postData[2]?.title}</Link>
+                  <Link href={isFetchingPostData ? '/post' : `/post?id=${postData[2]?.id}`}>
+                    {isFetchingPostData ? 'Loading..' : postData[2]?.title}
+                  </Link>{' '}
                 </S.NewsTitle>
                 <S.AuthorTag>
                   By&nbsp;<S.AuthorName>{isFetchingPostData ? 'Loading..' : postData[2]?.userName}</S.AuthorName>

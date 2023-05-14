@@ -10,8 +10,11 @@ const post = clothing.injectEndpoints({
       query: ({ pageNo, pageSize, catId }) =>
         `/post/get-all-by-category/${catId}?pageNo=${pageNo}&pageSize=${pageSize}`,
     }),
+    getPostDetailById: builder.query({
+      query: (postId) => `/post/${postId}`,
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetAllPostsQuery, useGetAllPostsByCatQuery } = post;
+export const { useGetAllPostsQuery, useGetAllPostsByCatQuery, useGetPostDetailByIdQuery } = post;

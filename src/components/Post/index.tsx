@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import * as S from './Post.module';
 import HeaderTop from '../Global/HeaderTop';
 import NavbarPost from '../Global/NavbarPost';
@@ -12,11 +12,25 @@ import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { comments } from '@/src/utils/dataConfig';
 import Comment from './Comment';
 import { Textarea, Spacer } from '@nextui-org/react';
+import { useRouter } from 'next/router';
+import { category } from '@/src/utils/dataConfig';
+import { useGetPostDetailByIdQuery } from '@/pages/api/services/productApis';
+import { useGetAllCommentByPostIdQuery } from '@/pages/api/services/commentApis';
+import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 
 function Post() {
+  const dispatch = useDispatch();
+
   const { mode } = useSelector((state: any) => state.darkMode);
   const [comment, setComment] = useState<string>('');
   const textRef = useRef();
+  const router = useRouter();
+
+  const categoryPathDefault = { value: '', label: '' };
+
+  const [categoryPath, setCategoryPath] = useState<iCategory>(categoryPathDefault);
+
+  const auth = useSelector((state: any) => state.auth);
 
   useEffect(() => {
     if (mode) {
@@ -27,6 +41,21 @@ function Post() {
       window.document.querySelector('body')?.classList.remove('dark-mode');
     }
   }, [mode]);
+
+  useEffect(() => {
+    if (router.query.category) {
+      const newArr = category.find((value) => value.value === router.query.category);
+      setCategoryPath(newArr || categoryPathDefault);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.category]);
+
+  const { data: postData, isFetching: isFetchingPostData } = useGetPostDetailByIdQuery(router.query.id);
+
+  const { data: commentData, isFetching: isFetchingCommentData } = useGetAllCommentByPostIdQuery(router.query.id);
+
+  const handleClickComment = () => {};
+
   return (
     <Fragment>
       <S.Header>
@@ -38,22 +67,43 @@ function Post() {
         <ScrollToTop />
         <S.Banner>
           {/* <S.BannerImage dangerouslySetInnerHTML={{ __html: content.banner }} /> */}
-          <S.Overlay></S.Overlay>
-          <S.Description>
-            <S.CategoryTag>
-              <S.CategoryName>Watch</S.CategoryName>
-            </S.CategoryTag>
-            <S.Title>Tiêu đề</S.Title>
-            <S.TagList>
-              <S.TagItem>
-                By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
-              </S.TagItem>
-              <S.TagItem>06/05/2023</S.TagItem>
-              <S.TagItem>
-                <S.Number>100 Views</S.Number>
-              </S.TagItem>
-            </S.TagList>
-          </S.Description>
+          {isFetchingPostData ? (
+            <>
+              <S.Overlay></S.Overlay>
+              <S.Description>
+                <S.CategoryTag>
+                  <S.CategoryName>Watch</S.CategoryName>
+                </S.CategoryTag>
+                <S.Title>Tiêu đề</S.Title>
+                <S.TagList>
+                  <S.TagItem>
+                    By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
+                  </S.TagItem>
+                  <S.TagItem>06/05/2023</S.TagItem>
+                  <S.TagItem>
+                    <S.Number>100 Views</S.Number>
+                  </S.TagItem>
+                </S.TagList>
+              </S.Description>
+            </>
+          ) : (
+            <>
+              <S.Overlay></S.Overlay>
+              <S.Description>
+                <S.CategoryTag>
+                  <S.CategoryName>{postData?.categoryName}</S.CategoryName>
+                </S.CategoryTag>
+                <S.Title>{postData?.title}</S.Title>
+                <S.TagList>
+                  <S.TagItem>
+                    By&nbsp;<S.AuthorName>{postData?.userName}</S.AuthorName>
+                  </S.TagItem>
+                  <S.TagItem>06/05/2023</S.TagItem>
+                  <S.TagItem>{/* <S.Number>100 Views</S.Number> */}</S.TagItem>
+                </S.TagList>
+              </S.Description>
+            </>
+          )}
         </S.Banner>
         <S.Content darkMode={mode}>
           {/* <div dangerouslySetInnerHTML={{ __html: content.body }}></div> */}
@@ -79,37 +129,62 @@ function Post() {
               />
             </S.AuthorAvatar>
             <S.AuthorNameAndTotalLike>
-              <S.LastAuthorName>Phúc NH</S.LastAuthorName>
-              <S.TagList>
-                <S.TagItemLike>
-                  <S.CustomIconLike check={2} icon={faThumbsUp} />
-                  <S.Number>100</S.Number>
-                </S.TagItemLike>
-                <S.TagItemLike>
-                  <S.CustomIconDislike check={2} icon={faThumbsDown} />
-                  <S.Number>100</S.Number>
-                </S.TagItemLike>
-              </S.TagList>
+              {isFetchingPostData ? (
+                <>
+                  <S.LastAuthorName>Phúc NH</S.LastAuthorName>
+                  <S.TagList>
+                    <S.TagItemLike>
+                      <S.CustomIconLike check={2} icon={faThumbsUp} />
+                      <S.Number>100</S.Number>
+                    </S.TagItemLike>
+                    <S.TagItemLike>
+                      <S.CustomIconDislike check={2} icon={faThumbsDown} />
+                      <S.Number>100</S.Number>
+                    </S.TagItemLike>
+                  </S.TagList>
+                </>
+              ) : (
+                <>
+                  <S.LastAuthorName>{postData?.userName}</S.LastAuthorName>
+                  <S.TagList>
+                    <S.TagItemLike>
+                      <S.CustomIconLike check={postData?.isVoted} icon={faThumbsUp} />
+                      <S.Number>{postData?.numberVote}</S.Number>
+                    </S.TagItemLike>
+                    <S.TagItemLike>
+                      <S.CustomIconDislike check={2} icon={faThumbsDown} />
+                      <S.Number>{postData?.numberVote}</S.Number>
+                    </S.TagItemLike>
+                  </S.TagList>
+                </>
+              )}
             </S.AuthorNameAndTotalLike>
           </S.AuthorInfo>
           <S.Line darkMode={mode} />
           <S.CommentArea>
             <S.TitleComment>Bình luận</S.TitleComment>
-            <S.HandleComment darkMode={mode}>
-              <S.TextAreaComment
-                width="100%"
-                placeholder="Nhập bình luận của bạn ở đây."
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-              />
-              <Spacer y={1} />
-              <S.ButtonComment>Bình luận</S.ButtonComment>
-            </S.HandleComment>
+            {localStorage.getItem('token') !== null ? (
+              <>
+                <S.HandleComment darkMode={mode}>
+                  <S.TextAreaComment
+                    width="100%"
+                    placeholder="Nhập bình luận của bạn ở đây."
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                  <Spacer y={1} />
+                  <S.ButtonComment onClick={handleClickComment}>Bình luận</S.ButtonComment>
+                </S.HandleComment>
+              </>
+            ) : (
+              <></>
+            )}
+
             <S.LineComment darkMode={mode} />
             <S.CommentScroll>
-              {comments.map((data, index) => (
-                <Comment key={index} data={data} darkMode={mode} />
-              ))}
+              {isFetchingCommentData
+                ? comments.map((data, index) => <Comment key={index} data={data} darkMode={mode} />)
+                : commentData.map((data, index) => <Comment key={index} data={data} darkMode={mode} />)}
             </S.CommentScroll>
           </S.CommentArea>
         </S.Content>

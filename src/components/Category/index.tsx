@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 import Register from '../Register';
 import Login from '../Login';
 import { iCategory } from '@/src/utils/interface';
+import { useGetCategoryByIdQuery } from '@/pages/api/services/catApis';
 // import { useGetAllPostsByCatQuery } from '@/pages/api/services/productApis';
 
 function Category() {
@@ -45,12 +46,8 @@ function Category() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.category]);
 
-  // const { data: postsData, isFetching: isFetchingPostsData } = useGetAllPostsByCatQuery({
-  //   catId: router.query?.category,
-  //   pageNo: 1,
-  //   pageSize: 5,
-  // });
-  // console.log(postsData);
+  const { data: catData, isFetching: isFetchingCatData } = useGetCategoryByIdQuery(router.query.category);
+  console.log(catData);
 
   return (
     <Fragment>
@@ -69,12 +66,12 @@ function Category() {
               <Link href="/">Trang chủ</Link>
             </S.Item>
             <S.Slash>/</S.Slash>
-            <S.Item>{categoryPath.label}</S.Item>
+            <S.Item>{catData?.title}</S.Item>
           </S.ListLink>
         </S.BreadCrumb>
         <S.Title darkMode={mode}>
           <S.TitleContent>
-            <S.Name>{categoryPath.label}</S.Name>
+            <S.Name>{catData?.title}</S.Name>
           </S.TitleContent>
         </S.Title>
         <ContentCategory mode={mode} />

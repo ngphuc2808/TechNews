@@ -1,30 +1,36 @@
 interface iNavBar {
   title: string;
   key: string;
+  href?: string;
   submenu?: boolean;
 }
 export const navBarArray: iNavBar[] = [
   {
     title: 'Trang chủ',
     key: 'Home',
+    href: 'http://localhost:3000/',
   },
   {
     title: 'Danh mục',
     key: 'Category',
+    href: '',
     submenu: true,
   },
-  {
-    title: 'Cộng đồng',
-    key: 'Community',
-  },
-  {
-    title: 'Đóng góp',
-    key: 'Contribute',
-  },
-  {
-    title: 'Về chúng tôi',
-    key: 'About',
-  },
+  // {
+  //   title: 'Cộng đồng',
+  //   href: 'http://localhost:3000/',
+  //   key: 'Community',
+  // },
+  // {
+  //   title: 'Đóng góp',
+  //   href: 'http://localhost:3000/',
+  //   key: 'Contribute',
+  // },
+  // {
+  //   title: 'Về chúng tôi',
+  //   href: 'http://localhost:3000/',
+  //   key: 'About',
+  // },
 ];
 
 interface iWidget {
@@ -32,10 +38,6 @@ interface iWidget {
   key: string;
 }
 export const widgetArray: iWidget[] = [
-  {
-    title: 'Gần đây',
-    key: 'Recent',
-  },
   {
     title: 'Phổ biến',
     key: 'Popular',

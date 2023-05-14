@@ -36,11 +36,11 @@ function Login() {
     const { data, status } = await getUserLogin(values);
 
     if (status == 200) {
-      dispatch(setUser(data));
-      alert('Dang nhap thanh cong');
+      // alert('Đăng nhập thành công!');
       window.location.href = 'http://localhost:3000';
+      dispatch(setUser(data));
     } else {
-      alert('Sai thong tin dang nhap');
+      alert('Sai thông tin đăng nhập, vui lòng thử lại');
     }
   };
 
