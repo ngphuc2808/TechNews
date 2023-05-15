@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 import { logout } from '@/pages/api/features/auth';
 import { useGetProfileQuery } from '@/pages/api/services/userApis';
+import Link from 'next/link';
 
 function HeaderTop() {
   const dispatch = useDispatch();
@@ -71,6 +72,12 @@ function HeaderTop() {
           ) : (
             <>
               <b>Hi, {user?.fullname}</b>
+              <S.Separate />
+
+              <Link href="/profile">
+                {' '}
+                <S.ButtonEntry>Profile</S.ButtonEntry>
+              </Link>
               <S.Separate />
               <S.ButtonEntry onClick={handleLogout}>Đăng xuất</S.ButtonEntry>
             </>

@@ -30,10 +30,8 @@ function ListPostCategory({ mode }: iMode) {
   const { data: postsData, isFetching: isFetchingPostsData } = useGetAllPostsByCatQuery({
     catId: router.query?.category,
     pageNo: 1,
-    pageSize: 5,
+    pageSize: 999,
   });
-
-  console.log(postsData);
 
   return (
     <S.Wrapper>

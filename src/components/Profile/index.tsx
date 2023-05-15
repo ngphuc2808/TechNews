@@ -16,6 +16,8 @@ import { iUserProfile } from '@/src/utils/interface';
 import { post } from '@/src/utils/dataConfig';
 import Pagination from '../Global/Pagination';
 import CropImage from './CropImage';
+import { useGetProfileQuery, useChangeProfileMutation } from '@/pages/api/services/userApis';
+import { useGetPostsByUserIdQuery, useGetAllPostsByUserIdQuery } from '@/pages/api/services/productApis';
 
 function Profile() {
   const { mode } = useSelector((state: any) => state.darkMode);
@@ -43,6 +45,10 @@ function Profile() {
   };
 
   useEffect(() => {
+    if (!isAuthenticated) window.location.href = 'http://localhost:3000/';
+  }, []);
+
+  useEffect(() => {
     if (mode) {
       window.document.querySelector('html')?.classList.add('dark-mode');
       window.document.querySelector('body')?.classList.add('dark-mode');
@@ -56,7 +62,7 @@ function Profile() {
 
   const initialValues = {
     avatar: '',
-    name: '',
+    fullname: '',
     dob: new Date(),
     gender: 'male',
     address: '',
@@ -67,18 +73,34 @@ function Profile() {
     email: Yup.string().matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Vui lòng nhập đúng định dạng Email!'),
   });
 
-  const handleSubmit = (values: iUserProfile) => {
+  const handleSubmit = async (values: iUserProfile) => {
     const newVal = {
-      avatar: values.avatar,
-      name: values.name,
+      // avatar: values.avatar,
+      fullname: values.name,
       dob: values.dob.toLocaleDateString(),
       gender: values.gender,
       address: values.address,
       email: values.email,
     };
 
-    console.log(values.avatar);
+    console.log(newVal);
+    try {
+      await useChangeProfileMutation({ ...newVal });
+    } catch (error) {}
+    // location.reload();
   };
+
+  const { isAuthenticated } = useSelector((state) => state.authentication);
+
+  const { data: user } = useGetProfileQuery({
+    skip: !isAuthenticated,
+  });
+
+  const { data: postsData, isFetching: isFetchingPostsData } = useGetPostsByUserIdQuery({
+    userId: JSON.parse(localStorage.getItem('user')).id,
+    pageNo: 1,
+    pageSize: 999,
+  });
 
   return (
     <Fragment>
@@ -127,7 +149,7 @@ function Profile() {
                           </>
                         ) : (
                           <>
-                            <S.Name>Hoàng Phúc</S.Name>
+                            <S.Name>{user?.fullname}</S.Name>
                             <S.CustomIcon icon={faPen} onClick={() => setEditName(true)} />
                           </>
                         )}
@@ -149,7 +171,7 @@ function Profile() {
                               <S.DatePickerWrapperStyles darkMode={mode} />
                             </S.DatePickerElement>
                           ) : (
-                            <S.InfoText>28/08/2001</S.InfoText>
+                            <S.InfoText>{user?.dob}</S.InfoText>
                           )}
                         </S.Info>
                         <S.Info>
@@ -167,7 +189,7 @@ function Profile() {
                               </S.Label>
                             </S.GroupGender>
                           ) : (
-                            <S.InfoText>28/08/2001</S.InfoText>
+                            <S.InfoText>{user?.gender}</S.InfoText>
                           )}
                         </S.Info>
                         <S.Info>
@@ -175,7 +197,7 @@ function Profile() {
                           {editName ? (
                             <S.Input name="address" placeholder="Nơi sống..." />
                           ) : (
-                            <S.InfoText>28/08/2001</S.InfoText>
+                            <S.InfoText>{user?.address}</S.InfoText>
                           )}
                         </S.Info>
                         <S.Info>
@@ -190,7 +212,7 @@ function Profile() {
                               <ErrorMessage name="email" component={S.ErrorMsg} />
                             </>
                           ) : (
-                            <S.InfoText>28/08/2001</S.InfoText>
+                            <S.InfoText>{user?.email}</S.InfoText>
                           )}
                         </S.Info>
                       </S.GroupInfo>
@@ -202,7 +224,7 @@ function Profile() {
             <S.Right>
               <S.TitleRight darkMode={mode}>Bài Đăng</S.TitleRight>
               <S.ListPost>
-                <Pagination data={post} mode={mode} profilePage={true} />
+                <Pagination data={isFetchingPostsData ? post : postsData?.postDTOList} mode={mode} profilePage={true} />
               </S.ListPost>
             </S.Right>
           </S.InfoBoard>
