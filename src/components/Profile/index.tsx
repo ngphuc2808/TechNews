@@ -141,7 +141,7 @@ function Profile() {
                       <S.GroupName darkMode={mode}>
                         {editName ? (
                           <>
-                            <S.EditName name="name" placeholder="Họ tên..." />
+                            <S.EditName name="name" placeholder="Họ tên..." value={user?.fullname} />
                             <S.Button type="submit">
                               <S.CustomIconCheck icon={faCheck} />
                             </S.Button>
@@ -167,6 +167,7 @@ function Profile() {
                                 onChange={(value) => {
                                   setFieldValue('dob', value);
                                 }}
+                                value={user?.dob}
                               />
                               <S.DatePickerWrapperStyles darkMode={mode} />
                             </S.DatePickerElement>
@@ -195,7 +196,7 @@ function Profile() {
                         <S.Info>
                           <S.InfoContent>Nơi sống</S.InfoContent>
                           {editName ? (
-                            <S.Input name="address" placeholder="Nơi sống..." />
+                            <S.Input name="address" placeholder="Nơi sống..." value={user?.address} />
                           ) : (
                             <S.InfoText>{user?.address}</S.InfoText>
                           )}
@@ -208,6 +209,7 @@ function Profile() {
                                 name="email"
                                 placeholder="Email..."
                                 error={errors.email && touched.email ? 1 : 0}
+                                value={user?.email}
                               />
                               <ErrorMessage name="email" component={S.ErrorMsg} />
                             </>

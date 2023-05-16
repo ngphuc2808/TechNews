@@ -6,6 +6,12 @@ const post = clothing.injectEndpoints({
     getAllPosts: builder.query({
       query: () => '/post/get-all',
     }),
+    getAllPostsSortByView: builder.query({
+      query: () => '/post/sort-by-view',
+    }),
+    getAllPostsSortByComment: builder.query({
+      query: () => '/post/sort-by-comment',
+    }),
     getAllPostsByCat: builder.query({
       query: ({ pageNo, pageSize, catId }) =>
         `/post/get-all-by-category/${catId}?pageNo=${pageNo}&pageSize=${pageSize}`,
@@ -25,6 +31,8 @@ const post = clothing.injectEndpoints({
 
 export const {
   useGetAllPostsQuery,
+  useGetAllPostsSortByViewQuery,
+  useGetAllPostsSortByCommentQuery,
   useGetAllPostsByCatQuery,
   useGetPostDetailByIdQuery,
   useGetPostsByUserIdQuery,

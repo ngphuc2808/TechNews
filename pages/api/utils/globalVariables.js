@@ -7,6 +7,7 @@ export const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{
 export const USERNAME_REGEX = /^[0-9a-zA-Z]{6,}$/;
 
 export const BASE_API_URL = 'http://localhost:666';
+// export const BASE_API_URL = 'https://news-website.herokuapp.com';
 
 export const axiosConfig = () => {
   return {

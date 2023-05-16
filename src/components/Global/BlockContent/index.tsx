@@ -30,12 +30,14 @@ function BlockContent({ data, mode }: iDataPosts) {
           <S.TagItem>{data?.numberVote}</S.TagItem>
           <S.TagItem>
             <S.CustomIconLike check={data?.isVoted} icon={faThumbsUp} onClick={() => setLike(1)} />
-            <S.Number>{data.like}</S.Number>
           </S.TagItem>
-          {/* <S.TagItem>
-            <S.CustomIconDislike check={like === 0 ? 0 : 1} icon={faThumbsDown} onClick={() => setLike(0)} />
-            <S.Number>{data.dislike}</S.Number>
-          </S.TagItem> */}
+          <S.TagItem>{data?.numberDislike}</S.TagItem>
+          <S.TagItem>
+            <S.CustomIconDislike check={!data?.isDisliked} icon={faThumbsDown} onClick={() => setLike(0)} />
+          </S.TagItem>
+
+          <S.TagItem>Views: {data?.totalView}</S.TagItem>
+          <S.TagItem>Comments: {data?.totalComment}</S.TagItem>
         </S.TagList>
         <S.DesContent darkMode={mode} homePage={router.pathname === '/'}>
           {data.content}

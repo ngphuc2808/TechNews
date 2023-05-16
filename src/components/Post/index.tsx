@@ -54,6 +54,8 @@ function Post() {
 
   const { data: commentData, isFetching: isFetchingCommentData } = useGetAllCommentByPostIdQuery(router.query.id);
 
+  console.log(postData);
+
   const handleClickComment = () => {};
 
   return (
@@ -98,7 +100,7 @@ function Post() {
                   <S.TagItem>
                     By&nbsp;<S.AuthorName>{postData?.userName}</S.AuthorName>
                   </S.TagItem>
-                  <S.TagItem>06/05/2023</S.TagItem>
+                  <S.TagItem>{postData?.postDate}</S.TagItem>
                   <S.TagItem>{/* <S.Number>100 Views</S.Number> */}</S.TagItem>
                 </S.TagList>
               </S.Description>
@@ -152,8 +154,8 @@ function Post() {
                       <S.Number>{postData?.numberVote}</S.Number>
                     </S.TagItemLike>
                     <S.TagItemLike>
-                      <S.CustomIconDislike check={2} icon={faThumbsDown} />
-                      <S.Number>{postData?.numberVote}</S.Number>
+                      <S.CustomIconDislike check={!postData?.isDisliked} icon={faThumbsDown} />
+                      <S.Number>{postData?.numberDislike}</S.Number>
                     </S.TagItemLike>
                   </S.TagList>
                 </>
@@ -162,7 +164,7 @@ function Post() {
           </S.AuthorInfo>
           <S.Line darkMode={mode} />
           <S.CommentArea>
-            <S.TitleComment>Bình luận</S.TitleComment>
+            <S.TitleComment>Bình luận ({postData?.totalComment})</S.TitleComment>
             {localStorage.getItem('token') !== null ? (
               <>
                 <S.HandleComment darkMode={mode}>
