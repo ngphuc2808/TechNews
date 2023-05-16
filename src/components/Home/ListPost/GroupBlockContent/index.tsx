@@ -11,7 +11,7 @@ function GroupBlockContent({ mode }: iMode) {
     <S.ListCard>
       {isFetchingPostData
         ? post.map((item, index) => <BlockContent key={index} data={item} mode={mode} />)
-        : postData?.slice(0, 7).map((item, index) => <BlockContent key={index} data={item} mode={mode} />)}
+        : postData?.slice(0, 6).map((item, index) => <BlockContent key={index} data={item} mode={mode} />)}
     </S.ListCard>
   );
 }

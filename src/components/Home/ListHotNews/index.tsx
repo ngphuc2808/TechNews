@@ -11,7 +11,7 @@ function ListHotNews({ title }: iTitle) {
     <S.Wrapper>
       <S.Top darkMode={mode}>
         <S.Title>{title}</S.Title>
-        <S.ViewAll>Xem tất cả</S.ViewAll>
+        {/* <S.ViewAll>Xem tất cả</S.ViewAll> */}
       </S.Top>
       <S.ListCard>
         <S.Card>

@@ -17,6 +17,7 @@ import { category } from '@/src/utils/dataConfig';
 import { useGetPostDetailByIdQuery } from '@/pages/api/services/productApis';
 import { useGetAllCommentByPostIdQuery } from '@/pages/api/services/commentApis';
 import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
+import ListHotNews from '../Home/ListHotNews';
 
 function Post() {
   const dispatch = useDispatch();
@@ -101,12 +102,19 @@ function Post() {
                     By&nbsp;<S.AuthorName>{postData?.userName}</S.AuthorName>
                   </S.TagItem>
                   <S.TagItem>{postData?.postDate}</S.TagItem>
-                  <S.TagItem>{/* <S.Number>100 Views</S.Number> */}</S.TagItem>
+                  <S.TagItem>
+                    <S.Number>{postData?.totalView} views</S.Number>
+                  </S.TagItem>
                 </S.TagList>
               </S.Description>
             </>
           )}
         </S.Banner>
+        <S.Line darkMode={mode} />
+
+        <S.Content>
+          <ListHotNews title="Bài viết liên quan" />
+        </S.Content>
         <S.Content darkMode={mode}>
           {/* <div dangerouslySetInnerHTML={{ __html: content.body }}></div> */}
           <S.PostShares>
@@ -191,6 +199,7 @@ function Post() {
           </S.CommentArea>
         </S.Content>
       </S.Container>
+
       <Footer />
     </Fragment>
   );
