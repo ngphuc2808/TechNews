@@ -18,12 +18,27 @@ const post = clothing.injectEndpoints({
     }),
     getPostDetailById: builder.query({
       query: (postId) => `/post/${postId}`,
+      providesTags: ['Like'],
     }),
     getPostsByUserId: builder.query({
       query: ({ userId, pageNo, pageSize }) => `/post/get-all-by-user/${userId}?pageNo=${pageNo}&pageSize=${pageSize}`,
     }),
     getAllPostsByUserId: builder.query({
       query: (userId) => `/post/get-all-by-user/${userId}`,
+    }),
+    likePost: builder.mutation({
+      query: (postId) => ({
+        url: `/user/like/${postId}`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['Like'],
+    }),
+    dislikePost: builder.mutation({
+      query: (postId) => ({
+        url: `/user/dislike/${postId}`,
+        method: 'POST',
+      }),
+      invalidatesTags: ['Like'],
     }),
   }),
   overrideExisting: false,
@@ -37,4 +52,6 @@ export const {
   useGetPostDetailByIdQuery,
   useGetPostsByUserIdQuery,
   useGetAllPostsByUserIdQuery,
+  useLikePostMutation,
+  useDislikePostMutation,
 } = post;

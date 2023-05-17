@@ -11,9 +11,10 @@ import { useRouter } from 'next/router';
 import { category } from '@/src/utils/dataConfig';
 import { useGetAllPostsByCatQuery } from '@/pages/api/services/productApis';
 import { iCategory } from '@/src/utils/interface';
+import { useGetAllPostsSortByCommentQuery, useGetAllPostsSortByViewQuery } from '@/pages/api/services/productApis';
 
 function ListPostCategory({ mode }: iMode) {
-  const [activeWidget, setActiveWidget] = useState<string>('Recent');
+  const [activeWidget, setActiveWidget] = useState<string>('Popular');
   const router = useRouter();
   const categoryPathDefault = { value: '', label: '' };
 
@@ -33,6 +34,10 @@ function ListPostCategory({ mode }: iMode) {
     pageSize: 999,
   });
 
+  const { data: sortViewPosts, isFetching: isFetchingSortViewPosts } = useGetAllPostsSortByViewQuery();
+
+  const { data: sortCommentPosts, isFetching: isFetchingSortCommentPosts } = useGetAllPostsSortByCommentQuery();
+
   return (
     <S.Wrapper>
       <S.LeftInfo>
@@ -48,106 +53,51 @@ function ListPostCategory({ mode }: iMode) {
             </S.ItemWidget>
           ))}
         </S.ListWidget>
-        <S.TabContent>
-          <S.ImageCard>
-            <Image
-              quality={100}
-              src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
-              alt="image"
-              fill
-              sizes=""
-              priority
-            />
-          </S.ImageCard>
-          <S.DescriptionNews number={1}>
-            <S.NewsTitle darkMode={mode}>
-              <Link href="/home">
-                These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales These 5 Simple TECHNOLOGY Tricks Will Pump Up
-                Your Sales These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales
-              </Link>
-            </S.NewsTitle>
-            <S.TagList>
-              <S.TagItem>
-                By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
-              </S.TagItem>
-            </S.TagList>
-          </S.DescriptionNews>
-        </S.TabContent>
-        <S.TabContent>
-          <S.ImageCard>
-            <Image
-              quality={100}
-              src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
-              alt="image"
-              fill
-              sizes=""
-              priority
-            />
-          </S.ImageCard>
-          <S.DescriptionNews number={1}>
-            <S.NewsTitle darkMode={mode}>
-              <Link href="/home">
-                These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales These 5 Simple TECHNOLOGY Tricks Will Pump Up
-                Your Sales These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales
-              </Link>
-            </S.NewsTitle>
-            <S.TagList>
-              <S.TagItem>
-                By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
-              </S.TagItem>
-            </S.TagList>
-          </S.DescriptionNews>
-        </S.TabContent>
-        <S.TabContent>
-          <S.ImageCard>
-            <Image
-              quality={100}
-              src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
-              alt="image"
-              fill
-              sizes=""
-              priority
-            />
-          </S.ImageCard>
-          <S.DescriptionNews number={1}>
-            <S.NewsTitle darkMode={mode}>
-              <Link href="/home">
-                These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales These 5 Simple TECHNOLOGY Tricks Will Pump Up
-                Your Sales These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales
-              </Link>
-            </S.NewsTitle>
-            <S.TagList>
-              <S.TagItem>
-                By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
-              </S.TagItem>
-            </S.TagList>
-          </S.DescriptionNews>
-        </S.TabContent>
-        <S.TabContent>
-          <S.ImageCard>
-            <Image
-              quality={100}
-              src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
-              alt="image"
-              fill
-              sizes=""
-              priority
-            />
-          </S.ImageCard>
-          <S.DescriptionNews number={1}>
-            <S.NewsTitle darkMode={mode}>
-              <Link href="/home">
-                These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales These 5 Simple TECHNOLOGY Tricks Will Pump Up
-                Your Sales These 5 Simple TECHNOLOGY Tricks Will Pump Up Your Sales
-              </Link>
-            </S.NewsTitle>
-            <S.TagList>
-              <S.TagItem>
-                By&nbsp;<S.AuthorName>Phucnh</S.AuthorName>
-              </S.TagItem>
-            </S.TagList>
-          </S.DescriptionNews>
-        </S.TabContent>
+        {activeWidget === 'Trendy'
+          ? sortViewPosts?.postDTOList?.slice(0, 4).map((item, index) => (
+              <S.TabContent>
+                <S.ImageCard>
+                  <Image quality={100} src={item?.thumbnail} alt="image" fill sizes="" priority />
+                </S.ImageCard>
+                <S.DescriptionNews number={1}>
+                  <S.NewsTitle>
+                    <Link href="/home">{item?.title}</Link>
+                  </S.NewsTitle>
+                  <S.TagList>
+                    <S.TagItem>
+                      By&nbsp;<S.AuthorName>{item?.userName}</S.AuthorName>
+                    </S.TagItem>
+                  </S.TagList>
+                  <S.TagList>
+                    <S.TagItem>
+                      Views: &nbsp;<S.AuthorName>{item?.totalView}</S.AuthorName>
+                    </S.TagItem>
+                  </S.TagList>
+                </S.DescriptionNews>
+              </S.TabContent>
+            ))
+          : sortCommentPosts?.postDTOList?.slice(0, 4).map((item, index) => (
+              <S.TabContent>
+                <S.ImageCard>
+                  <Image quality={100} src={item?.thumbnail} alt="image" fill sizes="" priority />
+                </S.ImageCard>
+                <S.DescriptionNews number={1}>
+                  <S.NewsTitle>
+                    <Link href="/home">{item?.title}</Link>
+                  </S.NewsTitle>
+                  <S.TagList>
+                    <S.TagItem>
+                      By&nbsp;<S.AuthorName>{item?.userName}</S.AuthorName>
+                    </S.TagItem>
+                  </S.TagList>
+                  <S.TagList>
+                    <S.TagItem>
+                      Comments: &nbsp;<S.AuthorName>{item?.totalComment}</S.AuthorName>
+                    </S.TagItem>
+                  </S.TagList>
+                </S.DescriptionNews>
+              </S.TabContent>
+            ))}
       </S.RightInfo>
     </S.Wrapper>
   );

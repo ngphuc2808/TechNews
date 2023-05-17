@@ -4,15 +4,11 @@ import baseQuery from './serviceConfig';
 export const clothing = createApi({
   reducerPath: 'clothing',
   baseQuery: fetchBaseQuery(baseQuery),
-  tagTypes: ['Cart', 'Address', 'Order', 'Wishlist', 'Comment', 'User', 'Type'],
+  tagTypes: ['Comment'],
   endpoints: () => ({}),
 });
 
-export const onQueryStartedHandler = async (
-  dispatch,
-  queryFulfilled,
-  query,
-) => {
+export const onQueryStartedHandler = async (dispatch, queryFulfilled, query) => {
   try {
     const { data } = await queryFulfilled;
     dispatch(

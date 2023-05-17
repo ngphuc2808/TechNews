@@ -18,20 +18,6 @@ function HeaderTop() {
     skip: !isAuthenticated,
   });
 
-  // const user = {
-  //   id: 1,
-  //   fullname: 'Dante',
-  //   username: 'thanhnha',
-  //   password: null,
-  //   phone: '0123456789',
-  //   email: 'nhamt0306@gmail.com',
-  //   address: 'A',
-  //   gender: null,
-  //   dob: null,
-  //   status: 'Active',
-  //   avatar: 'A',
-  // };
-
   const handleLogout = () => {
     // setAnchorElAuth(null);
 

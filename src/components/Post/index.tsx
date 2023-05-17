@@ -18,6 +18,8 @@ import { useGetPostDetailByIdQuery } from '@/pages/api/services/productApis';
 import { useGetAllCommentByPostIdQuery } from '@/pages/api/services/commentApis';
 import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 import ListHotNews from '../Home/ListHotNews';
+import { useCreateCommentMutation } from '@/pages/api/services/commentApis';
+import { useLikePostMutation } from '@/pages/api/services/productApis';
 
 function Post() {
   const dispatch = useDispatch();
@@ -57,7 +59,27 @@ function Post() {
 
   console.log(postData);
 
-  const handleClickComment = () => {};
+  const [addComment] = useCreateCommentMutation();
+
+  const [likePost] = useLikePostMutation();
+
+  const handleClickComment = async () => {
+    const formComment = {
+      content: comment,
+      postId: router.query.id,
+    };
+    await addComment(formComment);
+    setComment('');
+  };
+
+  const handleLike = async () => {
+    // if (!isFetchingPostData) {
+    //   if (postData.isVoted === 0) {
+    //     await likePost(router.query.id);
+    //   }
+    // }
+    await likePost(router.query.id);
+  };
 
   return (
     <Fragment>
@@ -158,7 +180,7 @@ function Post() {
                   <S.LastAuthorName>{postData?.userName}</S.LastAuthorName>
                   <S.TagList>
                     <S.TagItemLike>
-                      <S.CustomIconLike check={postData?.isVoted} icon={faThumbsUp} />
+                      <S.CustomIconLike check={!postData?.isVoted} icon={faThumbsUp} onClick={handleLike} />
                       <S.Number>{postData?.numberVote}</S.Number>
                     </S.TagItemLike>
                     <S.TagItemLike>

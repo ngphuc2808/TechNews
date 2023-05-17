@@ -78,6 +78,7 @@ function Register() {
   });
 
   const handleSubmit = async (values: iUserRegister) => {
+    // console.log(values);
     dispatch(setUserInfo({ name: values.name, username: values.username, email: values.email, phone: values.phone }));
     console.log(values);
     const axiosRes = await signup({
@@ -85,7 +86,8 @@ function Register() {
       name: values?.name,
       password: values?.password,
       roles: ['USER'],
-      email: 'phianh@gmail.com',
+      email: values?.email,
+      phonenumber: values?.phone,
     });
 
     if (axiosRes.status === 200) {
