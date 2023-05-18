@@ -14,6 +14,8 @@ function Content({ mode }: iMode) {
     console.log(postData);
   }, [isFetchingPostData]);
 
+  console.log(postData);
+
   return (
     <Fragment>
       <S.Content>

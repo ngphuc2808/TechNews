@@ -45,7 +45,7 @@ function ListPost({ mode }: iMode) {
                 </S.ImageCard>
                 <S.DescriptionNews number={1}>
                   <S.NewsTitle>
-                    <Link href="/home">{item?.title}</Link>
+                    <Link href={`/post?id=${item?.id}`}>{item?.title}</Link>
                   </S.NewsTitle>
                   <S.TagList>
                     <S.TagItem>
@@ -67,7 +67,7 @@ function ListPost({ mode }: iMode) {
                 </S.ImageCard>
                 <S.DescriptionNews number={1}>
                   <S.NewsTitle>
-                    <Link href="/home">{item?.title}</Link>
+                    <Link href={`/post?id=${item?.id}`}>{item?.title}</Link>
                   </S.NewsTitle>
                   <S.TagList>
                     <S.TagItem>

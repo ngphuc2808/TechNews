@@ -19,10 +19,18 @@ import { useGetAllCommentByPostIdQuery } from '@/pages/api/services/commentApis'
 import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 import ListHotNews from '../Home/ListHotNews';
 import { useCreateCommentMutation } from '@/pages/api/services/commentApis';
-import { useLikePostMutation } from '@/pages/api/services/productApis';
+import {
+  useLikePostMutation,
+  useDislikePostMutation,
+  useGetAllPostsQuery,
+  useGetPostRecommendMutation,
+} from '@/pages/api/services/productApis';
+import Register from '../Register';
+import Login from '../Login';
 
 function Post() {
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.authentication);
 
   const { mode } = useSelector((state: any) => state.darkMode);
   const [comment, setComment] = useState<string>('');
@@ -57,11 +65,189 @@ function Post() {
 
   const { data: commentData, isFetching: isFetchingCommentData } = useGetAllCommentByPostIdQuery(router.query.id);
 
-  console.log(postData);
+  const { data: allPosts, isFetching: isFetchingAllPosts } = useGetAllPostsQuery();
 
   const [addComment] = useCreateCommentMutation();
 
   const [likePost] = useLikePostMutation();
+
+  const [dislikePost] = useDislikePostMutation();
+
+  const [getRecommend] = useGetPostRecommendMutation();
+
+  const formData = {
+    title: 'PSG 2-0 Olympic Lyons',
+    data: [
+      {
+        id: 1,
+        title: 'MU thất bị trước New Castle',
+        content: 'MU thất bại cay đắng 0 2 trước đại gia tân thành New Castle',
+        slug: 'mu-vs-new-castle-vong-29',
+        status: 'Active',
+        parentId: 0,
+        userId: 1,
+        numberVote: 1,
+        numberDislike: 0,
+        isVoted: 0,
+        isDisliked: 0,
+        userName: 'Dante',
+        avatar: 'A',
+        thumbnail: 'https://res.cloudinary.com/dqugpsayz/image/upload/v1683798501/NewsWebsite/Post/1.png',
+        categoryName: 'Thể thao',
+        categoryId: 4,
+        postDate: '2023-04-02T18:34:00.000+00:00',
+        totalView: 3,
+        totalComment: 0,
+      },
+      {
+        id: 3,
+        title: 'ARS giành chiến thắng thuyết phục trước Crytal Palace',
+        content: 'ARS chiến thắng 4 1 trước Crytal Palace',
+        slug: 'ars-vs-crytal-palace-vong-20',
+        status: 'Active',
+        parentId: 1,
+        userId: 1,
+        numberVote: 1,
+        numberDislike: 0,
+        isVoted: 0,
+        isDisliked: 0,
+        userName: 'Dante',
+        avatar: 'A',
+        thumbnail: null,
+        categoryName: 'Thể thao',
+        categoryId: 4,
+        postDate: '2023-04-02T18:42:42.000+00:00',
+        totalView: 4,
+        totalComment: 0,
+      },
+      {
+        id: 4,
+        title: 'PSG 2-0 Olympic Lyons',
+        content: 'PSG giành chiến thắng, Messi giành cú đúp.',
+        slug: 'psg-vs-lyons-vong-28',
+        status: 'Active',
+        parentId: 0,
+        userId: 1,
+        numberVote: 0,
+        numberDislike: 0,
+        isVoted: 0,
+        isDisliked: 0,
+        userName: 'Dante',
+        avatar: 'A',
+        thumbnail: null,
+        categoryName: 'Y tế',
+        categoryId: 3,
+        postDate: '2023-04-02T19:26:15.000+00:00',
+        totalView: 24,
+        totalComment: 3,
+      },
+      {
+        id: 5,
+        title: 'PSG 2-0 Olympic Lyonss',
+        content: 'PSG giành chiến thắng, Messi giành cú đúp.',
+        slug: 'psg-vs-lyons-vong-28',
+        status: 'Active',
+        parentId: 0,
+        userId: 1,
+        numberVote: 0,
+        numberDislike: 1,
+        isVoted: 0,
+        isDisliked: 0,
+        userName: 'Dante',
+        avatar: 'A',
+        thumbnail: null,
+        categoryName: 'Y tế',
+        categoryId: 3,
+        postDate: '2023-04-02T19:26:45.000+00:00',
+        totalView: 6,
+        totalComment: 4,
+      },
+      {
+        id: 6,
+        title: 'PSG 2-0 Olympic Lyonssss',
+        content: 'PSG giành chiến thắng, Messi giành cú đúp.',
+        slug: 'psg-vs-lyons-vong-28',
+        status: 'Active',
+        parentId: 0,
+        userId: 1,
+        numberVote: 0,
+        numberDislike: 0,
+        isVoted: 0,
+        isDisliked: 0,
+        userName: 'Dante',
+        avatar: 'A',
+        thumbnail: null,
+        categoryName: 'Thể thao',
+        categoryId: 4,
+        postDate: '2023-04-02T19:28:52.000+00:00',
+        totalView: 52,
+        totalComment: 2,
+      },
+      {
+        id: 7,
+        title: 'MU 2-0 Olympic Lyons',
+        content: 'PSG giành chiến thắng, Messi giành cú đúp.',
+        slug: 'psg-vs-lyons-vong-28',
+        status: 'Active',
+        parentId: 0,
+        userId: 1,
+        numberVote: 0,
+        numberDislike: 0,
+        isVoted: 0,
+        isDisliked: 0,
+        userName: 'Dante',
+        avatar: 'A',
+        thumbnail: null,
+        categoryName: 'Tài chính',
+        categoryId: 5,
+        postDate: '2023-04-02T19:28:52.000+00:00',
+        totalView: 2,
+        totalComment: 5,
+      },
+      {
+        id: 8,
+        title: 'PSG 2-0 Olympic Lyonsssss',
+        content: 'PSG giành chiến thắng, Messi giành cú đúp.',
+        slug: 'psg-vs-lyons-vong-28',
+        status: 'Active',
+        parentId: 0,
+        userId: 1,
+        numberVote: 0,
+        numberDislike: 0,
+        isVoted: 0,
+        isDisliked: 0,
+        userName: 'Dante',
+        avatar: 'A',
+        thumbnail: null,
+        categoryName: 'Tài chính',
+        categoryId: 5,
+        postDate: '2023-04-02T19:28:52.000+00:00',
+        totalView: 5,
+        totalComment: 4,
+      },
+    ],
+  };
+
+  useEffect(() => {
+    if (!isFetchingAllPosts) {
+      // formData = {
+      //   title: postData?.title,
+      //   data: [...allPosts],
+      // };
+
+      // declare the data fetching function
+      const fetchData = async () => {
+        console.log(formData);
+        const data = await getRecommend(formData);
+        console.log(data);
+      };
+
+      // call the function
+      fetchData()
+        // make sure to catch any error
+        .catch(console.error);
+    }
+  }, [isFetchingAllPosts]);
 
   const handleClickComment = async () => {
     const formComment = {
@@ -73,16 +259,25 @@ function Post() {
   };
 
   const handleLike = async () => {
-    // if (!isFetchingPostData) {
-    //   if (postData.isVoted === 0) {
-    //     await likePost(router.query.id);
-    //   }
-    // }
+    if (!isAuthenticated) {
+      alert('Bạn cần phải đăng nhập để sử dụng chức năng này');
+      return;
+    }
     await likePost(router.query.id);
+  };
+
+  const handleDislike = async () => {
+    if (!isAuthenticated) {
+      alert('Bạn cần phải đăng nhập để sử dụng chức năng này');
+      return;
+    }
+    await dislikePost(router.query.id);
   };
 
   return (
     <Fragment>
+      {auth.register && <Register />}
+      {auth.login && <Login />}
       <S.Header>
         <HeaderTop />
         <NavbarPost mode={mode} />
@@ -153,7 +348,11 @@ function Post() {
             <S.AuthorAvatar>
               <Image
                 quality={100}
-                src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                src={
+                  isFetchingCommentData
+                    ? 'https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg'
+                    : postData?.avatar
+                }
                 alt="image"
                 fill
                 sizes=""
@@ -163,15 +362,15 @@ function Post() {
             <S.AuthorNameAndTotalLike>
               {isFetchingPostData ? (
                 <>
-                  <S.LastAuthorName>Phúc NH</S.LastAuthorName>
+                  <S.LastAuthorName></S.LastAuthorName>
                   <S.TagList>
                     <S.TagItemLike>
                       <S.CustomIconLike check={2} icon={faThumbsUp} />
-                      <S.Number>100</S.Number>
+                      <S.Number></S.Number>
                     </S.TagItemLike>
                     <S.TagItemLike>
                       <S.CustomIconDislike check={2} icon={faThumbsDown} />
-                      <S.Number>100</S.Number>
+                      <S.Number></S.Number>
                     </S.TagItemLike>
                   </S.TagList>
                 </>
@@ -180,11 +379,15 @@ function Post() {
                   <S.LastAuthorName>{postData?.userName}</S.LastAuthorName>
                   <S.TagList>
                     <S.TagItemLike>
-                      <S.CustomIconLike check={!postData?.isVoted} icon={faThumbsUp} onClick={handleLike} />
+                      <S.CustomIconLike check={postData.isVoted} icon={faThumbsUp} onClick={handleLike} />
                       <S.Number>{postData?.numberVote}</S.Number>
                     </S.TagItemLike>
                     <S.TagItemLike>
-                      <S.CustomIconDislike check={!postData?.isDisliked} icon={faThumbsDown} />
+                      <S.CustomIconDislike
+                        check={postData.isDisliked ? 0 : 1}
+                        icon={faThumbsDown}
+                        onClick={handleDislike}
+                      />
                       <S.Number>{postData?.numberDislike}</S.Number>
                     </S.TagItemLike>
                   </S.TagList>

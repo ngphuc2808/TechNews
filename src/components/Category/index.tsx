@@ -63,7 +63,7 @@ function Category() {
         <S.BreadCrumb>
           <S.ListLink>
             <S.Item>
-              <Link href="/">Trang chủ</Link>
+              <Link href="http://localhost:3000/">Trang chủ</Link>
             </S.Item>
             <S.Slash>/</S.Slash>
             <S.Item>{catData?.title}</S.Item>

@@ -116,7 +116,12 @@ function Profile() {
           <S.InfoBoard darkMode={mode}>
             <S.Left darkMode={mode}>
               <S.Avatar>
-                <Image src={previewAvt} alt="avatar" fill style={{ objectFit: 'cover' }} />
+                <Image
+                  src={user?.avatar === undefined ? previewAvt : user?.avatar}
+                  alt="avatar"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
                 {editName && (
                   <S.CameraZone htmlFor="avatar">
                     <S.CustomIconCamera icon={faCamera} />

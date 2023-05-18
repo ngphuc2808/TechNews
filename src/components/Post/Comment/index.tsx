@@ -13,7 +13,11 @@ function Comment({ data, darkMode }: iData) {
       <S.UserAvatar>
         <Image
           quality={100}
-          src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+          src={
+            data?.avatar === undefined
+              ? 'https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg'
+              : data?.avatar
+          }
           alt="image"
           fill
           sizes=""
@@ -23,7 +27,7 @@ function Comment({ data, darkMode }: iData) {
       <S.DesComment>
         <S.NameOfUser>{data?.username}</S.NameOfUser>
         <S.CommentContent darkMode={darkMode}>{data?.content}</S.CommentContent>
-        <S.TimeCmt darkMode={darkMode}>{data?.time}</S.TimeCmt>
+        <S.TimeCmt darkMode={darkMode}>{data?.commentDate}</S.TimeCmt>
       </S.DesComment>
     </S.Comment>
   );

@@ -26,6 +26,13 @@ const post = clothing.injectEndpoints({
     getAllPostsByUserId: builder.query({
       query: (userId) => `/post/get-all-by-user/${userId}`,
     }),
+    getPostRecommend: builder.mutation({
+      query: (formData) => ({
+        url: `http://sumels.pythonanywhere.com/`,
+        method: 'POST',
+        body: formData,
+      }),
+    }),
     likePost: builder.mutation({
       query: (postId) => ({
         url: `/user/like/${postId}`,
@@ -54,4 +61,5 @@ export const {
   useGetAllPostsByUserIdQuery,
   useLikePostMutation,
   useDislikePostMutation,
+  useGetPostRecommendMutation,
 } = post;

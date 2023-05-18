@@ -52,7 +52,9 @@ function CreatePost() {
 
   const [content, setContentPost] = useState<iContent>(defaultContent);
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    console.log(content);
+  };
 
   // Handler Image
   const quillRef: any = useRef(null);
@@ -71,6 +73,8 @@ function CreatePost() {
     }).then((response) => {
       return response.json();
     });
+
+    console.log(response);
 
     return { url: response.secure_url };
   };
