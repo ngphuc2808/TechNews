@@ -72,7 +72,7 @@ function HeaderTop() {
 
               <Link href="/profile">
                 {' '}
-                <S.ButtonEntry>Profile</S.ButtonEntry>
+                <S.ButtonEntry>Trang cá nhân</S.ButtonEntry>
               </Link>
               <S.Separate />
               <S.ButtonEntry onClick={handleLogout}>Đăng xuất</S.ButtonEntry>
