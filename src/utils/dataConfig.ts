@@ -298,44 +298,44 @@ interface iComment {
   time: string;
 }
 export const comments: iComment[] = [
-  {
-    name: 'Hoang Phuc',
-    comment: 'Lập trình SPKT',
-    time: '02/02/2023',
-  },
-  {
-    name: 'Thanh Nha',
-    comment: 'Lập trình SPKT 2',
-    time: '02/02/2023',
-  },
-  {
-    name: 'Hoang Phuc',
-    comment: 'Lập trình SPKT',
-    time: '02/02/2023',
-  },
-  {
-    name: 'Thanh Nha',
-    comment: 'Lập trình SPKT 2',
-    time: '02/02/2023',
-  },
-  {
-    name: 'Hoang Phuc',
-    comment: 'Lập trình SPKT',
-    time: '02/02/2023',
-  },
-  {
-    name: 'Thanh Nha',
-    comment: 'Lập trình SPKT 2',
-    time: '02/02/2023',
-  },
-  {
-    name: 'Hoang Phuc',
-    comment: 'Lập trình SPKT',
-    time: '02/02/2023',
-  },
-  {
-    name: 'Thanh Nha',
-    comment: 'Lập trình SPKT 2',
-    time: '02/02/2023',
-  },
+  // {
+  //   name: 'Hoang Phuc',
+  //   comment: 'Lập trình SPKT',
+  //   time: '02/02/2023',
+  // },
+  // {
+  //   name: 'Thanh Nha',
+  //   comment: 'Lập trình SPKT 2',
+  //   time: '02/02/2023',
+  // },
+  // {
+  //   name: 'Hoang Phuc',
+  //   comment: 'Lập trình SPKT',
+  //   time: '02/02/2023',
+  // },
+  // {
+  //   name: 'Thanh Nha',
+  //   comment: 'Lập trình SPKT 2',
+  //   time: '02/02/2023',
+  // },
+  // {
+  //   name: 'Hoang Phuc',
+  //   comment: 'Lập trình SPKT',
+  //   time: '02/02/2023',
+  // },
+  // {
+  //   name: 'Thanh Nha',
+  //   comment: 'Lập trình SPKT 2',
+  //   time: '02/02/2023',
+  // },
+  // {
+  //   name: 'Hoang Phuc',
+  //   comment: 'Lập trình SPKT',
+  //   time: '02/02/2023',
+  // },
+  // {
+  //   name: 'Thanh Nha',
+  //   comment: 'Lập trình SPKT 2',
+  //   time: '02/02/2023',
+  // },
 ];

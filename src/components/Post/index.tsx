@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as S from './Post.module';
+import * as S1 from './ListHotNews.module';
+
 import HeaderTop from '../Global/HeaderTop';
 import NavbarPost from '../Global/NavbarPost';
 import ButtonDarkMode from '../Global/ButtonDarkMode';
@@ -27,6 +29,7 @@ import {
 } from '@/pages/api/services/productApis';
 import Register from '../Register';
 import Login from '../Login';
+import Link from 'next/link';
 
 function Post() {
   const dispatch = useDispatch();
@@ -75,7 +78,7 @@ function Post() {
 
   const [getRecommend] = useGetPostRecommendMutation();
 
-  const formData = {
+  let formData = {
     title: 'PSG 2-0 Olympic Lyons',
     data: [
       {
@@ -228,18 +231,22 @@ function Post() {
     ],
   };
 
+  const [recData, setRecData] = useState();
+
   useEffect(() => {
     if (!isFetchingAllPosts) {
-      // formData = {
-      //   title: postData?.title,
-      //   data: [...allPosts],
-      // };
+      formData = {
+        title: postData?.title,
+        data: [...allPosts],
+      };
 
       // declare the data fetching function
       const fetchData = async () => {
         console.log(formData);
         const data = await getRecommend(formData);
-        console.log(data);
+        setRecData(data);
+        console.log(recData);
+        // console.log(recData);
       };
 
       // call the function
@@ -330,7 +337,205 @@ function Post() {
         <S.Line darkMode={mode} />
 
         <S.Content>
-          <ListHotNews title="Bài viết liên quan" />
+          {/* <ListHotNews title="Bài viết liên quan" /> */}
+          <S1.Wrapper>
+            <S1.Top darkMode={mode}>
+              <S1.Title>Bài viết liên quan</S1.Title>
+            </S1.Top>
+            <S1.ListCard>
+              {!recData ? (
+                <>
+                  <S1.Card>
+                    <Image
+                      quality={100}
+                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                      alt="image"
+                      fill
+                      sizes=""
+                      priority
+                    />
+                    <S1.Overlay>
+                      <S1.DescriptionNews number={1}>
+                        <S1.CategoryTag>
+                          <S1.CategoryName>Loading...</S1.CategoryName>
+                        </S1.CategoryTag>
+                        <S1.NewsTitle>
+                          <Link href="/home">Loading...</Link>
+                        </S1.NewsTitle>
+                        <S1.AuthorTag>
+                          By&nbsp;<S1.AuthorName>Loading...</S1.AuthorName>
+                        </S1.AuthorTag>
+                      </S1.DescriptionNews>
+                    </S1.Overlay>
+                  </S1.Card>
+                  <S1.Card>
+                    <Image
+                      quality={100}
+                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                      alt="image"
+                      fill
+                      sizes=""
+                      priority
+                    />
+                    <S1.Overlay>
+                      <S1.DescriptionNews number={1}>
+                        <S1.CategoryTag>
+                          <S1.CategoryName>Loading...</S1.CategoryName>
+                        </S1.CategoryTag>
+                        <S1.NewsTitle>
+                          <Link href="/home">Loading...</Link>
+                        </S1.NewsTitle>
+                        <S1.AuthorTag>
+                          By&nbsp;<S1.AuthorName>Loading...</S1.AuthorName>
+                        </S1.AuthorTag>
+                      </S1.DescriptionNews>
+                    </S1.Overlay>
+                  </S1.Card>
+                  <S1.Card>
+                    <Image
+                      quality={100}
+                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                      alt="image"
+                      fill
+                      sizes=""
+                      priority
+                    />
+                    <S1.Overlay>
+                      <S1.DescriptionNews number={1}>
+                        <S1.CategoryTag>
+                          <S1.CategoryName>Loading...</S1.CategoryName>
+                        </S1.CategoryTag>
+                        <S1.NewsTitle>
+                          <Link href="/home">Loading...</Link>
+                        </S1.NewsTitle>
+                        <S1.AuthorTag>
+                          By&nbsp;<S1.AuthorName>Loading...</S1.AuthorName>
+                        </S1.AuthorTag>
+                      </S1.DescriptionNews>
+                    </S1.Overlay>
+                  </S1.Card>
+                  <S1.Card>
+                    <Image
+                      quality={100}
+                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                      alt="image"
+                      fill
+                      sizes=""
+                      priority
+                    />
+                    <S1.Overlay>
+                      <S1.DescriptionNews number={1}>
+                        <S1.CategoryTag>
+                          <S1.CategoryName>Loading...</S1.CategoryName>
+                        </S1.CategoryTag>
+                        <S1.NewsTitle>
+                          <Link href="/home">Loading...</Link>
+                        </S1.NewsTitle>
+                        <S1.AuthorTag>
+                          By&nbsp;<S1.AuthorName>Loading...</S1.AuthorName>
+                        </S1.AuthorTag>
+                      </S1.DescriptionNews>
+                    </S1.Overlay>
+                  </S1.Card>
+                </>
+              ) : (
+                <>
+                  <S1.Card>
+                    <Image
+                      quality={100}
+                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                      alt="image"
+                      fill
+                      sizes=""
+                      priority
+                    />
+                    <S1.Overlay>
+                      <S1.DescriptionNews number={1}>
+                        <S1.CategoryTag>
+                          <S1.CategoryName>{recData?.data.data[0].categoryName}</S1.CategoryName>
+                        </S1.CategoryTag>
+                        <S1.NewsTitle>
+                          <Link href={`/post?id=${recData?.data.data[0].id}`}>{recData?.data.data[0].title}</Link>
+                        </S1.NewsTitle>
+                        <S1.AuthorTag>
+                          By&nbsp;<S1.AuthorName>{recData?.data.data[0].userName}</S1.AuthorName>
+                        </S1.AuthorTag>
+                      </S1.DescriptionNews>
+                    </S1.Overlay>
+                  </S1.Card>
+                  <S1.Card>
+                    <Image
+                      quality={100}
+                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                      alt="image"
+                      fill
+                      sizes=""
+                      priority
+                    />
+                    <S1.Overlay>
+                      <S1.DescriptionNews number={1}>
+                        <S1.CategoryTag>
+                          <S1.CategoryName>{recData?.data.data[1].categoryName}</S1.CategoryName>
+                        </S1.CategoryTag>
+                        <S1.NewsTitle>
+                          <Link href={`/post?id=${recData?.data.data[1].id}`}>{recData?.data.data[1].title}</Link>
+                        </S1.NewsTitle>
+                        <S1.AuthorTag>
+                          By&nbsp;<S1.AuthorName>{recData?.data.data[1].userName}</S1.AuthorName>
+                        </S1.AuthorTag>
+                      </S1.DescriptionNews>
+                    </S1.Overlay>
+                  </S1.Card>
+                  <S1.Card>
+                    <Image
+                      quality={100}
+                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                      alt="image"
+                      fill
+                      sizes=""
+                      priority
+                    />
+                    <S1.Overlay>
+                      <S1.DescriptionNews number={1}>
+                        <S1.CategoryTag>
+                          <S1.CategoryName>{recData?.data.data[2].categoryName}</S1.CategoryName>
+                        </S1.CategoryTag>
+                        <S1.NewsTitle>
+                          <Link href={`/post?id=${recData?.data.data[2].id}`}>{recData?.data.data[2].title}</Link>
+                        </S1.NewsTitle>
+                        <S1.AuthorTag>
+                          By&nbsp;<S1.AuthorName>{recData?.data.data[2].userName}</S1.AuthorName>
+                        </S1.AuthorTag>
+                      </S1.DescriptionNews>
+                    </S1.Overlay>
+                  </S1.Card>
+                  <S1.Card>
+                    <Image
+                      quality={100}
+                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
+                      alt="image"
+                      fill
+                      sizes=""
+                      priority
+                    />
+                    <S1.Overlay>
+                      <S1.DescriptionNews number={1}>
+                        <S1.CategoryTag>
+                          <S1.CategoryName>{recData?.data.data[3].categoryName}</S1.CategoryName>
+                        </S1.CategoryTag>
+                        <S1.NewsTitle>
+                          <Link href={`/post?id=${recData?.data.data[3].id}`}>{recData?.data.data[3].title}</Link>
+                        </S1.NewsTitle>
+                        <S1.AuthorTag>
+                          By&nbsp;<S1.AuthorName>{recData?.data.data[3].userName}</S1.AuthorName>
+                        </S1.AuthorTag>
+                      </S1.DescriptionNews>
+                    </S1.Overlay>
+                  </S1.Card>
+                </>
+              )}
+            </S1.ListCard>
+          </S1.Wrapper>
         </S.Content>
         <S.Content darkMode={mode}>
           {/* <div dangerouslySetInnerHTML={{ __html: content.body }}></div> */}
