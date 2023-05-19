@@ -452,13 +452,13 @@ function Post() {
                     <S1.Overlay>
                       <S1.DescriptionNews number={1}>
                         <S1.CategoryTag>
-                          <S1.CategoryName>{recData?.data.data[0].categoryName}</S1.CategoryName>
+                          <S1.CategoryName>{recData?.data?.data[0].categoryName}</S1.CategoryName>
                         </S1.CategoryTag>
                         <S1.NewsTitle>
-                          <Link href={`/post?id=${recData?.data.data[0].id}`}>{recData?.data.data[0].title}</Link>
+                          <Link href={`/post?id=${recData?.data?.data[0].id}`}>{recData?.data?.data[0].title}</Link>
                         </S1.NewsTitle>
                         <S1.AuthorTag>
-                          By&nbsp;<S1.AuthorName>{recData?.data.data[0].userName}</S1.AuthorName>
+                          By&nbsp;<S1.AuthorName>{recData?.data?.data[0].userName}</S1.AuthorName>
                         </S1.AuthorTag>
                       </S1.DescriptionNews>
                     </S1.Overlay>

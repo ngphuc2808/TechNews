@@ -11,6 +11,7 @@ import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { iContent } from '@/src/utils/interface';
 import { category } from '@/src/utils/dataConfig';
+import { useCreatePostMutation, useCreatePostImageMutation } from '@/pages/api/services/productApis';
 
 const ReactQuill = dynamic(
   async () => {
@@ -52,8 +53,34 @@ function CreatePost() {
 
   const [content, setContentPost] = useState<iContent>(defaultContent);
 
-  const handleSubmit = () => {
-    console.log(content);
+  // Create post apis
+  const [createPost, { isLoading: isLoadingPost }] = useCreatePostMutation();
+  const [createPostImage, { isLoading: isLoadingImg }] = useCreatePostImageMutation();
+
+  const [image, setImage] = useState();
+
+  const handleSubmit = async () => {
+    if (image === undefined) {
+      alert('Vui lòng thêm ảnh thumbnail!');
+    }
+    try {
+      const { data: newPost } = await createPost({
+        title: content.title,
+        content: content.body,
+        categoryId: 4,
+      });
+      const { id } = newPost;
+
+      // Upload images for product
+
+      const files = new FormData();
+      files.append('image', image);
+      await createPostImage({ id, files });
+    } catch (error) {
+      alert('Đã có lỗi xảy ra');
+    }
+    setTimeout(() => {}, 3000);
+    window.location.href = 'http://localhost:3000/profile';
   };
 
   // Handler Image
@@ -62,6 +89,8 @@ function CreatePost() {
   const bannerRef: any = useRef(null);
 
   const uploadFile = async (file: File) => {
+    setImage(file);
+
     const form = new FormData();
     form.append('file', file);
     form.append('upload_preset', 'createpost');
@@ -91,7 +120,6 @@ function CreatePost() {
 
     input.onchange = async () => {
       const file = input.files[0];
-
       const { url } = await uploadFile(file);
 
       try {

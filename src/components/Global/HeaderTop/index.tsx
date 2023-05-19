@@ -70,6 +70,12 @@ function HeaderTop() {
               <b>Hi, {user?.fullname}</b>
               <S.Separate />
 
+              <Link href="/createpost">
+                {' '}
+                <S.ButtonEntry>Đăng bài</S.ButtonEntry>
+              </Link>
+              <S.Separate />
+
               <Link href="/profile">
                 {' '}
                 <S.ButtonEntry>Trang cá nhân</S.ButtonEntry>

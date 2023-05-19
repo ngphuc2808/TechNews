@@ -47,6 +47,23 @@ const post = clothing.injectEndpoints({
       }),
       invalidatesTags: ['Like'],
     }),
+    // create post
+    createPost: builder.mutation({
+      query: (formData) => ({
+        url: '/admin/post/create',
+        method: 'POST',
+        body: formData,
+      }),
+    }),
+    createPostImage: builder.mutation({
+      query: ({ id, files }) => {
+        return {
+          url: `admin/post/${id}/image`,
+          method: 'POST',
+          body: files,
+        };
+      },
+    }),
   }),
   overrideExisting: false,
 });
@@ -62,4 +79,6 @@ export const {
   useLikePostMutation,
   useDislikePostMutation,
   useGetPostRecommendMutation,
+  useCreatePostMutation,
+  useCreatePostImageMutation,
 } = post;
