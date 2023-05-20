@@ -97,6 +97,9 @@ export const MenuNavMobile = styled.div<{ darkMode: boolean }>`
 
   > :last-child {
     ${tw`w-full`}
+    > :first-child {
+      ${tw`mt-5`}
+    }
   }
 
   @media (max-width: 739px) {
