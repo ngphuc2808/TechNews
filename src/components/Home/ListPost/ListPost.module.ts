@@ -2,16 +2,41 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 export const Wrapper = styled.section`
-  ${tw`w-[1260px] px-[15px] py-[45px] text-white bg-black flex items-start justify-center`}
+  ${tw`w-[1230px] py-[45px] text-white bg-black flex items-start justify-between`}
+
+  @media (max-width: 739px) {
+    ${tw`flex-col items-center`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`flex-col items-center`}
+  }
 `;
 
 export const LeftInfo = styled.div`
-  ${tw`w-2/3 pr-[15px]`}
-  &:hov
+  ${tw`w-[63%]`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px]`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px] px-[15px]`}
+  }
 `;
 
 export const RightInfo = styled.div`
-  ${tw`w-1/3 pl-[45px]`}
+  ${tw`w-1/3`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px]`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px] px-[15px]`}
+    > * {
+      &:nth-child(2) {
+        ${tw`mt-10`}
+      }
+    }
+  }
 `;
 
 export const Title = styled.h3`
@@ -57,6 +82,10 @@ export const NewsTitle = styled.h3`
     background-position: bottom left;
     background-size: 0% 2px;
   }
+
+  @media (max-width: 739px) {
+    ${tw`text-[14px]`}
+  }
 `;
 
 export const TagList = styled.ul`
@@ -65,6 +94,10 @@ export const TagList = styled.ul`
 
 export const TagItem = styled.li`
   ${tw`text-[14px] text-[var(--text-color)] flex items-center mr-4 mb-[10px]`}
+
+  @media (max-width: 739px) {
+    ${tw`text-[12px]`}
+  }
 `;
 
 export const AuthorName = styled.p`
@@ -80,6 +113,13 @@ export const DesContent = styled.p`
 
 export const ListWidget = styled.ul`
   ${tw`text-[14px] text-[var(--text-color)] flex list-none mb-5`}
+
+  @media (max-width: 739px) {
+    ${tw`mt-10`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`mt-10`}
+  }
 `;
 
 export const ItemWidget = styled.li<{ active: boolean }>`

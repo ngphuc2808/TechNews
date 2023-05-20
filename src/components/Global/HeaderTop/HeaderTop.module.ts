@@ -8,14 +8,33 @@ export const Wrapper = styled.header`
 
 export const Container = styled.div`
   ${tw`w-[1260px] h-[34px] flex justify-between items-center px-[15px]`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[384px]`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px]`}
+  }
 `;
 
 export const MenuHeader = styled.ul`
   ${tw`inline-flex items-center justify-center text-sm list-none text-[#cecece]`}
+  @media (max-width: 739px) {
+    ${tw`order-2`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`order-2`}
+  }
 `;
 
 export const Entry = styled.div`
   ${tw`flex items-center text-sm text-[#cecece]`}
+  @media (max-width: 739px) {
+    ${tw`hidden`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`hidden`}
+  }
 `;
 
 export const MenuHeaderItem = styled.li`

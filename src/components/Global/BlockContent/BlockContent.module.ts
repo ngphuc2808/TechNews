@@ -14,10 +14,18 @@ export const BlockContent = styled.div`
     background-size: 100% 2px;
     color: inherit;
   }
+
+  @media (max-width: 739px) {
+    ${tw`flex-col h-auto`}
+  }
 `;
 
 export const PictureContent = styled.div`
   ${tw`relative h-full w-[285px] mr-[30px] cursor-pointer overflow-hidden shrink-0`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px] h-[360px] mr-0 mb-[30px]`}
+  }
 `;
 
 export const DescriptionNews = styled.div<{ number: number }>`
@@ -30,6 +38,9 @@ export const DescriptionNews = styled.div<{ number: number }>`
   > * {
     &:nth-child(2) {
       ${tw`text-2xl`}
+      @media (max-width: 739px) {
+        ${tw`text-lg`}
+      }
     }
   }
 `;
@@ -72,6 +83,10 @@ export const TagList = styled.ul`
 
 export const TagItem = styled.li`
   ${tw`text-[14px] text-[var(--text-color-black-three)] flex items-center mr-4 mb-[10px]`}
+
+  @media (max-width: 739px) {
+    ${tw`text-[12px] mb-[5px]`}
+  }
 `;
 
 export const AuthorName = styled.p`
@@ -89,6 +104,10 @@ export const DesContent = styled.p<{ darkMode: boolean; homePage: boolean }>`
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+
+  @media (max-width: 739px) {
+    ${tw`text-[14px] mt-[5px]`}
+  }
 `;
 
 export const CustomIconLike = styled(FontAwesomeIcon)<{ check: number }>`

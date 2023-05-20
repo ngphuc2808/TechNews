@@ -1,7 +1,15 @@
 import styled from 'styled-components';
 import tw from 'twin.macro';
+
 export const Content = styled.div`
   ${tw`w-[1260px] px-[15px] mt-[45px]`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px] mx-0 px-0`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px] mx-6`}
+  }
 `;
 
 export const ContentBlack = styled.div`
@@ -9,7 +17,14 @@ export const ContentBlack = styled.div`
 `;
 
 export const LatestNews = styled.div`
-  ${tw`w-full min-h-[670px] flex `}
+  ${tw`w-full h-[670px] flex `}
+
+  @media (max-width: 739px) {
+    ${tw`flex-wrap h-auto`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`flex-wrap h-auto`}
+  }
 `;
 
 export const LatestNewsLeft = styled.div`
@@ -24,10 +39,24 @@ export const LatestNewsLeft = styled.div`
     background-size: 100% 2px;
     color: inherit;
   }
+
+  @media (max-width: 739px) {
+    ${tw`w-full mr-0 h-[250px]`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-full mr-0 h-[670px]`}
+  }
 `;
 
 export const LatestNewsRight = styled.div`
   ${tw`w-1/3 ml-[15px] flex flex-col justify-between`}
+  @media (max-width: 739px) {
+    ${tw`w-full ml-0`}
+  }
+
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-full ml-0`}
+  }
 `;
 
 export const Topic = styled.div`
@@ -41,6 +70,13 @@ export const Topic = styled.div`
   &:hover > :last-child > h3 > a {
     background-size: 100% 2px;
     color: inherit;
+  }
+
+  @media (max-width: 739px) {
+    ${tw`h-[250px] mt-5`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`h-[670px] mt-5`}
   }
 `;
 
@@ -60,7 +96,14 @@ export const DescriptionNews = styled.div<{ number: number }>`
   > * {
     &:nth-child(2) {
       ${({ number }) => (number === 0 ? tw`text-[28px]` : tw`text-[18px]`)}
+      @media (max-width: 739px) {
+        ${tw`text-lg`}
+      }
     }
+  }
+
+  @media (max-width: 739px) {
+    ${({ number }) => number === 0 && tw`p-[30px]`}
   }
 `;
 
@@ -85,6 +128,10 @@ export const NewsTitle = styled.h3`
 
 export const AuthorTag = styled.div`
   ${tw`text-[14px] text-[var(--text-color)] flex`}
+
+  @media (max-width: 739px) {
+    ${tw`text-[12px]`}
+  }
 `;
 
 export const AuthorName = styled.p`

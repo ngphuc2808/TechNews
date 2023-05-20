@@ -20,10 +20,17 @@ const fadeIn = keyframes`
 `;
 
 export const Content = styled.div`
-  ${tw`w-[800px] bg-white flex z-[101]`}
+  ${tw`w-[800px] min-h-[400px] bg-white flex z-[101]`}
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   transform: scale(1);
   animation: ${fadeIn} 0.5s forwards;
+
+  @media (max-width: 739px) {
+    ${tw``}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[720px]`}
+  }
 `;
 
 export const Banner = styled.div`

@@ -61,10 +61,6 @@ function Register() {
     dispatch(setUserInfo({ name: values.name, username: values.username, email: values.email, phone: values.phone }));
   };
 
-  useEffect(() => {
-    console.log(info);
-  }, [info]);
-
   return (
     <FormTemplate title="Đăng ký">
       <Formik

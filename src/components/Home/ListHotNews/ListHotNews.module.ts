@@ -29,11 +29,18 @@ export const ViewAll = styled.p`
 `;
 
 export const ListCard = styled.div`
-  ${tw`h-[450px] flex items-center justify-between`}
+  ${tw`flex items-center justify-between`}
+
+  @media (max-width: 739px) {
+    ${tw`flex-wrap`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`flex-wrap`}
+  }
 `;
 
 export const Card = styled.div`
-  ${tw`relative h-full w-[23%] overflow-hidden`}
+  ${tw`relative h-[450px] w-[23%] overflow-hidden`}
   > img {
     ${tw`transition delay-0 ease-linear duration-200`}
   }
@@ -46,6 +53,13 @@ export const Card = styled.div`
   &:hover > :last-child > :first-child > h3 > a {
     background-size: 100% 2px;
     color: inherit;
+  }
+
+  @media (max-width: 739px) {
+    ${tw`w-full h-[250px] mb-5`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[48%] mb-5`}
   }
 `;
 

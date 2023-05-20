@@ -8,14 +8,34 @@ export const Wrapper = styled.section`
 
 export const Content = styled.div`
   ${tw`w-[1260px] px-[15px] flex items-center`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[384px] flex-wrap justify-between`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px] flex-wrap justify-between`}
+  }
 `;
 
 export const BlockInfo = styled.div`
   ${tw`min-h-[140px] w-[20%] px-2 `}
+
+  @media (max-width: 739px) {
+    ${tw`w-full px-0`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[50%] mt-5 px-0`}
+  }
 `;
 
 export const Name = styled.h3`
   ${tw`mb-5 text-[var(--primary)] text-base font-semibold`}
+  @media (max-width: 739px) {
+    ${tw`mb-1`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`mb-1`}
+  }
 `;
 
 export const ListInfo = styled.ul`
@@ -26,8 +46,22 @@ export const ItemInfo = styled.li`
   ${tw`py-1.5`}
 `;
 
+export const Connect = styled.div`
+  ${tw`flex items-center justify-center`}
+`;
+
 export const Mid = styled.div`
   ${tw`w-[1260px] h-[120px] px-[15px] py-8 flex items-center justify-between`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[384px] flex-col items-start`}
+    > ${Connect} {
+      ${tw`mt-3`}
+    }
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px]`}
+  }
 `;
 
 export const Logo = styled.div`
@@ -35,10 +69,6 @@ export const Logo = styled.div`
   > img {
     ${tw`w-full h-full cursor-pointer `}
   }
-`;
-
-export const Connect = styled.div`
-  ${tw`flex items-center justify-center`}
 `;
 
 export const Title = styled.h3`
@@ -54,6 +84,13 @@ export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 
 export const Bottom = styled.div`
   ${tw`w-[1260px] px-[15px] border-t border-[#121213]`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[384px] mt-5`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px]`}
+  }
 `;
 
 export const Description = styled.span`

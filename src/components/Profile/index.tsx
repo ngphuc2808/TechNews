@@ -76,8 +76,6 @@ function Profile() {
       address: values.address,
       email: values.email,
     };
-
-    console.log(values.avatar);
   };
 
   return (

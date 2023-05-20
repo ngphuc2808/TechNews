@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface iPathState {
-  name: string;
-  key: string;
+  value: string;
+  label: string;
 }
 
 interface iPath {
@@ -11,8 +11,8 @@ interface iPath {
 
 const initialState: iPath = {
   path: {
-    name: '',
-    key: '',
+    value: '',
+    label: '',
   },
 };
 
