@@ -30,6 +30,8 @@ import {
 import Register from '../Register';
 import Login from '../Login';
 import Link from 'next/link';
+import { extractContent } from '@/pages/api/utils/globalVariables';
+import { all } from 'axios';
 
 function Post() {
   const dispatch = useDispatch();
@@ -235,14 +237,22 @@ function Post() {
 
   useEffect(() => {
     if (!isFetchingAllPosts) {
+      // let tempArr = [...allPosts];
+      // tempArr.map((post) => ({ ...post, content: extractContent(post.content) }));
+      // console.log(tempArr);
+
+      // let formDatatmp = new FormData();
+      // formDatatmp.append('title', postData?.title);
+      // formDatatmp.append('data', tempArr);
+
       formData = {
-        title: postData?.title,
+        title: extractContent(postData?.title),
         data: [...allPosts],
       };
 
       // declare the data fetching function
       const fetchData = async () => {
-        console.log(formData);
+        // console.log(formData);
         const data = await getRecommend(formData);
         setRecData(data);
         console.log(recData);
@@ -320,7 +330,10 @@ function Post() {
                 <S.CategoryTag>
                   <S.CategoryName>{postData?.categoryName}</S.CategoryName>
                 </S.CategoryTag>
-                <S.Title>{postData?.title}</S.Title>
+                {/* <S.Title>{postData?.title}</S.Title> */}
+                <S.Title>
+                  <div dangerouslySetInnerHTML={{ __html: postData?.title }} />
+                </S.Title>
                 <S.TagList>
                   <S.TagItem>
                     By&nbsp;<S.AuthorName>{postData?.userName}</S.AuthorName>
@@ -334,10 +347,12 @@ function Post() {
             </>
           )}
         </S.Banner>
-        <S.Line darkMode={mode} />
 
         <S.Content>
+          <div dangerouslySetInnerHTML={{ __html: postData?.content }} />
           {/* <ListHotNews title="Bài viết liên quan" /> */}
+
+          <S.Line darkMode={mode} />
           <S1.Wrapper>
             <S1.Top darkMode={mode}>
               <S1.Title>Bài viết liên quan</S1.Title>
@@ -475,13 +490,13 @@ function Post() {
                     <S1.Overlay>
                       <S1.DescriptionNews number={1}>
                         <S1.CategoryTag>
-                          <S1.CategoryName>{recData?.data.data[1].categoryName}</S1.CategoryName>
+                          <S1.CategoryName>{recData?.data?.data[1].categoryName}</S1.CategoryName>
                         </S1.CategoryTag>
                         <S1.NewsTitle>
-                          <Link href={`/post?id=${recData?.data.data[1].id}`}>{recData?.data.data[1].title}</Link>
+                          <Link href={`/post?id=${recData?.data?.data[1].id}`}>{recData?.data?.data[1].title}</Link>
                         </S1.NewsTitle>
                         <S1.AuthorTag>
-                          By&nbsp;<S1.AuthorName>{recData?.data.data[1].userName}</S1.AuthorName>
+                          By&nbsp;<S1.AuthorName>{recData?.data?.data[1].userName}</S1.AuthorName>
                         </S1.AuthorTag>
                       </S1.DescriptionNews>
                     </S1.Overlay>
@@ -498,13 +513,13 @@ function Post() {
                     <S1.Overlay>
                       <S1.DescriptionNews number={1}>
                         <S1.CategoryTag>
-                          <S1.CategoryName>{recData?.data.data[2].categoryName}</S1.CategoryName>
+                          <S1.CategoryName>{recData?.data?.data[2].categoryName}</S1.CategoryName>
                         </S1.CategoryTag>
                         <S1.NewsTitle>
-                          <Link href={`/post?id=${recData?.data.data[2].id}`}>{recData?.data.data[2].title}</Link>
+                          <Link href={`/post?id=${recData?.data?.data[2].id}`}>{recData?.data?.data[2].title}</Link>
                         </S1.NewsTitle>
                         <S1.AuthorTag>
-                          By&nbsp;<S1.AuthorName>{recData?.data.data[2].userName}</S1.AuthorName>
+                          By&nbsp;<S1.AuthorName>{recData?.data?.data[2].userName}</S1.AuthorName>
                         </S1.AuthorTag>
                       </S1.DescriptionNews>
                     </S1.Overlay>
@@ -521,13 +536,13 @@ function Post() {
                     <S1.Overlay>
                       <S1.DescriptionNews number={1}>
                         <S1.CategoryTag>
-                          <S1.CategoryName>{recData?.data.data[3].categoryName}</S1.CategoryName>
+                          <S1.CategoryName>{recData?.data?.data[3].categoryName}</S1.CategoryName>
                         </S1.CategoryTag>
                         <S1.NewsTitle>
-                          <Link href={`/post?id=${recData?.data.data[3].id}`}>{recData?.data.data[3].title}</Link>
+                          <Link href={`/post?id=${recData?.data?.data[3].id}`}>{recData?.data?.data[3].title}</Link>
                         </S1.NewsTitle>
                         <S1.AuthorTag>
-                          By&nbsp;<S1.AuthorName>{recData?.data.data[3].userName}</S1.AuthorName>
+                          By&nbsp;<S1.AuthorName>{recData?.data?.data[3].userName}</S1.AuthorName>
                         </S1.AuthorTag>
                       </S1.DescriptionNews>
                     </S1.Overlay>
@@ -584,12 +599,12 @@ function Post() {
                   <S.LastAuthorName>{postData?.userName}</S.LastAuthorName>
                   <S.TagList>
                     <S.TagItemLike>
-                      <S.CustomIconLike check={postData.isVoted} icon={faThumbsUp} onClick={handleLike} />
+                      <S.CustomIconLike check={postData?.isVoted} icon={faThumbsUp} onClick={handleLike} />
                       <S.Number>{postData?.numberVote}</S.Number>
                     </S.TagItemLike>
                     <S.TagItemLike>
                       <S.CustomIconDislike
-                        check={postData.isDisliked ? 0 : 1}
+                        check={postData?.isDisliked ? 0 : 1}
                         icon={faThumbsDown}
                         onClick={handleDislike}
                       />

@@ -83,7 +83,7 @@ function Profile() {
       email: values.email,
     };
 
-    console.log(newVal);
+    // console.log(newVal);
     try {
       await useChangeProfileMutation({ ...newVal });
     } catch (error) {}
@@ -117,7 +117,7 @@ function Profile() {
             <S.Left darkMode={mode}>
               <S.Avatar>
                 <Image
-                  src={user?.avatar === undefined ? previewAvt : user?.avatar}
+                  src={user?.avatar === '' ? previewAvt : user?.avatar}
                   alt="avatar"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -204,6 +204,14 @@ function Profile() {
                             <S.Input name="address" placeholder="Nơi sống..." value={user?.address} />
                           ) : (
                             <S.InfoText>{user?.address}</S.InfoText>
+                          )}
+                        </S.Info>
+                        <S.Info>
+                          <S.InfoContent>Số điện thoại</S.InfoContent>
+                          {editName ? (
+                            <S.Input name="address" placeholder="Nơi sống..." value={user?.address} />
+                          ) : (
+                            <S.InfoText>{user?.phone}</S.InfoText>
                           )}
                         </S.Info>
                         <S.Info>

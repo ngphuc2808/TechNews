@@ -11,10 +11,10 @@ function Content({ mode }: iMode) {
   const { data: postData, isFetching: isFetchingPostData } = useGetAllPostsQuery();
 
   useEffect(() => {
-    console.log(postData);
+    // console.log(postData);
   }, [isFetchingPostData]);
 
-  console.log(postData);
+  // console.log(postData);
 
   return (
     <Fragment>
@@ -99,9 +99,9 @@ function Content({ mode }: iMode) {
       <S.ContentBlack>
         <ListPost mode={mode} />
       </S.ContentBlack>
-      <S.Content>
+      {/* <S.Content>
         <ListHotNews title="Nổi Bật" />
-      </S.Content>
+      </S.Content> */}
     </Fragment>
   );
 }

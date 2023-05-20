@@ -47,7 +47,7 @@ function Category() {
   }, [router.query.category]);
 
   const { data: catData, isFetching: isFetchingCatData } = useGetCategoryByIdQuery(router.query.category);
-  console.log(catData);
+  // console.log(catData);
 
   return (
     <Fragment>

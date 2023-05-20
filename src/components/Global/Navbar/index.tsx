@@ -15,7 +15,7 @@ function Navbar() {
 
   const { data: catData, isFetching: isFetchingCat } = useGetCategoriesQuery();
 
-  console.log(catData);
+  // console.log(catData);
 
   const { key } = useSelector((state: any) => state.navItem);
 

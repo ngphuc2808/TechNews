@@ -80,7 +80,7 @@ function Register() {
   const handleSubmit = async (values: iUserRegister) => {
     // console.log(values);
     dispatch(setUserInfo({ name: values.name, username: values.username, email: values.email, phone: values.phone }));
-    console.log(values);
+    // console.log(values);
     const axiosRes = await signup({
       username: values?.username,
       name: values?.name,
@@ -99,7 +99,7 @@ function Register() {
   };
 
   useEffect(() => {
-    console.log(info);
+    // console.log(info);
   }, [info]);
 
   return (

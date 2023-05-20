@@ -11,7 +11,13 @@ import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { iContent } from '@/src/utils/interface';
 import { category } from '@/src/utils/dataConfig';
-import { useCreatePostMutation, useCreatePostImageMutation } from '@/pages/api/services/productApis';
+import {
+  useCreatePostMutation,
+  useCreatePostImageMutation,
+  useCreatePostUserRoleMutation,
+} from '@/pages/api/services/productApis';
+import { useGetActiveCategoriesQuery } from '@/pages/api/services/catApis';
+import LoadingPage from '@/src/components/Global/LoadingPage';
 
 const ReactQuill = dynamic(
   async () => {
@@ -28,6 +34,8 @@ const ReactQuill = dynamic(
 );
 
 function CreatePost() {
+  const [loading, setLoading] = useState<boolean>(false);
+
   const dispatch = useDispatch();
 
   // Handler DarkMode
@@ -55,6 +63,7 @@ function CreatePost() {
 
   // Create post apis
   const [createPost, { isLoading: isLoadingPost }] = useCreatePostMutation();
+  const [createPostUserRole, { isLoading: isLoadingPostUserRole }] = useCreatePostUserRoleMutation();
   const [createPostImage, { isLoading: isLoadingImg }] = useCreatePostImageMutation();
 
   const [image, setImage] = useState();
@@ -62,12 +71,18 @@ function CreatePost() {
   const handleSubmit = async () => {
     if (image === undefined) {
       alert('Vui lòng thêm ảnh thumbnail!');
+      return;
     }
+    if (content.title === '' || content.body === '') {
+      alert('Vui lòng thêm nội dung bài viết!');
+      return;
+    }
+    // setLoading(true);
     try {
       const { data: newPost } = await createPost({
         title: content.title,
         content: content.body,
-        categoryId: 4,
+        categoryId: content.category,
       });
       const { id } = newPost;
 
@@ -79,7 +94,14 @@ function CreatePost() {
     } catch (error) {
       alert('Đã có lỗi xảy ra');
     }
-    setTimeout(() => {}, 3000);
+    // const timer = setTimeout(() => {
+    //   setLoading(true);
+    // }, 3000);
+    setTimeout(navigateProfile, 3000);
+    // navigateProfile();
+  };
+
+  const navigateProfile = () => {
     window.location.href = 'http://localhost:3000/profile';
   };
 
@@ -220,6 +242,10 @@ function CreatePost() {
     'imageBlot',
   ];
 
+  const { data: catData, isFetching: isFetchingCatData } = useGetActiveCategoriesQuery();
+
+  const [catDataShow, setCatDataShow] = useState([]);
+
   return (
     <Fragment>
       <S.Header>
@@ -234,11 +260,23 @@ function CreatePost() {
             <S.DivTitle>
               <S.HeaderTitle>
                 <S.TitlePost darkMode={mode}>Tiêu đề</S.TitlePost>
-                <Select
-                  onChange={(e: any) => setContentPost({ ...content, category: e.value })}
-                  placeholder="Danh mục"
-                  options={category}
-                />
+                {isFetchingCatData ? (
+                  <>
+                    <Select
+                      onChange={(e: any) => setContentPost({ ...content, category: e.value })}
+                      placeholder="Danh mục"
+                      options={category}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <Select
+                      onChange={(e: any) => setContentPost({ ...content, category: e.value })}
+                      placeholder="Danh mục"
+                      options={category}
+                    />
+                  </>
+                )}
               </S.HeaderTitle>
               <ReactQuill
                 theme="snow"

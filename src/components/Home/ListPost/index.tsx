@@ -45,14 +45,15 @@ function ListPost({ mode }: iMode) {
                 </S.ImageCard>
                 <S.DescriptionNews number={1}>
                   <S.NewsTitle>
-                    <Link href={`/post?id=${item?.id}`}>{item?.title}</Link>
+                    <Link href={`/post?id=${item?.id}`}>
+                      <div dangerouslySetInnerHTML={{ __html: item?.title }} />
+                    </Link>
+                    {/* <Link href={`/post?id=${item?.id}`}>{item?.title}</Link> */}
                   </S.NewsTitle>
                   <S.TagList>
                     <S.TagItem>
                       By&nbsp;<S.AuthorName>{item?.userName}</S.AuthorName>
                     </S.TagItem>
-                  </S.TagList>
-                  <S.TagList>
                     <S.TagItem>
                       Views: &nbsp;<S.AuthorName>{item?.totalView}</S.AuthorName>
                     </S.TagItem>
@@ -67,14 +68,15 @@ function ListPost({ mode }: iMode) {
                 </S.ImageCard>
                 <S.DescriptionNews number={1}>
                   <S.NewsTitle>
-                    <Link href={`/post?id=${item?.id}`}>{item?.title}</Link>
+                    <Link href={`/post?id=${item?.id}`}>
+                      <div dangerouslySetInnerHTML={{ __html: item?.title }} />
+                    </Link>
+                    {/* <Link href={`/post?id=${item?.id}`}>{item?.title}</Link> */}
                   </S.NewsTitle>
                   <S.TagList>
                     <S.TagItem>
                       By&nbsp;<S.AuthorName>{item?.userName}</S.AuthorName>
                     </S.TagItem>
-                  </S.TagList>
-                  <S.TagList>
                     <S.TagItem>
                       Comments: &nbsp;<S.AuthorName>{item?.totalComment}</S.AuthorName>
                     </S.TagItem>

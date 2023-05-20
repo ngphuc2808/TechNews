@@ -6,6 +6,9 @@ const post = clothing.injectEndpoints({
     getAllPosts: builder.query({
       query: () => '/post/get-all',
     }),
+    getAllActivePosts: builder.query({
+      query: () => '/post/get-all-active',
+    }),
     getAllPostsSortByView: builder.query({
       query: () => '/post/sort-by-view',
     }),
@@ -55,6 +58,13 @@ const post = clothing.injectEndpoints({
         body: formData,
       }),
     }),
+    createPostUserRole: builder.mutation({
+      query: (formData) => ({
+        url: '/user/post/create',
+        method: 'POST',
+        body: formData,
+      }),
+    }),
     createPostImage: builder.mutation({
       query: ({ id, files }) => {
         return {
@@ -70,6 +80,7 @@ const post = clothing.injectEndpoints({
 
 export const {
   useGetAllPostsQuery,
+  useGetAllActivePostsQuery,
   useGetAllPostsSortByViewQuery,
   useGetAllPostsSortByCommentQuery,
   useGetAllPostsByCatQuery,
@@ -80,5 +91,6 @@ export const {
   useDislikePostMutation,
   useGetPostRecommendMutation,
   useCreatePostMutation,
+  useCreatePostUserRoleMutation,
   useCreatePostImageMutation,
 } = post;

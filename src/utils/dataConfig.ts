@@ -283,12 +283,12 @@ interface iCategory {
 }
 export const category: iCategory[] = [
   {
-    value: 'technology',
+    value: '1',
     label: 'Công nghệ',
   },
   {
-    value: 'program',
-    label: 'Lập trình',
+    value: '2',
+    label: 'Giáo dục',
   },
 ];
 

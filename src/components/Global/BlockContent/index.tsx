@@ -19,9 +19,15 @@ function BlockContent({ data, mode }: iDataPosts) {
       <S.DescriptionNews number={1}>
         <S.CategoryTag>
           <S.CategoryName>{data?.categoryName}</S.CategoryName>
+          {data?.status === 'Pending' ? <S.CategoryName>Bài viết đang được chờ duyệt</S.CategoryName> : <></>}
         </S.CategoryTag>
+
         <S.NewsTitle darkMode={mode} homePage={router.pathname === '/'}>
-          <Link href={`/post?id=${data?.id}`}>{data?.title}</Link>
+          <Link href={`/post?id=${data?.id}`}>
+            <div dangerouslySetInnerHTML={{ __html: data?.title }} />
+          </Link>
+
+          {/* <Link href={`/post?id=${data?.id}`}>{data?.title}</Link> */}
         </S.NewsTitle>
         <S.TagList>
           <S.TagItem>
@@ -40,7 +46,9 @@ function BlockContent({ data, mode }: iDataPosts) {
           <S.TagItem>Comments: {data?.totalComment}</S.TagItem>
         </S.TagList>
         <S.DesContent darkMode={mode} homePage={router.pathname === '/'}>
-          {data.content.substring(0, 100) + '...'}
+          <div dangerouslySetInnerHTML={{ __html: data?.content.substring(0, 100) }} />
+
+          {/* {data.content.substring(0, 100) + '...'} */}
         </S.DesContent>
       </S.DescriptionNews>
     </S.BlockContent>

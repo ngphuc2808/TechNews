@@ -7,11 +7,9 @@ import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 import { iUserLogin } from '@/src/utils/interface';
 import { getUserLogin } from '@/pages/api/utils/auth';
 import { setUser } from '@/pages/api/features/auth';
-import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const handleOpenRegister = () => {
     dispatch(setLogin(false));
@@ -36,7 +34,6 @@ function Login() {
     const { data, status } = await getUserLogin(values);
 
     if (status == 200) {
-      // alert('Đăng nhập thành công!');
       window.location.href = 'http://localhost:3000';
       dispatch(setUser(data));
     } else {
