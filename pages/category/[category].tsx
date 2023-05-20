@@ -4,7 +4,7 @@ import ErrorPage from '@/src/components/Global/ErrorPage';
 
 const Category = () => {
   const { error } = useSelector((state: any) => state.error);
-  return <>{!error ? <CategoryPost /> : <ErrorPage />}</>;
+  return <ErrorPage />;
 };
 
 export default Category;

@@ -26,4 +26,11 @@ export const Title = styled.h3`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: ${animation} 2s linear infinite;
+
+  @media (max-width: 739px) {
+    ${tw`text-3xl`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`text-6xl`}
+  }
 `;

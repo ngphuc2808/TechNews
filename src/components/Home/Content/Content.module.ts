@@ -50,10 +50,10 @@ export const LatestNewsLeft = styled.div`
 
 export const LatestNewsRight = styled.div`
   ${tw`w-1/3 ml-[15px] flex flex-col justify-between`}
+
   @media (max-width: 739px) {
     ${tw`w-full ml-0`}
   }
-
   @media (min-width: 740px) and (max-width: 1023px) {
     ${tw`w-full ml-0`}
   }
