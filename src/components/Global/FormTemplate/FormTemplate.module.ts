@@ -26,7 +26,7 @@ export const Content = styled.div`
   animation: ${fadeIn} 0.5s forwards;
 
   @media (max-width: 739px) {
-    ${tw``}
+    ${tw`w-[360px]`}
   }
   @media (min-width: 740px) and (max-width: 1023px) {
     ${tw`w-[720px]`}
@@ -35,10 +35,18 @@ export const Content = styled.div`
 
 export const Banner = styled.div`
   ${tw`w-[50%] bg-[var(--navbar-dark)] flex justify-center items-center`}
+
+  @media (max-width: 739px) {
+    ${tw`hidden`}
+  }
 `;
 
 export const Detail = styled.div`
   ${tw`flex flex-col items-center w-[50%] relative`}
+
+  @media (max-width: 739px) {
+    ${tw`w-full`}
+  }
 `;
 
 export const Title = styled.h2`

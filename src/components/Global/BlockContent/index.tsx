@@ -1,7 +1,7 @@
 import * as S from './BlockContent.module';
 import Image from 'next/image';
 import Link from 'next/link';
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faEye, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { iDataPosts } from '@/src/utils/interface';
 import { useRouter } from 'next/router';
@@ -31,18 +31,30 @@ function BlockContent({ data, mode }: iDataPosts) {
           <Link href="/home">{data.title}</Link>
         </S.NewsTitle>
         <S.TagList>
-          <S.TagItem>
-            By&nbsp;<S.AuthorName>{data.author}</S.AuthorName>
-          </S.TagItem>
-          <S.TagItem>{data.date}</S.TagItem>
-          <S.TagItem>
-            <S.CustomIconLike check={like === 1 ? 1 : 0} icon={faThumbsUp} onClick={() => setLike(1)} />
-            <S.Number>{data.like}</S.Number>
-          </S.TagItem>
-          <S.TagItem>
-            <S.CustomIconDislike check={like === 0 ? 0 : 1} icon={faThumbsDown} onClick={() => setLike(0)} />
-            <S.Number>{data.dislike}</S.Number>
-          </S.TagItem>
+          <S.GroupTagItem>
+            <S.TagItem>
+              By&nbsp;<S.AuthorName>{data.author}</S.AuthorName>
+            </S.TagItem>
+            <S.TagItem>{data.date}</S.TagItem>
+          </S.GroupTagItem>
+          <S.GroupTagItem>
+            <S.TagItem>
+              <S.CustomIconLike check={like === 1 ? 1 : 0} icon={faThumbsUp} onClick={() => setLike(1)} />
+              <S.Number>{data.like}</S.Number>
+            </S.TagItem>
+            <S.TagItem>
+              <S.CustomIconDislike check={like === 0 ? 0 : 1} icon={faThumbsDown} onClick={() => setLike(0)} />
+              <S.Number>{data.dislike}</S.Number>
+            </S.TagItem>
+            <S.TagItem>
+              <S.CustomIcon icon={faEye} />
+              <S.Number>{data.like}</S.Number>
+            </S.TagItem>
+            <S.TagItem>
+              <S.CustomIcon icon={faComment} />
+              <S.Number>{data.like}</S.Number>
+            </S.TagItem>
+          </S.GroupTagItem>
         </S.TagList>
         <S.DesContent darkMode={mode} homePage={router.pathname === '/'}>
           {data.content}

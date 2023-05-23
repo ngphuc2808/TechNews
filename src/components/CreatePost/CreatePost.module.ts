@@ -12,12 +12,26 @@ export const Container = styled.div`
 
 export const DivTop = styled.div`
   ${tw`flex items-center justify-between`}
+
+  @media (max-width: 739px) {
+    ${tw`flex-col`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`flex-col`}
+  }
 `;
 
 export const DivTitle = styled.div`
   ${tw`w-[48%] mb-[25px]`}
   > :last-child > :last-child {
     ${tw`h-[397px] max-h-[397px] overflow-auto`}
+  }
+
+  @media (max-width: 739px) {
+    ${tw`w-full`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-full`}
   }
 `;
 
@@ -37,11 +51,25 @@ export const Content = styled.div<{ darkMode: boolean }>`
   > ${DivContent}, ${DivTitle} > :last-child {
     ${({ darkMode }) => darkMode && tw`text-white`}
   }
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px] px-0`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px]`}
+  }
 `;
 
 export const Title = styled.h1<{ darkMode: boolean }>`
   ${tw`text-2xl mb-3 font-semibold`}
   ${({ darkMode }) => darkMode && tw`text-white`}
+
+  @media (max-width: 739px) {
+    ${tw`mt-3`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`mt-3`}
+  }
 `;
 
 export const TitlePost = styled.h1<{ darkMode: boolean }>`
@@ -55,4 +83,11 @@ export const DivButton = styled.div`
 
 export const Button = styled.button`
   ${tw`bg-[var(--navbar-dark)] w-[150px] py-2 px-5 text-[var(--primary)] hover:opacity-90`}
+
+  @media (max-width: 739px) {
+    ${tw`w-full`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-full`}
+  }
 `;

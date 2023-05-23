@@ -24,7 +24,10 @@ export const PictureContent = styled.div`
   ${tw`relative h-full w-[285px] mr-[30px] cursor-pointer overflow-hidden shrink-0`}
 
   @media (max-width: 739px) {
-    ${tw`w-[360px] h-[360px] mr-0 mb-[30px]`}
+    ${tw`w-full h-[300px] mr-0 mb-[30px]`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`mr-[20px]`}
   }
 `;
 
@@ -74,15 +77,33 @@ export const NewsTitle = styled.h3<{ darkMode: boolean; homePage: boolean }>`
       homePage
         ? 'background-image: linear-gradient(var(--white), var(--white));'
         : 'background-image: linear-gradient(var(--text-color-black), var(--text-color-black));'};
+
+    @media (max-width: 739px) {
+      ${tw`text-xl`}
+    }
+    @media (min-width: 740px) and (max-width: 1023px) {
+      ${tw`text-xl`}
+    }
   }
 `;
 
 export const TagList = styled.ul`
-  ${tw`text-[14px] text-[var(--text-color)] flex items-center list-none`}
+  ${tw`text-[14px] text-[var(--text-color)] mb-[10px] flex items-center justify-between list-none`}
+
+  @media (max-width: 739px) {
+    ${tw`flex-wrap`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`flex-wrap`}
+  }
 `;
 
-export const TagItem = styled.li`
-  ${tw`text-[14px] text-[var(--text-color-black-three)] flex items-center mr-4 mb-[10px]`}
+export const TagItem = styled.div`
+  ${tw`mr-3 flex`}
+`;
+
+export const GroupTagItem = styled.li`
+  ${tw`text-[14px] text-[var(--text-color-black-three)] flex items-center`}
 
   @media (max-width: 739px) {
     ${tw`text-[12px] mb-[5px]`}
@@ -116,6 +137,10 @@ export const CustomIconLike = styled(FontAwesomeIcon)<{ check: number }>`
   &:hover {
     ${tw`text-[#63e6be]`}
   }
+`;
+
+export const CustomIcon = styled(FontAwesomeIcon)`
+  ${tw`text-lg cursor-pointer mr-1`}
 `;
 
 export const CustomIconDislike = styled(FontAwesomeIcon)<{ check: number }>`

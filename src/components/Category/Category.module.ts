@@ -17,12 +17,23 @@ export const Container = styled.div`
 
 export const BreadCrumb = styled.div`
   ${tw`w-full py-5 flex items-center justify-center`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px]`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px]`}
+  }
 `;
 
 export const ListLink = styled.div`
   ${tw`w-[1260px] px-[15px]`}
   > :last-child {
     ${tw`text-[var(--primary)]`}
+  }
+
+  @media (max-width: 739px) {
+    ${tw`px-0`}
   }
 `;
 
@@ -44,6 +55,13 @@ export const Title = styled.div<{ darkMode: boolean }>`
 
 export const TitleContent = styled.div`
   ${tw`w-[1260px] px-[15px]`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px] px-0`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px]`}
+  }
 `;
 
 export const Name = styled.h1`

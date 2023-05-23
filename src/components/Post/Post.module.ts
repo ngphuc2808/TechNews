@@ -78,6 +78,13 @@ export const Overlay = styled.div`
 export const Content = styled.div<{ darkMode: boolean }>`
   ${tw`w-[1260px] px-[15px] mt-[60px] mb-[30px] text-[var(--text-color-black)]`}
   ${({ darkMode }) => darkMode && tw`text-white`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px] mx-0 px-0`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px] mx-6`}
+  }
 `;
 
 export const PostShares = styled.div`
@@ -207,4 +214,11 @@ export const HandleComment = styled.div<{ darkMode: boolean }>`
 
 export const ButtonComment = styled.button`
   ${tw`w-[10%] px-3 py-2 bg-[var(--navbar-dark)] text-[var(--primary)] rounded-[6px] hover:opacity-90`}
+
+  @media (max-width: 739px) {
+    ${tw`w-full`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-full`}
+  }
 `;
