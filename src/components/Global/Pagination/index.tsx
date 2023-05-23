@@ -25,7 +25,7 @@ function Items({ currentItems, mode }: iItem) {
 function Pagination({ data, mode, profilePage }: iData) {
   const [itemOffset, setItemOffset] = useState(0);
 
-  const itemsPerPage = profilePage ? 2 : 6;
+  const itemsPerPage = profilePage ? 4 : 6;
 
   const endOffset = itemOffset + itemsPerPage;
   const currentItems: iPost[] = data.slice(itemOffset, endOffset);
