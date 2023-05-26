@@ -1,8 +1,8 @@
-import { memo, useCallback, useState } from 'react';
+import { Fragment, memo, useCallback, useState } from 'react';
 import * as S from './Navbar.module';
 import { category, navBarArray } from '@/src/utils/dataConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMagnifyingGlass, faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { iCategory } from '@/src/utils/interface';
@@ -10,6 +10,7 @@ import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
 import { setNavItem } from '@/src/features/redux/slices/navItemSlice';
 import { useGetCategoriesQuery } from '@/pages/api/services/catApis';
 import { text } from 'stream/consumers';
+import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -17,6 +18,16 @@ function Navbar() {
   const { data: catData, isFetching: isFetchingCat } = useGetCategoriesQuery();
 
   // console.log(catData);
+
+  const handleOpenRegister = () => {
+    dispatch(setLogin(false));
+    dispatch(setRegister(true));
+  };
+
+  const handleOpenLogin = () => {
+    dispatch(setRegister(false));
+    dispatch(setLogin(true));
+  };
 
   const { key } = useSelector((state: any) => state.navItem);
 

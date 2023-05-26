@@ -3,15 +3,40 @@ import tw from 'twin.macro';
 
 export const Wrapper = styled.section`
   ${tw`w-[1260px] px-[15px] text-white flex items-start justify-center`}
+
+  @media (max-width: 739px) {
+    ${tw`flex-col items-center`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`flex-col items-center`}
+  }
 `;
 
 export const LeftInfo = styled.div`
-  ${tw`w-2/3 pr-[15px]`}
-  &:hov
+  ${tw`w-[63%]`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px]`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px] px-[15px]`}
+  }
 `;
 
 export const RightInfo = styled.div`
-  ${tw`w-1/3 pl-[45px]`}
+  ${tw`w-1/3`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px]`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px] px-[15px]`}
+    > * {
+      &:nth-child(2) {
+        ${tw`mt-10`}
+      }
+    }
+  }
 `;
 
 export const ListCard = styled.div`
@@ -75,6 +100,10 @@ export const NewsTitle = styled.h3<{ darkMode: boolean }>`
         ? 'background-image: linear-gradient(var(--white), var(--white));'
         : 'background-image: linear-gradient(var(--text-color-black), var(--text-color-black));'};
   }
+
+  @media (max-width: 739px) {
+    ${tw`text-[14px]`}
+  }
 `;
 
 export const TagList = styled.ul`
@@ -83,6 +112,10 @@ export const TagList = styled.ul`
 
 export const TagItem = styled.li`
   ${tw`text-[14px] text-[var(--text-color-black-three)] flex items-center mr-4 mb-[10px]`}
+
+  @media (max-width: 739px) {
+    ${tw`text-[12px]`}
+  }
 `;
 
 export const AuthorName = styled.p`
@@ -98,6 +131,13 @@ export const DesContent = styled.p`
 
 export const ListWidget = styled.ul`
   ${tw`text-[14px] text-[var(--text-color-black-two)] flex list-none mb-5`}
+
+  @media (max-width: 739px) {
+    ${tw`mt-10`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`mt-10`}
+  }
 `;
 
 export const ItemWidget = styled.li<{ active: boolean }>`

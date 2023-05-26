@@ -1,21 +1,32 @@
-import { MouseEvent, memo, useCallback, useEffect, useState } from 'react';
+import { Fragment, MouseEvent, memo, useCallback, useEffect, useState } from 'react';
 import * as S from './NavbarPost.module';
 import Link from 'next/link';
 import { category, navBarArray } from '@/src/utils/dataConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMagnifyingGlass, faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { iCategory, iMode } from '@/src/utils/interface';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNavItem } from '@/src/features/redux/slices/navItemSlice';
 import { useGetCategoriesQuery } from '@/pages/api/services/catApis';
 import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
+import { setLogin, setRegister } from '@/src/features/redux/slices/authSlice';
 
 function NavbarPost({ mode }: iMode) {
   const router = useRouter();
   const dispatch = useDispatch();
 
   const { data: catData, isFetching: isFetchingCat } = useGetCategoriesQuery();
+
+  const handleOpenRegister = () => {
+    dispatch(setLogin(false));
+    dispatch(setRegister(true));
+  };
+
+  const handleOpenLogin = () => {
+    dispatch(setRegister(false));
+    dispatch(setLogin(true));
+  };
 
   useEffect(() => {
     if (router.query.category) {

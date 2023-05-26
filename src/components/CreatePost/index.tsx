@@ -8,7 +8,7 @@ import ButtonDarkMode from '../Global/ButtonDarkMode';
 import ScrollToTop from '../Global/ScrollToTopButton';
 import Footer from '../Global/Footer';
 import 'react-quill/dist/quill.snow.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { iContent } from '@/src/utils/interface';
 import { category } from '@/src/utils/dataConfig';
 import {

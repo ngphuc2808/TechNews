@@ -18,6 +18,13 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   ${tw`w-[1260px] px-[15px] mt-[45px]`}
+
+  @media (max-width: 739px) {
+    ${tw`w-[360px] px-0`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-[690px]`}
+  }
 `;
 
 export const Title = styled.h2`
@@ -27,15 +34,36 @@ export const Title = styled.h2`
 export const InfoBoard = styled.div<{ darkMode: boolean }>`
   ${tw`flex w-full mt-[45px] mb-[90px] border-2 border-solid border-[var(--navbar-dark)]`}
   ${({ darkMode }) => darkMode && tw`border-[var(--text-color)]`}
+
+  @media (max-width: 739px) {
+    ${tw`flex-col`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`flex-col`}
+  }
 `;
 
 export const Left = styled.div<{ darkMode: boolean }>`
   ${tw`w-[25%] border-r-2 border-solid border-[var(--navbar-dark)]`}
   ${({ darkMode }) => darkMode && tw`border-[var(--text-color)]`}
+
+  @media (max-width: 739px) {
+    ${tw`w-full border-b-2 border-r-0`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-full border-b-2 border-r-0`}
+  }
 `;
 
 export const Right = styled.div`
   ${tw`w-[75%]`}
+
+  @media (max-width: 739px) {
+    ${tw`w-full`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`w-full`}
+  }
 `;
 export const Avatar = styled.div`
   ${tw`w-[220px] h-[220px] relative bg-white my-[20px] mx-auto`}
@@ -49,8 +77,12 @@ export const CustomIcon = styled(FontAwesomeIcon)`
   ${tw`absolute top-[6px] right-[30px] text-[20px] cursor-pointer text-[var(--text-color-black)]`}
 `;
 
+export const GroupEditName = styled.div`
+  ${tw`w-[60%] m-auto`}
+`;
+
 export const EditName = styled(Field)`
-  ${tw`w-[60%] bg-transparent text-[var(--text-color-black)] block m-auto border-b-[1px] border-solid border-[var(--navbar-dark)] caret-[var(--primary)] outline-none py-1 px-2`}
+  ${tw`w-full bg-transparent text-[var(--text-color-black)] block m-auto border-b-[1px] border-solid border-[var(--navbar-dark)] caret-[var(--primary)] outline-none py-1 px-2`}
 `;
 
 export const CustomIconX = styled(FontAwesomeIcon)`
@@ -131,7 +163,7 @@ export const DatePickerWrapperStyles = createGlobalStyle<{ darkMode: boolean }>`
     }
 `;
 
-export const GroupInfo = styled.div<{ darkMode: boolean }>`
+export const GroupInfo = styled.div<{ darkMode: boolean; checkSet: boolean }>`
   ${tw`mx-auto w-[220px] mt-[15px]`}
   > * {
     &:not(:first-child) {
@@ -155,6 +187,15 @@ export const GroupInfo = styled.div<{ darkMode: boolean }>`
   }
   > ${Info} > ${GroupGender} > ${Label} {
     ${({ darkMode }) => darkMode && tw`text-white`}
+  }
+
+  @media (max-width: 739px) {
+    ${tw`text-center mt-[30px]`}
+    ${({ checkSet }) => checkSet && tw`text-left w-full px-[30px]`}
+  }
+  @media (min-width: 740px) and (max-width: 1023px) {
+    ${tw`text-center mt-[30px]`}
+    ${({ checkSet }) => checkSet && tw`text-left w-full px-[30px]`}
   }
 `;
 

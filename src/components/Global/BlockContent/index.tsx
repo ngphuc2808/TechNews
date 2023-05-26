@@ -1,7 +1,7 @@
 import * as S from './BlockContent.module';
 import Image from 'next/image';
 import Link from 'next/link';
-import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faEye, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { iDataPosts } from '@/src/utils/interface';
 import { useRouter } from 'next/router';

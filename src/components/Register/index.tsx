@@ -99,7 +99,7 @@ function Register() {
   };
 
   useEffect(() => {
-    // console.log(info);
+    console.log(info);
   }, [info]);
 
   return (
