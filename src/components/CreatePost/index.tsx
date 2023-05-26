@@ -15,6 +15,7 @@ import {
   useCreatePostMutation,
   useCreatePostImageMutation,
   useCreatePostUserRoleMutation,
+  useCreatePostImageUserRoleMutation,
 } from '@/pages/api/services/productApis';
 import { useGetActiveCategoriesQuery } from '@/pages/api/services/catApis';
 import LoadingPage from '@/src/components/Global/LoadingPage';
@@ -65,10 +66,15 @@ function CreatePost() {
   const [createPost, { isLoading: isLoadingPost }] = useCreatePostMutation();
   const [createPostUserRole, { isLoading: isLoadingPostUserRole }] = useCreatePostUserRoleMutation();
   const [createPostImage, { isLoading: isLoadingImg }] = useCreatePostImageMutation();
+  const [createPostImageUserRole, { isLoading: isLoadingImgUserRole }] = useCreatePostImageUserRoleMutation();
 
   const [image, setImage] = useState();
 
   const handleSubmit = async () => {
+    if (content.category === '') {
+      alert('Vui lòng chọn danh mục bài viết!');
+      return;
+    }
     if (image === undefined) {
       alert('Vui lòng thêm ảnh thumbnail!');
       return;
@@ -79,7 +85,7 @@ function CreatePost() {
     }
     // setLoading(true);
     try {
-      const { data: newPost } = await createPost({
+      const { data: newPost } = await createPostUserRole({
         title: content.title,
         content: content.body,
         categoryId: content.category,
@@ -90,7 +96,7 @@ function CreatePost() {
 
       const files = new FormData();
       files.append('image', image);
-      await createPostImage({ id, files });
+      await createPostImageUserRole({ id, files });
     } catch (error) {
       alert('Đã có lỗi xảy ra');
     }
@@ -125,7 +131,7 @@ function CreatePost() {
       return response.json();
     });
 
-    console.log(response);
+    console.log(file);
 
     return { url: response.secure_url };
   };
@@ -246,6 +252,21 @@ function CreatePost() {
 
   const [catDataShow, setCatDataShow] = useState([]);
 
+  useEffect(() => {
+    if (catData === undefined) return;
+    catData.forEach((element) => {
+      setCatDataShow((prev) => [
+        ...prev,
+        {
+          value: element?.id,
+          label: element?.title,
+        },
+      ]);
+    });
+  }, [isFetchingCatData]);
+
+  console.log(catDataShow);
+
   return (
     <Fragment>
       <S.Header>
@@ -273,7 +294,7 @@ function CreatePost() {
                     <Select
                       onChange={(e: any) => setContentPost({ ...content, category: e.value })}
                       placeholder="Danh mục"
-                      options={category}
+                      options={isFetchingCatData ? category : catDataShow}
                     />
                   </>
                 )}

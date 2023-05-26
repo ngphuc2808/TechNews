@@ -47,7 +47,7 @@ function Category() {
   }, [router.query.category]);
 
   const { data: catData, isFetching: isFetchingCatData } = useGetCategoryByIdQuery(router.query.category);
-  // console.log(catData);
+  console.log(router);
 
   return (
     <Fragment>
@@ -66,12 +66,30 @@ function Category() {
               <Link href="http://localhost:3000/">Trang chủ</Link>
             </S.Item>
             <S.Slash>/</S.Slash>
-            <S.Item>{catData?.title}</S.Item>
+            {router.query?.search !== undefined ? (
+              <>
+                {' '}
+                <S.Item>Kết quả tìm kiếm cho "{router.query.search}"</S.Item>
+              </>
+            ) : (
+              <>
+                <S.Item>{catData?.title}</S.Item>
+              </>
+            )}
           </S.ListLink>
         </S.BreadCrumb>
         <S.Title darkMode={mode}>
           <S.TitleContent>
-            <S.Name>{catData?.title}</S.Name>
+            {router.query?.search !== undefined ? (
+              <>
+                {' '}
+                <S.Name>Kết quả tìm kiếm cho "{router.query.search}"</S.Name>
+              </>
+            ) : (
+              <>
+                <S.Name>{catData?.title}</S.Name>
+              </>
+            )}
           </S.TitleContent>
         </S.Title>
         <ContentCategory mode={mode} />

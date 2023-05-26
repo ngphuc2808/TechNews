@@ -16,7 +16,7 @@ import { iUserProfile } from '@/src/utils/interface';
 import { post } from '@/src/utils/dataConfig';
 import Pagination from '../Global/Pagination';
 import CropImage from './CropImage';
-import { useGetProfileQuery, useChangeProfileMutation } from '@/pages/api/services/userApis';
+import { useGetProfileQuery, useChangeProfileMutation, useUploadAvatarMutation } from '@/pages/api/services/userApis';
 import { useGetPostsByUserIdQuery, useGetAllPostsByUserIdQuery } from '@/pages/api/services/productApis';
 
 function Profile() {
@@ -29,9 +29,17 @@ function Profile() {
   );
 
   const [avatar, setAvatar] = useState<string>('');
+  const [image, setImage] = useState();
+
+  const [createAvatarImage, { isLoading: isLoadingImg }] = useUploadAvatarMutation();
+  const [changeProfile, { isLoading: isLoadingChangeProfile }] = useChangeProfileMutation();
 
   const handleCrop = (e: FormEvent<HTMLInputElement>) => {
     let input = e.currentTarget;
+
+    console.log(input.files[0]);
+    setImage(input.files[0]);
+
     if (input.files?.length) {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
@@ -75,18 +83,30 @@ function Profile() {
 
   const handleSubmit = async (values: iUserProfile) => {
     const newVal = {
-      // avatar: values.avatar,
       fullname: values.name,
-      dob: values.dob.toLocaleDateString(),
+      // dob: values.dob.toLocaleDateString(),
+      // dob: new Date(values.dob),
       gender: values.gender,
       address: values.address,
-      email: values.email,
+      phone: values.phone,
     };
 
     // console.log(newVal);
+
     try {
-      await useChangeProfileMutation({ ...newVal });
-    } catch (error) {}
+      await changeProfile({ ...newVal });
+      if (image !== undefined) {
+        alert('uploading');
+        const files = new FormData();
+        files.append('image', image);
+        await createAvatarImage({ files });
+      }
+    } catch (error) {
+      alert('Đã có lỗi xảy ra');
+      return;
+    }
+    alert('Cập nhật thành công');
+
     // location.reload();
   };
 
@@ -101,6 +121,8 @@ function Profile() {
     pageNo: 1,
     pageSize: 999,
   });
+
+  // console.log(user);
 
   return (
     <Fragment>
@@ -146,7 +168,7 @@ function Profile() {
                       <S.GroupName darkMode={mode}>
                         {editName ? (
                           <>
-                            <S.EditName name="name" placeholder="Họ tên..." value={user?.fullname} />
+                            <S.EditName name="name" placeholder="Họ tên..." />
                             <S.Button type="submit">
                               <S.CustomIconCheck icon={faCheck} />
                             </S.Button>
@@ -172,12 +194,11 @@ function Profile() {
                                 onChange={(value) => {
                                   setFieldValue('dob', value);
                                 }}
-                                value={user?.dob}
                               />
                               <S.DatePickerWrapperStyles darkMode={mode} />
                             </S.DatePickerElement>
                           ) : (
-                            <S.InfoText>{user?.dob}</S.InfoText>
+                            <S.InfoText>{new Date('09/08/2001').toJSON().slice(0, 10)}</S.InfoText>
                           )}
                         </S.Info>
                         <S.Info>
@@ -195,13 +216,13 @@ function Profile() {
                               </S.Label>
                             </S.GroupGender>
                           ) : (
-                            <S.InfoText>{user?.gender}</S.InfoText>
+                            <S.InfoText>{user?.gender === 'female' ? 'Nữ' : 'Nam'}</S.InfoText>
                           )}
                         </S.Info>
                         <S.Info>
                           <S.InfoContent>Nơi sống</S.InfoContent>
                           {editName ? (
-                            <S.Input name="address" placeholder="Nơi sống..." value={user?.address} />
+                            <S.Input name="address" placeholder="Nơi sống..." />
                           ) : (
                             <S.InfoText>{user?.address}</S.InfoText>
                           )}
@@ -209,7 +230,7 @@ function Profile() {
                         <S.Info>
                           <S.InfoContent>Số điện thoại</S.InfoContent>
                           {editName ? (
-                            <S.Input name="address" placeholder="Nơi sống..." value={user?.address} />
+                            <S.Input name="phone" placeholder="Nơi sống..." />
                           ) : (
                             <S.InfoText>{user?.phone}</S.InfoText>
                           )}
@@ -222,7 +243,6 @@ function Profile() {
                                 name="email"
                                 placeholder="Email..."
                                 error={errors.email && touched.email ? 1 : 0}
-                                value={user?.email}
                               />
                               <ErrorMessage name="email" component={S.ErrorMsg} />
                             </>

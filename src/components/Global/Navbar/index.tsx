@@ -9,6 +9,7 @@ import { iCategory } from '@/src/utils/interface';
 import { setNameCategory } from '@/src/features/redux/slices/cateogrySlice';
 import { setNavItem } from '@/src/features/redux/slices/navItemSlice';
 import { useGetCategoriesQuery } from '@/pages/api/services/catApis';
+import { text } from 'stream/consumers';
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -30,6 +31,11 @@ function Navbar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
+
+  const [searchText, setSearchText] = useState('');
+  const handleTypeSearch = (event) => {
+    setSearchText(event.target.value);
+  };
 
   return (
     <S.Wrapper darkMode={mode}>
@@ -62,8 +68,11 @@ function Navbar() {
           ))}
         </S.MenuNav>
         <S.SearchArea>
-          <S.SearchInput placeholder="Tìm kiếm..." />
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <S.SearchInput placeholder="Tìm kiếm..." value={searchText} onChange={handleTypeSearch} />
+          <Link href={`/category/-1?search=${searchText}`}>
+            {' '}
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </Link>
         </S.SearchArea>
       </S.Container>
     </S.Wrapper>

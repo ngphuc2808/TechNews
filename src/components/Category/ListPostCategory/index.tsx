@@ -11,7 +11,11 @@ import { useRouter } from 'next/router';
 import { category } from '@/src/utils/dataConfig';
 import { useGetAllPostsByCatQuery } from '@/pages/api/services/productApis';
 import { iCategory } from '@/src/utils/interface';
-import { useGetAllPostsSortByCommentQuery, useGetAllPostsSortByViewQuery } from '@/pages/api/services/productApis';
+import {
+  useGetAllPostsSortByCommentQuery,
+  useGetAllPostsSortByViewQuery,
+  useGetBySearchTextQuery,
+} from '@/pages/api/services/productApis';
 
 function ListPostCategory({ mode }: iMode) {
   const [activeWidget, setActiveWidget] = useState<string>('Popular');
@@ -38,11 +42,21 @@ function ListPostCategory({ mode }: iMode) {
 
   const { data: sortCommentPosts, isFetching: isFetchingSortCommentPosts } = useGetAllPostsSortByCommentQuery();
 
+  const { data: foundPosts, isFetching: isFetchingFoundPosts } = useGetBySearchTextQuery(router.query?.search);
+  console.log(foundPosts);
   return (
     <S.Wrapper>
       <S.LeftInfo>
         <S.ListCard>
-          <Pagination data={isFetchingPostsData ? post : postsData?.postDTOList} mode={mode} profilePage={false} />
+          {router.query.search !== undefined ? (
+            <>
+              <Pagination data={isFetchingFoundPosts ? post : foundPosts} mode={mode} profilePage={false} />
+            </>
+          ) : (
+            <>
+              <Pagination data={isFetchingPostsData ? post : postsData?.postDTOList} mode={mode} profilePage={false} />
+            </>
+          )}
         </S.ListCard>
       </S.LeftInfo>
       <S.RightInfo>
@@ -90,8 +104,6 @@ function ListPostCategory({ mode }: iMode) {
                     <S.TagItem>
                       By&nbsp;<S.AuthorName>{item?.userName}</S.AuthorName>
                     </S.TagItem>
-                  </S.TagList>
-                  <S.TagList>
                     <S.TagItem>
                       Comments: &nbsp;<S.AuthorName>{item?.totalComment}</S.AuthorName>
                     </S.TagItem>

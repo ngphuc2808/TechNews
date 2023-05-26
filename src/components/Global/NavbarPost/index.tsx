@@ -1,4 +1,4 @@
-import { MouseEvent, memo, useCallback, useEffect } from 'react';
+import { MouseEvent, memo, useCallback, useEffect, useState } from 'react';
 import * as S from './NavbarPost.module';
 import Link from 'next/link';
 import { category, navBarArray } from '@/src/utils/dataConfig';
@@ -39,6 +39,11 @@ function NavbarPost({ mode }: iMode) {
     dispatch(setNameCategory(item));
   };
 
+  const [searchText, setSearchText] = useState('');
+  const handleTypeSearch = (event) => {
+    setSearchText(event.target.value);
+  };
+
   return (
     <S.Wrapper darkMode={mode}>
       <S.Container>
@@ -72,8 +77,11 @@ function NavbarPost({ mode }: iMode) {
           ))}
         </S.MenuNav>
         <S.SearchArea>
-          <S.SearchInput darkMode={mode} placeholder="Tìm kiếm..." />
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
+          <S.SearchInput placeholder="Tìm kiếm..." value={searchText} onChange={handleTypeSearch} />
+          <Link href={`/category/-1?search=${searchText}`}>
+            {' '}
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </Link>
         </S.SearchArea>
       </S.Container>
     </S.Wrapper>

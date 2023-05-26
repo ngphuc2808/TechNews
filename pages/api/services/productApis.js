@@ -29,6 +29,9 @@ const post = clothing.injectEndpoints({
     getAllPostsByUserId: builder.query({
       query: (userId) => `/post/get-all-by-user/${userId}`,
     }),
+    getBySearchText: builder.query({
+      query: (text) => `/post/search?keyword=${text}`,
+    }),
     getPostRecommend: builder.mutation({
       query: (formData) => ({
         url: `http://sumels.pythonanywhere.com/`,
@@ -65,6 +68,15 @@ const post = clothing.injectEndpoints({
         body: formData,
       }),
     }),
+    createPostImageUserRole: builder.mutation({
+      query: ({ id, files }) => {
+        return {
+          url: `user/post/${id}/image`,
+          method: 'POST',
+          body: files,
+        };
+      },
+    }),
     createPostImage: builder.mutation({
       query: ({ id, files }) => {
         return {
@@ -93,4 +105,6 @@ export const {
   useCreatePostMutation,
   useCreatePostUserRoleMutation,
   useCreatePostImageMutation,
+  useCreatePostImageUserRoleMutation,
+  useGetBySearchTextQuery,
 } = post;
