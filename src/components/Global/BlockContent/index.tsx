@@ -42,8 +42,16 @@ function BlockContent({ data, mode }: iDataPosts) {
             <S.CustomIconDislike check={1} icon={faThumbsDown} onClick={() => setLike(0)} />
           </S.TagItem>
 
-          <S.TagItem>Views: {data?.totalView}</S.TagItem>
-          <S.TagItem>Comments: {data?.totalComment}</S.TagItem>
+          <S.TagItem>
+            {' '}
+            <S.CustomIcon icon={faEye} />
+            {data?.totalView}
+          </S.TagItem>
+          <S.TagItem>
+            {' '}
+            <S.CustomIcon icon={faComment} />
+            {data?.totalComment}
+          </S.TagItem>
         </S.TagList>
         <S.DesContent darkMode={mode} homePage={router.pathname === '/'}>
           <div dangerouslySetInnerHTML={{ __html: data?.content.substring(0, 100) }} />

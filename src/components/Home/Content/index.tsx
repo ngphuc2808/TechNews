@@ -36,7 +36,7 @@ function Content({ mode }: iMode) {
               </S.CategoryTag>
               <S.NewsTitle>
                 <Link href={isFetchingPostData ? '/post' : `/post?id=${postData[0]?.id}`}>
-                  {isFetchingPostData ? 'Loading..' : postData[0]?.title}
+                  {isFetchingPostData ? 'Loading..' : <div dangerouslySetInnerHTML={{ __html: postData[0]?.title }} />}
                 </Link>
               </S.NewsTitle>
               <S.AuthorTag>
@@ -61,7 +61,11 @@ function Content({ mode }: iMode) {
                 </S.CategoryTag>
                 <S.NewsTitle>
                   <Link href={isFetchingPostData ? '/post' : `/post?id=${postData[1]?.id}`}>
-                    {isFetchingPostData ? 'Loading..' : postData[1]?.title}
+                    {isFetchingPostData ? (
+                      'Loading..'
+                    ) : (
+                      <div dangerouslySetInnerHTML={{ __html: postData[1]?.title }} />
+                    )}
                   </Link>{' '}
                 </S.NewsTitle>
                 <S.AuthorTag>
@@ -85,7 +89,11 @@ function Content({ mode }: iMode) {
                 </S.CategoryTag>
                 <S.NewsTitle>
                   <Link href={isFetchingPostData ? '/post' : `/post?id=${postData[2]?.id}`}>
-                    {isFetchingPostData ? 'Loading..' : postData[2]?.title}
+                    {isFetchingPostData ? (
+                      'Loading..'
+                    ) : (
+                      <div dangerouslySetInnerHTML={{ __html: postData[2]?.title }} />
+                    )}
                   </Link>{' '}
                 </S.NewsTitle>
                 <S.AuthorTag>

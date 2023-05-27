@@ -28,7 +28,7 @@ function Profile() {
     'https://i.pinimg.com/236x/73/e7/e7/73e7e7763e2b425e9a8481806f5e81b4.jpg',
   );
 
-  const [groupInfo, setGroupInfo] = useState<boolean>(false);
+  const [avatar, setAvatar] = useState<string>('');
   const [image, setImage] = useState();
 
   const [createAvatarImage, { isLoading: isLoadingImg }] = useUploadAvatarMutation();
@@ -78,10 +78,6 @@ function Profile() {
   };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().matches(
-      /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/,
-      'Vui lòng nhập đúng định dạng tên!',
-    ),
     email: Yup.string().matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Vui lòng nhập đúng định dạng Email!'),
   });
 
@@ -94,11 +90,7 @@ function Profile() {
       address: values.address,
       phone: values.phone,
     };
-  };
 
-  const handlePen = () => {
-    setEditName(true);
-    setGroupInfo(true);
     // console.log(newVal);
 
     try {
@@ -115,13 +107,9 @@ function Profile() {
     }
     alert('Cập nhật thành công');
 
-    // location.reload();
+    location.reload();
   };
 
-  const handleClear = () => {
-    setEditName(false);
-    setGroupInfo(false);
-  };
   const { isAuthenticated } = useSelector((state) => state.authentication);
 
   const { data: user } = useGetProfileQuery({
@@ -180,19 +168,11 @@ function Profile() {
                       <S.GroupName darkMode={mode}>
                         {editName ? (
                           <>
-                            <S.GroupEditName>
-                              <S.EditName
-                                name="name"
-                                placeholder="Họ tên..."
-                                error={errors.name && touched.name ? 1 : 0}
-                              />
-                              <ErrorMessage name="name" component={S.ErrorMsg} />
-                            </S.GroupEditName>
-
+                            <S.EditName name="name" placeholder="Họ tên..." />
                             <S.Button type="submit">
                               <S.CustomIconCheck icon={faCheck} />
                             </S.Button>
-                            <S.CustomIconX icon={faXmark} onClick={handleClear} />
+                            <S.CustomIconX icon={faXmark} onClick={() => setEditName(false)} />
                           </>
                         ) : (
                           <>
@@ -201,7 +181,7 @@ function Profile() {
                           </>
                         )}
                       </S.GroupName>
-                      <S.GroupInfo darkMode={mode} checkSet={groupInfo}>
+                      <S.GroupInfo darkMode={mode}>
                         <S.Info>
                           <S.InfoContent>Ngày sinh</S.InfoContent>
                           {editName ? (
@@ -289,5 +269,4 @@ function Profile() {
     </Fragment>
   );
 }
-
 export default Profile;

@@ -39,7 +39,7 @@ function ListPost({ mode }: iMode) {
         </S.ListWidget>
         {activeWidget === 'Trendy'
           ? sortViewPosts?.postDTOList?.slice(0, 4).map((item, index) => (
-              <S.TabContent>
+              <S.TabContent key={index}>
                 <S.ImageCard>
                   <Image quality={100} src={item?.thumbnail} alt="image" fill sizes="" priority />
                 </S.ImageCard>
@@ -62,7 +62,7 @@ function ListPost({ mode }: iMode) {
               </S.TabContent>
             ))
           : sortCommentPosts?.postDTOList?.slice(0, 4).map((item, index) => (
-              <S.TabContent>
+              <S.TabContent key={index}>
                 <S.ImageCard>
                   <Image quality={100} src={item?.thumbnail} alt="image" fill sizes="" priority />
                 </S.ImageCard>

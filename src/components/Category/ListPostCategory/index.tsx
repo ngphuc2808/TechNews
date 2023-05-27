@@ -16,6 +16,7 @@ import {
   useGetAllPostsSortByViewQuery,
   useGetBySearchTextQuery,
 } from '@/pages/api/services/productApis';
+import { faComment, faEye, faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 function ListPostCategory({ mode }: iMode) {
   const [activeWidget, setActiveWidget] = useState<string>('Popular');
@@ -69,7 +70,7 @@ function ListPostCategory({ mode }: iMode) {
         </S.ListWidget>
         {activeWidget === 'Trendy'
           ? sortViewPosts?.postDTOList?.slice(0, 4).map((item, index) => (
-              <S.TabContent>
+              <S.TabContent key={index}>
                 <S.ImageCard>
                   <Image quality={100} src={item?.thumbnail} alt="image" fill sizes="" priority />
                 </S.ImageCard>
@@ -92,13 +93,16 @@ function ListPostCategory({ mode }: iMode) {
               </S.TabContent>
             ))
           : sortCommentPosts?.postDTOList?.slice(0, 4).map((item, index) => (
-              <S.TabContent>
+              <S.TabContent key={index}>
                 <S.ImageCard>
                   <Image quality={100} src={item?.thumbnail} alt="image" fill sizes="" priority />
                 </S.ImageCard>
                 <S.DescriptionNews number={1}>
                   <S.NewsTitle>
-                    <Link href={`/post?id=${item?.id}`}>{item?.title}</Link>
+                    {/* <Link href={`/post?id=${item?.id}`}>{item?.title}</Link> */}
+                    <Link href={`/post?id=${item?.id}`}>
+                      <div dangerouslySetInnerHTML={{ __html: item?.title }} />
+                    </Link>
                   </S.NewsTitle>
                   <S.TagList>
                     <S.TagItem>
