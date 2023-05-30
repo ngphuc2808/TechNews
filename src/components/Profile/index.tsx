@@ -16,7 +16,12 @@ import { iUserProfile } from '@/src/utils/interface';
 import { post } from '@/src/utils/dataConfig';
 import Pagination from '../Global/Pagination';
 import CropImage from './CropImage';
-import { useGetProfileQuery, useChangeProfileMutation, useUploadAvatarMutation } from '@/pages/api/services/userApis';
+import {
+  useGetProfileQuery,
+  useChangeProfileMutation,
+  useUploadAvatarMutation,
+  useChangePasswordMutation,
+} from '@/pages/api/services/userApis';
 import { useGetPostsByUserIdQuery, useGetAllPostsByUserIdQuery } from '@/pages/api/services/productApis';
 
 function Profile() {
@@ -33,6 +38,7 @@ function Profile() {
 
   const [createAvatarImage, { isLoading: isLoadingImg }] = useUploadAvatarMutation();
   const [changeProfile, { isLoading: isLoadingChangeProfile }] = useChangeProfileMutation();
+  const [changePassword, { isLoading: isLoadingChangePassword }] = useChangePasswordMutation();
 
   const handleCrop = (e: FormEvent<HTMLInputElement>) => {
     let input = e.currentTarget;
@@ -91,9 +97,25 @@ function Profile() {
       phone: values.phone,
     };
 
-    // console.log(newVal);
-
     try {
+      if (
+        (values.password !== '' && values.password !== undefined) ||
+        (values.confirmPassword !== '' && values.confirmPassword !== undefined) ||
+        (values.newPassword !== '' && values.newPassword !== undefined)
+      ) {
+        const data = await changePassword({
+          curPassword: values.password,
+          newPassword: values.newPassword,
+          rePassword: values.confirmPassword,
+        });
+        // console.log(data);
+        // return;
+        if (data?.error.originalStatus === 400) {
+          alert(data?.error.data);
+          return;
+        }
+      }
+
       await changeProfile({ ...newVal });
       if (image !== undefined) {
         alert('uploading');
@@ -237,17 +259,18 @@ function Profile() {
                         </S.Info>
                         <S.Info>
                           <S.InfoContent>Email</S.InfoContent>
+                          <S.InfoText>{user?.email}</S.InfoText>
+                        </S.Info>
+                        <S.Info>
+                          <S.InfoContent>Đổi mật khẩu</S.InfoContent>
                           {editName ? (
                             <>
-                              <S.Input
-                                name="email"
-                                placeholder="Email..."
-                                error={errors.email && touched.email ? 1 : 0}
-                              />
-                              <ErrorMessage name="email" component={S.ErrorMsg} />
+                              <S.Input type="password" name="password" placeholder="Mật khẩu hiện tại..." />
+                              <S.Input type="password" name="newPassword" placeholder="Mật khẩu mới..." />
+                              <S.Input type="password" name="confirmPassword" placeholder="Nhập lại mật khẩu mới..." />
                             </>
                           ) : (
-                            <S.InfoText>{user?.email}</S.InfoText>
+                            <S.InfoText></S.InfoText>
                           )}
                         </S.Info>
                       </S.GroupInfo>

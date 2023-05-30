@@ -40,7 +40,8 @@ function Content({ mode }: iMode) {
                 </Link>
               </S.NewsTitle>
               <S.AuthorTag>
-                By&nbsp;<S.AuthorName>{isFetchingPostData ? 'Loading..' : postData[0]?.userName}</S.AuthorName>
+                By&nbsp;
+                <S.AuthorName>{isFetchingPostData ? 'Loading..' : postData[0]?.userName}</S.AuthorName>
               </S.AuthorTag>
             </S.DescriptionNews>
           </S.LatestNewsLeft>

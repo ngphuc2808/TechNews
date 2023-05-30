@@ -237,8 +237,8 @@ function Post() {
 
   useEffect(() => {
     if (!isFetchingAllPosts) {
-      // let tempArr = [...allPosts];
-      // tempArr.map((post) => ({ ...post, content: extractContent(post.content) }));
+      let tempArr = [...allPosts];
+      tempArr.map((post) => ({ ...post, content: extractContent(post.content) }));
       // console.log(tempArr);
 
       // let formDatatmp = new FormData();
@@ -247,7 +247,7 @@ function Post() {
 
       formData = {
         title: extractContent(postData?.title),
-        data: [...allPosts],
+        data: [...tempArr],
       };
 
       // declare the data fetching function
@@ -255,7 +255,7 @@ function Post() {
         // console.log(formData);
         const data = await getRecommend(formData);
         setRecData(data);
-        console.log(recData);
+        console.log(data);
         // console.log(recData);
       };
 
@@ -456,21 +456,16 @@ function Post() {
               ) : (
                 <>
                   <S1.Card>
-                    <Image
-                      quality={100}
-                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
-                      alt="image"
-                      fill
-                      sizes=""
-                      priority
-                    />
+                    <Image quality={100} src={recData?.data?.data[0].thumbnail} alt="image" fill sizes="" priority />
                     <S1.Overlay>
                       <S1.DescriptionNews number={1}>
                         <S1.CategoryTag>
                           <S1.CategoryName>{recData?.data?.data[0].categoryName}</S1.CategoryName>
                         </S1.CategoryTag>
                         <S1.NewsTitle>
-                          <Link href={`/post?id=${recData?.data?.data[0].id}`}>{recData?.data?.data[0].title}</Link>
+                          <Link href={`/post?id=${recData?.data?.data[0].id}`}>
+                            <div dangerouslySetInnerHTML={{ __html: recData?.data?.data[0].title }} />
+                          </Link>
                         </S1.NewsTitle>
                         <S1.AuthorTag>
                           By&nbsp;<S1.AuthorName>{recData?.data?.data[0].userName}</S1.AuthorName>
@@ -479,21 +474,16 @@ function Post() {
                     </S1.Overlay>
                   </S1.Card>
                   <S1.Card>
-                    <Image
-                      quality={100}
-                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
-                      alt="image"
-                      fill
-                      sizes=""
-                      priority
-                    />
+                    <Image quality={100} src={recData?.data?.data[1].thumbnail} alt="image" fill sizes="" priority />
                     <S1.Overlay>
                       <S1.DescriptionNews number={1}>
                         <S1.CategoryTag>
                           <S1.CategoryName>{recData?.data?.data[1].categoryName}</S1.CategoryName>
                         </S1.CategoryTag>
                         <S1.NewsTitle>
-                          <Link href={`/post?id=${recData?.data?.data[1].id}`}>{recData?.data?.data[1].title}</Link>
+                          <Link href={`/post?id=${recData?.data?.data[1].id}`}>
+                            <div dangerouslySetInnerHTML={{ __html: recData?.data?.data[1].title }} />
+                          </Link>
                         </S1.NewsTitle>
                         <S1.AuthorTag>
                           By&nbsp;<S1.AuthorName>{recData?.data?.data[1].userName}</S1.AuthorName>
@@ -502,21 +492,16 @@ function Post() {
                     </S1.Overlay>
                   </S1.Card>
                   <S1.Card>
-                    <Image
-                      quality={100}
-                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
-                      alt="image"
-                      fill
-                      sizes=""
-                      priority
-                    />
+                    <Image quality={100} src={recData?.data?.data[2].thumbnail} alt="image" fill sizes="" priority />
                     <S1.Overlay>
                       <S1.DescriptionNews number={1}>
                         <S1.CategoryTag>
                           <S1.CategoryName>{recData?.data?.data[2].categoryName}</S1.CategoryName>
                         </S1.CategoryTag>
                         <S1.NewsTitle>
-                          <Link href={`/post?id=${recData?.data?.data[2].id}`}>{recData?.data?.data[2].title}</Link>
+                          <Link href={`/post?id=${recData?.data?.data[2].id}`}>
+                            <div dangerouslySetInnerHTML={{ __html: recData?.data?.data[2].title }} />
+                          </Link>
                         </S1.NewsTitle>
                         <S1.AuthorTag>
                           By&nbsp;<S1.AuthorName>{recData?.data?.data[2].userName}</S1.AuthorName>
@@ -525,21 +510,16 @@ function Post() {
                     </S1.Overlay>
                   </S1.Card>
                   <S1.Card>
-                    <Image
-                      quality={100}
-                      src="https://new.axilthemes.com/themes/papr/wp-content/uploads/2019/11/smart-1000x753.jpg"
-                      alt="image"
-                      fill
-                      sizes=""
-                      priority
-                    />
+                    <Image quality={100} src={recData?.data?.data[3].thumbnail} alt="image" fill sizes="" priority />
                     <S1.Overlay>
                       <S1.DescriptionNews number={1}>
                         <S1.CategoryTag>
                           <S1.CategoryName>{recData?.data?.data[3].categoryName}</S1.CategoryName>
                         </S1.CategoryTag>
                         <S1.NewsTitle>
-                          <Link href={`/post?id=${recData?.data?.data[3].id}`}>{recData?.data?.data[3].title}</Link>
+                          <Link href={`/post?id=${recData?.data?.data[3].id}`}>
+                            <div dangerouslySetInnerHTML={{ __html: recData?.data?.data[3].title }} />
+                          </Link>
                         </S1.NewsTitle>
                         <S1.AuthorTag>
                           By&nbsp;<S1.AuthorName>{recData?.data?.data[3].userName}</S1.AuthorName>

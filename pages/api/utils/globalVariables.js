@@ -18,7 +18,5 @@ export const axiosConfig = () => {
 };
 
 export function extractContent(s) {
-  var span = document.createElement('span');
-  span.innerHTML = s;
-  return span.textContent || span.innerText;
+  return s === undefined ? '' : s.replace(/['"]+/g, '');
 }
